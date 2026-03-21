@@ -423,9 +423,33 @@
   </div>
 
   <!-- ══════════════════════════════════════════
+       ROI METRICS STRIP
+  ══════════════════════════════════════════ -->
+  <div class="border-y divider px-4" style="background:rgba(15,15,15,0.95);">
+    <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+      <div class="py-6 px-6 text-center">
+        <div class="text-2xl font-bold font-mono" style="color:#ef4444;">$340</div>
+        <div class="text-xs text-muted mt-1 leading-snug">avg unexpected<br/>AWS overcharge</div>
+      </div>
+      <div class="py-6 px-6 text-center">
+        <div class="text-2xl font-bold font-mono text-text">€4<span class="text-base font-normal text-muted">/mo</span></div>
+        <div class="text-xs text-muted mt-1 leading-snug">StackAlert<br/>Solo plan</div>
+      </div>
+      <div class="py-6 px-6 text-center">
+        <div class="text-2xl font-bold font-mono" style="color:#22c55e;">7 yrs</div>
+        <div class="text-xs text-muted mt-1 leading-snug">1 alert caught<br/>pays for this</div>
+      </div>
+      <div class="py-6 px-6 text-center">
+        <div class="text-2xl font-bold font-mono text-text">60s</div>
+        <div class="text-xs text-muted mt-1 leading-snug">setup time<br/>no YAML</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
        TRUST STRIP
   ══════════════════════════════════════════ -->
-  <div class="border-y divider py-5 px-4" style="background:rgba(26,26,26,0.5);">
+  <div class="border-b divider py-5 px-4" style="background:rgba(26,26,26,0.5);">
     <div class="max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-8 text-sm text-muted font-medium">
       <span class="flex items-center gap-2"><i data-feather="shield" class="w-4 h-4 text-orange"></i>GDPR · EU data residency</span>
       <span class="hidden sm:block w-px h-4 bg-border"></span>
@@ -587,6 +611,62 @@
   </section>
 
   <!-- ══════════════════════════════════════════
+       WHY PAY / SELF-HOST COMPARISON
+  ══════════════════════════════════════════ -->
+  <section class="max-w-4xl mx-auto">
+    <div class="section-label">Why pay?</div>
+    <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4 tracking-tight">
+      The Lambda is free.<br/>Your time isn't.
+    </h2>
+    <p class="text-muted text-lg mb-10 max-w-2xl">Yes, the core Lambda is open-source. You can self-host it. Here's what that actually looks like versus joining StackAlert.</p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+
+      <!-- Self-host column -->
+      <div class="card" style="border-color:#2e2e2e;">
+        <div class="font-semibold text-text mb-4 flex items-center gap-2">
+          <span class="text-lg">🔧</span> Self-hosted (free)
+        </div>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>30+ steps: IAM, Lambda, EventBridge, SSM, S3, CI/CD</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>You maintain it — updates, broken deploys, silent failures</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>Telegram only — no Slack, no Teams</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>1 account per deployment</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>No web UI — config changes require redeployment</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>No history, no trends, no reports</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>~3–4h to set up properly · ongoing maintenance</li>
+        </ul>
+        <div class="mt-5 pt-5 border-t border-border">
+          <div class="text-xs text-subtle">At €60/h dev rate: setup alone = <span class="font-mono text-muted">€180–240</span></div>
+        </div>
+      </div>
+
+      <!-- StackAlert column -->
+      <div class="card" style="border-color:rgba(249,115,22,0.35); background:linear-gradient(160deg,#141414,rgba(249,115,22,0.04));">
+        <div class="font-semibold mb-4 flex items-center gap-2" style="color:#f97316;">
+          <span class="text-lg">✨</span> StackAlert hosted
+        </div>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>1 CloudFormation click — IAM role created in 30 seconds</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>We maintain it — updates ship automatically, zero ops</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Slack + Teams + Telegram — wherever your team lives</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Multi-account dashboard — monitor all accounts in one view</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Web UI — change thresholds, pause alerts, manage team</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>30-day history, trend charts, monthly PDF reports</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>60 seconds to connect · then forget about it</li>
+        </ul>
+        <div class="mt-5 pt-5 border-t" style="border-color:rgba(249,115,22,0.2);">
+          <div class="flex items-center justify-between">
+            <div class="text-xs text-subtle">Total cost per year</div>
+            <div class="font-mono font-bold" style="color:#f97316;">€48 <span class="text-subtle font-normal text-xs">vs €180–240+ DIY</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
        HOW IT WORKS
   ══════════════════════════════════════════ -->
   <section id="how-it-works" class="max-w-3xl mx-auto text-center">
@@ -657,15 +737,16 @@
   ══════════════════════════════════════════ -->
   <section id="pricing" class="max-w-5xl mx-auto">
     <div class="section-label justify-center" style="justify-content:center;">Pricing</div>
-    <h2 class="text-3xl sm:text-4xl font-bold text-text mb-2 text-center tracking-tight">Simple, transparent pricing.</h2>
-    <p class="text-muted text-center mb-2">Early access: 50% off for first 100 users. Locked in forever.</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-text mb-2 text-center tracking-tight">Less than a Spotify subscription.</h2>
+    <p class="text-muted text-center mb-1">One caught spike pays for <strong class="text-text">7 years</strong> of StackAlert. Early access: 50% off forever.</p>
     <p class="text-xs text-subtle text-center mb-12">Alle Preise inkl. MwSt. · All prices include VAT</p>
 
     <div class="grid md:grid-cols-3 gap-4">
 
       <div class="price-card">
         <div class="font-semibold text-text text-lg mb-1">Solo</div>
-        <div class="text-muted text-sm mb-6">1 AWS account, 1 user</div>
+        <div class="text-muted text-sm mb-1">1 AWS account, 1 user</div>
+        <div class="text-xs mb-5" style="color:#737373;">Less than 1 coffee/month</div>
         <div class="flex items-baseline gap-1.5 mb-1">
           <span class="text-subtle line-through font-mono">€9</span>
           <span class="font-bold text-4xl text-text font-mono">€4</span>
@@ -686,7 +767,8 @@
       <div class="price-card featured relative">
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-4 py-1 rounded-full" style="background:#f97316; color:#080808;">Most popular</div>
         <div class="font-semibold text-text text-lg mb-1">Team</div>
-        <div class="text-muted text-sm mb-6">3 AWS accounts, 5 users</div>
+        <div class="text-muted text-sm mb-1">3 AWS accounts, 5 users</div>
+        <div class="text-xs mb-5" style="color:#737373;">Cheaper than 30 min of debugging</div>
         <div class="flex items-baseline gap-1.5 mb-1">
           <span class="text-subtle line-through font-mono">€29</span>
           <span class="font-bold text-4xl font-mono" style="color:#f97316;">€14</span>
@@ -707,7 +789,8 @@
 
       <div class="price-card">
         <div class="font-semibold text-text text-lg mb-1">Studio</div>
-        <div class="text-muted text-sm mb-6">10 accounts, unlimited users</div>
+        <div class="text-muted text-sm mb-1">10 accounts, unlimited users</div>
+        <div class="text-xs mb-5" style="color:#737373;">For agencies managing client AWS</div>
         <div class="flex items-baseline gap-1.5 mb-1">
           <span class="text-subtle line-through font-mono">€79</span>
           <span class="font-bold text-4xl text-text font-mono">€39</span>
@@ -839,13 +922,21 @@
   ══════════════════════════════════════════ -->
   <section id="final-cta" class="max-w-2xl mx-auto text-center">
     <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4 tracking-tight">
-      Stop finding out about AWS spikes<br/>from your invoice.
+      The average surprise AWS bill is $340.<br/>
+      <span class="gradient-text">StackAlert is €4/month.</span>
     </h2>
-    <p class="text-muted text-lg mb-8">Join the waitlist — 50% off forever as a founding member.</p>
-    <a href="#waitlist" class="btn-primary text-base px-10 py-4">
-      <i data-feather="bell" class="w-5 h-5"></i>
-      Get early access — free
-    </a>
+    <p class="text-muted text-lg mb-3">The math is obvious. One alert caught pays for 7 years.</p>
+    <p class="text-muted mb-8">Join the waitlist — 50% off forever as a founding member. No credit card. No spam.</p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="#waitlist" class="btn-primary text-base px-10 py-4">
+        <i data-feather="bell" class="w-5 h-5"></i>
+        Get early access — free
+      </a>
+      <a href="https://github.com/stackalertapp/stackalert-lambda" target="_blank" rel="noopener" class="btn-secondary text-base px-8 py-4">
+        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current flex-shrink-0"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56C20.21 21.42 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+        See the source code
+      </a>
+    </div>
   </section>
 
   <!-- ══════════════════════════════════════════
