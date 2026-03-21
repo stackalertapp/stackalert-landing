@@ -279,10 +279,16 @@
         <a href="#pricing" class="hover:text-text transition-colors">Pricing</a>
         <a href="#faq" class="hover:text-text transition-colors">FAQ</a>
       </div>
-      <a href="#waitlist" class="hidden md:flex btn-primary text-sm px-5 py-2">
-        <i data-feather="bell" class="w-4 h-4"></i>
-        Join waitlist
-      </a>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://github.com/stackalertapp" target="_blank" rel="noopener" class="btn-secondary text-sm px-4 py-2">
+          <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56C20.21 21.42 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a href="#waitlist" class="btn-primary text-sm px-5 py-2">
+          <i data-feather="bell" class="w-4 h-4"></i>
+          Join waitlist
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -308,7 +314,7 @@
 
       <!-- Subheadline -->
       <p class="text-xl text-muted max-w-xl mx-auto mb-10 leading-relaxed">
-        StackAlert sends your team a Slack message the moment AWS costs spike — before the bill arrives. For teams spending <strong class="text-text font-semibold">$1k–$20k/month</strong> on AWS.
+        StackAlert sends your team a Slack message the moment AWS costs spike — before the bill arrives. For teams spending <strong class="text-text font-semibold">$1k–$20k/month</strong> on AWS — including costs from <strong class="text-text font-semibold">AI agents and coding assistants</strong>.
       </p>
 
       <!-- CTAs -->
@@ -372,6 +378,45 @@
           </div>
         </div>
         <p class="text-xs text-muted mt-3">Real Slack notification · Sent within 6 hours of the spike</p>
+
+        <!-- AI agent spike example -->
+        <div class="alert-card text-left overflow-hidden mt-4">
+          <div style="background:#111111; border-bottom:1px solid #2e2e2e; padding:10px 16px; display:flex; align-items:center; gap:10px;">
+            <div style="width:28px; height:28px; border-radius:6px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg width="14" height="10" viewBox="0 0 16 12" fill="none"><polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#080808" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div style="font-size:13px; font-weight:600; color:#fafaf9;">StackAlert</div>
+              <div style="font-size:11px; color:#737373;">App · 14 minutes ago</div>
+            </div>
+            <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">#aws-costs</div>
+          </div>
+          <div style="padding:18px 20px;">
+            <div class="spike-bar mb-4">
+              <div style="font-size:14px; font-weight:700; color:#ef4444; margin-bottom:4px;">🤖 AI Agent Cost Spike — Amazon Bedrock</div>
+              <p style="font-size:13px; color:#a3a3a3; line-height:1.5;">Bedrock spend jumped <strong style="color:#ef4444;">+847%</strong> — Claude Code agent loop detected. <span style="color:#f97316;">~15,000 API calls in 6h.</span></p>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px;">
+              <div class="stat-cell">
+                <div style="font-size:11px; color:#737373; margin-bottom:4px;">7-day avg</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#fafaf9;">$2.10<span style="color:#737373;">/d</span></div>
+              </div>
+              <div class="stat-cell" style="border-color:rgba(239,68,68,0.25);">
+                <div style="font-size:11px; color:#737373; margin-bottom:4px;">Today</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#ef4444; font-weight:600;">$19.80</div>
+              </div>
+              <div class="stat-cell">
+                <div style="font-size:11px; color:#737373; margin-bottom:4px;">Model</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#fafaf9;">claude-3-5</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button style="flex:1; font-size:12px; font-weight:600; background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.3); color:#f97316; border-radius:6px; padding:8px 12px; cursor:pointer;">Stop agent →</button>
+              <button style="font-size:12px; background:#1a1a1a; border:1px solid #2e2e2e; color:#a3a3a3; border-radius:6px; padding:8px 14px; cursor:pointer;">Snooze 1h</button>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-muted mt-3">AI coding agents can silently drain your AWS budget — StackAlert catches them</p>
       </div>
 
     </section>
@@ -384,7 +429,7 @@
     <div class="max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-8 text-sm text-muted font-medium">
       <span class="flex items-center gap-2"><i data-feather="shield" class="w-4 h-4 text-orange"></i>GDPR · EU data residency</span>
       <span class="hidden sm:block w-px h-4 bg-border"></span>
-      <span class="flex items-center gap-2"><i data-feather="lock" class="w-4 h-4 text-orange"></i>Read-only IAM · open-source Lambda</span>
+      <a href="https://github.com/stackalertapp/stackalert-lambda" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-text transition-colors"><i data-feather="github" class="w-4 h-4 text-orange"></i>Open-source Lambda · audit the code</a>
       <span class="hidden sm:block w-px h-4 bg-border"></span>
       <span class="flex items-center gap-2"><i data-feather="zap" class="w-4 h-4 text-orange"></i>60-second setup · no YAML</span>
     </div>
@@ -415,6 +460,21 @@
         <div class="flex items-center gap-2 text-xs text-subtle">
           <i data-feather="message-circle" class="w-3 h-3"></i>
           Hacker News · Dec 2025
+        </div>
+      </div>
+      <div class="card md:col-span-2" style="border-color:rgba(249,115,22,0.2); background:rgba(249,115,22,0.03);">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-1" style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.2);">
+            🤖
+          </div>
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-wider mb-2" style="color:#f97316;">New in 2025–2026: AI Agent Cost Overruns</div>
+            <p class="text-secondary text-base leading-relaxed mb-3">My Claude Code agent got into a loop refactoring a file. By morning it had made <strong class="text-text">12,000 Bedrock API calls</strong>. The bill was fine only because I happened to check — there was no alert.</p>
+            <div class="flex items-center gap-2 text-xs text-subtle">
+              <i data-feather="message-circle" class="w-3 h-3"></i>
+              r/ClaudeAI · Feb 2026
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -475,7 +535,11 @@
           <i data-feather="shield" class="w-5 h-5 text-orange"></i>
         </div>
         <h3 class="font-bold text-text mb-2">Read-only &amp; auditable.</h3>
-        <p class="text-muted text-sm leading-relaxed">One CloudFormation template deploys a read-only IAM role. The Lambda is open-source on GitHub — audit exactly what we access.</p>
+        <p class="text-muted text-sm leading-relaxed mb-4">One CloudFormation template deploys a read-only IAM role. The Lambda is open-source — audit exactly what we access.</p>
+        <a href="https://github.com/stackalertapp/stackalert-lambda" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold" style="color:#f97316;">
+          <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-current"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56C20.21 21.42 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          View source on GitHub →
+        </a>
       </div>
 
       <div class="card md:col-span-2">
@@ -484,6 +548,39 @@
         </div>
         <h3 class="font-bold text-text text-lg mb-2">EU data residency. GDPR compliant.</h3>
         <p class="text-muted text-sm leading-relaxed">All data processed and stored in AWS Frankfurt (eu-central-1). No US data transfer. German-language support available. CloudZero, Spot.io, and nOps are US-only — StackAlert is built for European teams.</p>
+      </div>
+
+      <!-- AI Agent use case card — full width -->
+      <div class="card md:col-span-3" style="border-color:rgba(249,115,22,0.25); background:linear-gradient(135deg,rgba(249,115,22,0.05),rgba(239,68,68,0.03));">
+        <div class="flex flex-col md:flex-row md:items-center gap-6">
+          <div class="flex-1">
+            <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-3" style="color:#f97316;">
+              <span>🤖</span> New use case
+            </div>
+            <h3 class="font-bold text-text text-lg mb-2">Stop runaway AI agent costs before they happen.</h3>
+            <p class="text-muted text-sm leading-relaxed">AI coding agents — Claude Code, Cursor, Devin, GitHub Copilot — autonomously create Lambda functions, spin up EC2 instances, and trigger Bedrock API calls. A looping agent or a forgotten dev environment can rack up hundreds in hours. StackAlert detects the spike within 6 hours and alerts your team in Slack before the bill arrives.</p>
+          </div>
+          <div class="flex-shrink-0 w-full md:w-64">
+            <div style="background:#0f0f0f; border:1px solid #2e2e2e; border-radius:10px; padding:14px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.7;">
+              <div style="color:#737373; margin-bottom:8px;">Recent spikes detected:</div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#a3a3a3;">Bedrock</span>
+                <span style="color:#ef4444; font-weight:600;">+847% ↑</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#a3a3a3;">Lambda</span>
+                <span style="color:#ef4444; font-weight:600;">+312% ↑</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#a3a3a3;">EC2</span>
+                <span style="color:#22c55e; font-weight:600;">+2% ✓</span>
+              </div>
+              <div style="border-top:1px solid #2e2e2e; margin-top:10px; padding-top:10px; color:#737373; font-size:11px;">
+                🤖 Agent loop suspected · 15k Bedrock calls
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -716,6 +813,16 @@
 
       <details class="card">
         <summary class="flex items-center justify-between font-semibold text-text hover:text-orange transition-colors">
+          We use AI coding agents (Claude, Cursor, Devin). Will StackAlert catch their costs?
+          <i data-feather="plus" class="w-5 h-5 faq-icon flex-shrink-0 text-muted ml-4"></i>
+        </summary>
+        <div class="mt-4 text-muted text-sm leading-relaxed">
+          Yes — and this is one of the most critical use cases in 2026. AI coding agents autonomously create AWS resources, trigger Bedrock API calls, and can loop indefinitely if something goes wrong. StackAlert monitors <em>all</em> AWS services including Amazon Bedrock, Lambda invocations, EC2, and Data Transfer. If an agent spins up unexpected resources or enters a loop, you'll know within 6 hours — not at the end of the month. The 7-day rolling average baseline means even a first-time agent spike gets caught immediately.
+        </div>
+      </details>
+
+      <details class="card">
+        <summary class="flex items-center justify-between font-semibold text-text hover:text-orange transition-colors">
           When will StackAlert launch?
           <i data-feather="plus" class="w-5 h-5 faq-icon flex-shrink-0 text-muted ml-4"></i>
         </summary>
@@ -755,6 +862,10 @@
         <span class="font-bold text-text">StackAlert</span>
       </div>
       <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
+        <a href="https://github.com/stackalertapp" target="_blank" rel="noopener" class="hover:text-text transition-colors flex items-center gap-1.5">
+          <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56C20.21 21.42 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          GitHub
+        </a>
         <a href="/impressum.html" class="hover:text-text transition-colors">Impressum</a>
         <a href="/datenschutz.html" class="hover:text-text transition-colors">Datenschutzerklärung</a>
         <a href="mailto:hello@stackalert.app" class="hover:text-text transition-colors">Kontakt</a>
