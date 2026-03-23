@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StackAlert — Slack alerts when your AWS costs spike</title>
-  <meta name="description" content="StackAlert sends your team a Slack message the moment your AWS costs spike — before the bill arrives. Built for small teams spending $1k–$20k/month on AWS." />
+  <title>StackAlert — Telegram alerts when your AWS costs spike</title>
+  <meta name="description" content="StackAlert sends you a Telegram message the moment your AWS costs spike — before the bill arrives. Built for small teams spending $1k–$20k/month on AWS." />
   <meta property="og:title" content="StackAlert — Know when your AWS bill spikes" />
-  <meta property="og:description" content="Instant Slack alerts when AWS costs spike. No dashboards, no YAML. 60-second setup." />
+  <meta property="og:description" content="Instant Telegram alerts when AWS costs spike. No dashboards, no YAML. 60-second setup." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://stackalert.app" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="StackAlert — AWS cost alerts in Slack" />
+  <meta name="twitter:title" content="StackAlert — AWS cost alerts in Telegram" />
   <meta name="twitter:description" content="Stop getting surprised by your AWS bill." />
   <link rel="canonical" href="https://stackalert.app" />
   <meta name="robots" content="index, follow" />
@@ -314,7 +314,7 @@
 
       <!-- Subheadline -->
       <p class="text-xl text-muted max-w-xl mx-auto mb-10 leading-relaxed">
-        StackAlert sends your team a Slack message the moment AWS costs spike — before the bill arrives. For teams spending <strong class="text-text font-semibold">$1k–$20k/month</strong> on AWS — including costs from <strong class="text-text font-semibold">AI agents and coding assistants</strong>.
+        StackAlert sends you a Telegram message the moment AWS costs spike — before the bill arrives. For teams spending <strong class="text-text font-semibold">$1k–$20k/month</strong> on AWS — including costs from <strong class="text-text font-semibold">AI agents and coding assistants</strong>.
       </p>
 
       <!-- CTAs -->
@@ -333,7 +333,7 @@
       <div class="max-w-md mx-auto">
         <div class="alert-card text-left overflow-hidden">
 
-          <!-- Slack-style header bar -->
+          <!-- Telegram-style header bar -->
           <div style="background:#111111; border-bottom:1px solid #2e2e2e; padding:10px 16px; display:flex; align-items:center; gap:10px;">
             <div style="width:28px; height:28px; border-radius:6px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="14" height="10" viewBox="0 0 16 12" fill="none">
@@ -344,7 +344,7 @@
               <div style="font-size:13px; font-weight:600; color:#fafaf9;">StackAlert</div>
               <div style="font-size:11px; color:#737373;">App · just now</div>
             </div>
-            <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">#aws-costs</div>
+            <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">via Telegram</div>
           </div>
 
           <!-- Alert content -->
@@ -377,7 +377,7 @@
             </div>
           </div>
         </div>
-        <p class="text-xs text-muted mt-3">Real Slack notification · Sent within 6 hours of the spike</p>
+        <p class="text-xs text-muted mt-3">Real Telegram message · Sent within 6 hours of the spike</p>
 
         <!-- AI agent spike example -->
         <div class="alert-card text-left overflow-hidden mt-4">
@@ -389,7 +389,7 @@
               <div style="font-size:13px; font-weight:600; color:#fafaf9;">StackAlert</div>
               <div style="font-size:11px; color:#737373;">App · 14 minutes ago</div>
             </div>
-            <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">#aws-costs</div>
+            <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">via Telegram</div>
           </div>
           <div style="padding:18px 20px;">
             <div class="spike-bar mb-4">
@@ -416,7 +416,45 @@
             </div>
           </div>
         </div>
-        <p class="text-xs text-muted mt-3">AI coding agents can silently drain your AWS budget — StackAlert catches them</p>
+        <!-- Per-service breakdown example -->
+        <div class="alert-card text-left overflow-hidden mt-4">
+          <div style="background:#111111; border-bottom:1px solid #2e2e2e; padding:10px 16px; display:flex; align-items:center; gap:10px;">
+            <div style="width:28px; height:28px; border-radius:6px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg width="14" height="10" viewBox="0 0 16 12" fill="none"><polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#080808" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div style="font-size:13px; font-weight:600; color:#fafaf9;">StackAlert</div>
+              <div style="font-size:11px; color:#737373;">Daily digest · 08:00 UTC</div>
+            </div>
+            <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">via Telegram</div>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:12px; font-weight:700; color:#fafaf9; margin-bottom:10px; letter-spacing:0.02em;">📊 Per-service breakdown — Mon 23 Mar</div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:6px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2);">
+                <span style="font-size:12px; color:#fafaf9; font-family:'JetBrains Mono',monospace;">Amazon Bedrock</span>
+                <span style="font-size:12px; color:#ef4444; font-weight:700; font-family:'JetBrains Mono',monospace;">$8.20 ↑ +847%</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:6px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15);">
+                <span style="font-size:12px; color:#fafaf9; font-family:'JetBrains Mono',monospace;">Amazon EC2</span>
+                <span style="font-size:12px; color:#ef4444; font-weight:600; font-family:'JetBrains Mono',monospace;">$18.50 ↑ +54%</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid #2e2e2e;">
+                <span style="font-size:12px; color:#737373; font-family:'JetBrains Mono',monospace;">Amazon S3</span>
+                <span style="font-size:12px; color:#737373; font-family:'JetBrains Mono',monospace;">$0.42  stable</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid #2e2e2e;">
+                <span style="font-size:12px; color:#737373; font-family:'JetBrains Mono',monospace;">AWS Lambda</span>
+                <span style="font-size:12px; color:#737373; font-family:'JetBrains Mono',monospace;">$0.01  stable</span>
+              </div>
+              <div style="border-top:1px solid #2e2e2e; margin-top:4px; padding-top:8px; display:flex; justify-content:space-between;">
+                <span style="font-size:12px; color:#a3a3a3; font-weight:600;">Total</span>
+                <span style="font-size:12px; color:#fafaf9; font-weight:700; font-family:'JetBrains Mono',monospace;">$27.13</span>
+              </div>
+            </div>
+          </div>
+        </div>
+                <p class="text-xs text-muted mt-3">AI coding agents can silently drain your AWS budget — StackAlert catches them</p>
       </div>
 
     </section>
@@ -510,13 +548,13 @@
         <div class="text-center p-5 rounded-xl border border-border bg-bg">
           <div class="text-2xl mb-3">😤</div>
           <div class="font-semibold text-text mb-1">AWS Native</div>
-          <div class="text-xs text-muted leading-relaxed">Free but clunky. Email-only. No Slack. No context. Alerts arrive too late.</div>
+          <div class="text-xs text-muted leading-relaxed">Free but clunky. Email-only. No Telegram. No context. Alerts arrive too late.</div>
         </div>
         <div class="text-center p-5 rounded-xl relative" style="border:2px solid #f97316; background:rgba(249,115,22,0.05);">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-3 py-0.5 rounded-full" style="background:#f97316; color:#080808;">StackAlert</div>
           <div class="text-2xl mb-3">✨</div>
           <div class="font-semibold mb-1" style="color:#f97316;">€4–39/month</div>
-          <div class="text-xs text-muted leading-relaxed">Slack alerts with context. No dashboards. 60-second setup.</div>
+          <div class="text-xs text-muted leading-relaxed">Telegram alerts with per-service context. No dashboards. 60-second setup.</div>
         </div>
         <div class="text-center p-5 rounded-xl border border-border bg-bg">
           <div class="text-2xl mb-3">🏢</div>
@@ -533,7 +571,7 @@
   <section class="max-w-5xl mx-auto" style="background-color:transparent;">
     <div class="section-label">Why StackAlert</div>
     <h2 class="text-3xl sm:text-4xl font-bold text-text mb-12 tracking-tight">
-      AWS cost control that lives in Slack.
+      AWS cost control in your Telegram.
     </h2>
 
     <div class="grid md:grid-cols-3 gap-4">
@@ -543,7 +581,7 @@
           <i data-feather="bell" class="w-5 h-5 text-orange"></i>
         </div>
         <h3 class="font-bold text-text text-lg mb-2">Instant spike alerts with context.</h3>
-        <p class="text-muted text-sm leading-relaxed">The moment any service spends 50%+ more than its 7-day average, your team gets a Slack message — with the culprit service, the extra cost, and a link to investigate. Not just "something happened."</p>
+        <p class="text-muted text-sm leading-relaxed">The moment any AWS service spends more than its 7-day average, you get a Telegram message — with exactly which service spiked, by how much, and its dollar amount. Not just "your total bill went up."</p>
       </div>
 
       <div class="card">
@@ -582,7 +620,7 @@
               <span>🤖</span> New use case
             </div>
             <h3 class="font-bold text-text text-lg mb-2">Stop runaway AI agent costs before they happen.</h3>
-            <p class="text-muted text-sm leading-relaxed">AI coding agents — Claude Code, Cursor, Devin, GitHub Copilot — autonomously create Lambda functions, spin up EC2 instances, and trigger Bedrock API calls. A looping agent or a forgotten dev environment can rack up hundreds in hours. StackAlert detects the spike within 6 hours and alerts your team in Slack before the bill arrives.</p>
+            <p class="text-muted text-sm leading-relaxed">AI coding agents — Claude Code, Cursor, Devin, GitHub Copilot — autonomously create Lambda functions, spin up EC2 instances, and trigger Bedrock API calls. A looping agent or a forgotten dev environment can rack up hundreds in hours. StackAlert detects the spike within 6 hours and alerts you in Telegram before the bill arrives.</p>
           </div>
           <div class="flex-shrink-0 w-full md:w-64">
             <div style="background:#0f0f0f; border:1px solid #2e2e2e; border-radius:10px; padding:14px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.7;">
@@ -630,7 +668,7 @@
         <ul class="space-y-3 text-sm">
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>30+ steps: IAM, Lambda, EventBridge, SSM, S3, CI/CD</li>
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>You maintain it — updates, broken deploys, silent failures</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>Telegram only — no Slack, no Teams</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>Telegram only — no web UI or dashboard</li>
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>1 account per deployment</li>
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>No web UI — config changes require redeployment</li>
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>No history, no trends, no reports</li>
@@ -649,7 +687,7 @@
         <ul class="space-y-3 text-sm">
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>1 CloudFormation click — IAM role created in 30 seconds</li>
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>We maintain it — updates ship automatically, zero ops</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Slack + Teams + Telegram — wherever your team lives</li>
+          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Telegram — instant push notifications, no email</li>
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Multi-account dashboard — monitor all accounts in one view</li>
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Web UI — change thresholds, pause alerts, manage team</li>
           <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>30-day history, trend charts, monthly PDF reports</li>
@@ -695,8 +733,8 @@
           <div class="step-line"></div>
         </div>
         <div class="pb-8">
-          <h3 class="font-bold text-text text-lg mb-2">Add StackAlert to Slack</h3>
-          <p class="text-muted text-sm leading-relaxed">One OAuth click. Choose which channel gets alerts. Done. Your team is now connected — no Slack app deployment required.</p>
+          <h3 class="font-bold text-text text-lg mb-2">Connect your Telegram bot</h3>
+          <p class="text-muted text-sm leading-relaxed">Start the StackAlert Telegram bot and paste your chat ID. Takes 30 seconds. Done — no app installation required.</p>
         </div>
       </div>
 
@@ -706,7 +744,7 @@
         </div>
         <div class="pb-2">
           <h3 class="font-bold text-text text-lg mb-2">Get alerted when it matters</h3>
-          <p class="text-muted text-sm leading-relaxed">Every 6 hours, StackAlert checks your spend against your baseline. If anything spikes, your team gets a Slack message — with context, not just a number.</p>
+          <p class="text-muted text-sm leading-relaxed">Every 6 hours, StackAlert checks your spend against your baseline. If anything spikes, you get a Telegram message — with context, not just a number.</p>
         </div>
       </div>
     </div>
@@ -755,7 +793,7 @@
         <div class="text-xs mb-6" style="color:#f97316;">Early access price</div>
         <ul class="space-y-3 mb-8 text-sm">
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>1 AWS account</li>
-          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Spike alerts in Slack</li>
+          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Spike alerts in Telegram</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Daily digest</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>6-hour check interval</li>
         </ul>
@@ -777,7 +815,7 @@
         <div class="text-xs mb-6" style="color:#f97316;">Early access price</div>
         <ul class="space-y-3 mb-8 text-sm">
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>3 AWS accounts</li>
-          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Up to 5 Slack users</li>
+          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Up to 5 Telegram users</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Per-tag &amp; per-service alerts</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>1-hour check interval</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Monthly report PDF</li>
@@ -799,7 +837,7 @@
         <div class="text-xs mb-6" style="color:#f97316;">Early access price</div>
         <ul class="space-y-3 mb-8 text-sm">
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>10 AWS accounts</li>
-          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Unlimited Slack users</li>
+          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Unlimited Telegram users</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Custom alert thresholds</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>15-min check interval</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Priority support (DE/EN)</li>
@@ -864,6 +902,14 @@
         </div>
       </details>
 
+      <details class="border-b divider py-5">
+        <summary class="flex items-center justify-between text-text font-semibold text-base cursor-pointer">
+          Does it tell me which AWS service caused the spike?
+          <span class="faq-icon text-muted ml-4 flex-shrink-0" style="font-size:20px;">+</span>
+        </summary>
+        <p class="text-muted text-sm leading-relaxed mt-4">Yes — that's the whole point. StackAlert monitors each AWS service independently (EC2, Bedrock, S3, RDS, Lambda, etc.). When Bedrock spikes 400% but EC2 is stable, you see exactly that — not just "total bill went up 12%." This is what AWS Budgets and Cost Anomaly Detection don't give you at a glance.</p>
+      </details>
+
       <details class="card">
         <summary class="flex items-center justify-between font-semibold text-text hover:text-orange transition-colors">
           What AWS services does StackAlert monitor?
@@ -880,7 +926,7 @@
           <i data-feather="plus" class="w-5 h-5 faq-icon flex-shrink-0 text-muted ml-4"></i>
         </summary>
         <div class="mt-4 text-muted text-sm leading-relaxed">
-          AWS Budgets sends emails when you cross a monthly threshold — that's too late. StackAlert checks every 6 hours, detects unusual patterns <em>early</em>, and delivers context (which service, which region, what changed) directly in Slack where your team already works.
+          AWS Budgets sends emails when you cross a monthly threshold — that's too late. StackAlert checks every 6 hours, detects unusual patterns <em>early</em>, and delivers context (which service, which region, what changed) directly in Telegram — instant push, not buried in email.
         </div>
       </details>
 
