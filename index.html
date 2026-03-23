@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StackAlert — AWS Cost Spike Alerts via Telegram | Per-Service Breakdown</title>
-  <meta name="description" content="Get a Telegram alert the moment any AWS service spikes. StackAlert shows which service — EC2, Bedrock, RDS — caused the spike. GDPR compliant. 60-second setup. From €4/month." />
-  <meta property="og:title" content="StackAlert — AWS Cost Spike Alerts in Telegram" />
-  <meta property="og:description" content="Per-service AWS cost alerts in Telegram. Know exactly which service caused the spike — not just that your total bill went up. 60-second setup." />
+  <title>StackAlert — AWS Cost Spike Alerts via Slack, Telegram &amp; PagerDuty</title>
+  <meta name="description" content="Get instant AWS cost spike alerts in Slack, Telegram, or PagerDuty. Per-service breakdown shows exactly which service — EC2, Bedrock, RDS — caused the spike. GDPR compliant. 60-second setup. From €4/month." />
+  <meta property="og:title" content="StackAlert — AWS Cost Spike Alerts in Slack &amp; Telegram" />
+  <meta property="og:description" content="Per-service AWS cost alerts delivered to Slack, Telegram, or PagerDuty. Know exactly which service caused the spike. 60-second setup." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://stackalert.app" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="StackAlert — AWS Cost Spike Alerts in Telegram" />
-  <meta name="twitter:description" content="Per-service AWS cost alerts. Know which service caused the spike before the bill arrives." />
+  <meta name="twitter:title" content="StackAlert — AWS Cost Alerts in Slack, Telegram &amp; PagerDuty" />
+  <meta name="twitter:description" content="Per-service AWS cost spike alerts. Slack, Telegram, or PagerDuty. Know what caused it before the bill arrives." />
   <link rel="canonical" href="https://stackalert.app" />
   <meta name="robots" content="index, follow" />
 
@@ -31,7 +31,7 @@
     "name": "StackAlert",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "description": "AWS cost spike detection and Telegram alerting with per-service breakdown. GDPR compliant, open-source Lambda.",
+    "description": "AWS cost spike detection with per-service breakdown. Alerts delivered to Slack, Telegram, or PagerDuty. GDPR compliant, open-source Lambda.",
     "url": "https://stackalert.app",
     "offers": {
       "@type": "Offer",
@@ -359,7 +359,7 @@
       </h1>
 
       <p class="text-xl text-muted max-w-xl mx-auto mb-10 leading-relaxed">
-        StackAlert sends a Telegram message the moment any AWS service spikes — with exactly <strong class="text-text font-semibold">which service caused it</strong> and by how much. For teams spending <strong class="text-text font-semibold">$1k–$20k/month</strong> on AWS.
+        StackAlert alerts you the moment any AWS service spikes — with exactly <strong class="text-text font-semibold">which service caused it</strong> and by how much. Delivered to <strong class="text-text font-semibold">Slack, Telegram, or PagerDuty</strong>. For teams spending $1k–$20k/month on AWS.
       </p>
 
       <div id="hero-ctas" class="flex flex-col sm:flex-row gap-3 justify-center mb-16">
@@ -414,6 +414,32 @@
           </div>
         </div>
         <p class="text-xs text-muted mt-3">Real Telegram message · Sent within 6 hours of the spike</p>
+
+        <!-- Channel pills -->
+        <div class="flex items-center justify-center gap-2 mt-5 flex-wrap">
+          <span class="text-xs text-subtle mr-1">Delivered via:</span>
+          <!-- Slack -->
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full" style="background:#1a1a1a; border:1px solid #2e2e2e; color:#d4d4d4;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" fill="#E01E5A"/>
+            </svg>
+            Slack
+          </span>
+          <!-- Telegram -->
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full" style="background:#1a1a1a; border:1px solid #2e2e2e; color:#d4d4d4;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.664 13.16l-2.95-.924c-.642-.204-.657-.642.136-.953l11.57-4.461c.537-.194 1.006.131.474.399z" fill="#26A5E4"/>
+            </svg>
+            Telegram
+          </span>
+          <!-- PagerDuty -->
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full" style="background:#1a1a1a; border:1px solid #2e2e2e; color:#d4d4d4;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.965 1.18C15.085.164 13.769 0 10.983 0H3.246v14.2h7.694c2.458 0 4.265-.2 5.898-1.298C18.63 11.7 19.5 9.65 19.5 7.2c0-2.633-1.02-4.8-2.535-6.02zM11.1 11.15H6.75V3.05h4.02c3.107 0 5.13 1.449 5.13 4.015 0 2.74-1.89 4.085-4.8 4.085zM3.246 17.05H6.75V24H3.246v-6.95z" fill="#06AC38"/>
+            </svg>
+            PagerDuty
+          </span>
+        </div>
       </div>
 
     </section>
@@ -516,7 +542,7 @@
           <i data-feather="bell" class="w-5 h-5 text-orange"></i>
         </div>
         <h3 class="font-bold text-text text-lg mb-2">Per-service spike alerts — know exactly what's causing it.</h3>
-        <p class="text-muted text-sm leading-relaxed">The moment any AWS service exceeds its 7-day average, you get a Telegram message — with exactly which service spiked, by how much, and its dollar amount. EC2, Bedrock, RDS, Lambda, Data Transfer — each monitored independently. Not just "your total bill went up."</p>
+        <p class="text-muted text-sm leading-relaxed">The moment any AWS service exceeds its 7-day average, you get an alert — with exactly which service spiked, by how much, and its dollar amount. EC2, Bedrock, RDS, Lambda, Data Transfer — each monitored independently. Not just "your total bill went up."</p>
       </div>
 
       <div class="card">
@@ -525,6 +551,54 @@
         </div>
         <h3 class="font-bold text-text mb-2">Daily digest.</h3>
         <p class="text-muted text-sm leading-relaxed">Every morning: yesterday's spend by service, vs. last week. 30 seconds to read, zero dashboards to open.</p>
+      </div>
+
+      <!-- Channels card -->
+      <div class="card md:col-span-3" style="border-color:rgba(249,115,22,0.15);">
+        <div class="grid md:grid-cols-3 gap-6 items-start">
+          <div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.2);">
+              <i data-feather="message-square" class="w-5 h-5 text-orange"></i>
+            </div>
+            <h3 class="font-bold text-text text-lg mb-2">Your team's channel. Your choice.</h3>
+            <p class="text-muted text-sm leading-relaxed">Configure one or more delivery channels per account. Solo devs use Telegram; teams use Slack; ops engineers route into PagerDuty. Mix and match.</p>
+          </div>
+          <!-- Slack -->
+          <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 rounded-xl" style="background:#111; border:1px solid #2e2e2e;">
+              <svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" fill="#E01E5A"/></svg>
+              <div>
+                <div class="text-sm font-semibold text-text mb-0.5">Slack</div>
+                <div class="text-xs text-muted leading-relaxed">Incoming webhook — rich Block Kit cards with service details and a direct link to Cost Explorer.</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl" style="background:#111; border:1px solid #2e2e2e;">
+              <svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.664 13.16l-2.95-.924c-.642-.204-.657-.642.136-.953l11.57-4.461c.537-.194 1.006.131.474.399z" fill="#26A5E4"/></svg>
+              <div>
+                <div class="text-sm font-semibold text-text mb-0.5">Telegram</div>
+                <div class="text-xs text-muted leading-relaxed">Bot push notification — instant delivery, no email, works on every device.</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl" style="background:#111; border:1px solid #2e2e2e;">
+              <svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16.965 1.18C15.085.164 13.769 0 10.983 0H3.246v14.2h7.694c2.458 0 4.265-.2 5.898-1.298C18.63 11.7 19.5 9.65 19.5 7.2c0-2.633-1.02-4.8-2.535-6.02zM11.1 11.15H6.75V3.05h4.02c3.107 0 5.13 1.449 5.13 4.015 0 2.74-1.89 4.085-4.8 4.085zM3.246 17.05H6.75V24H3.246v-6.95z" fill="#06AC38"/></svg>
+              <div>
+                <div class="text-sm font-semibold text-text mb-0.5">PagerDuty</div>
+                <div class="text-xs text-muted leading-relaxed">Events API v2 — creates an incident with severity (warning/critical), on-call routing, and dedup.</div>
+              </div>
+            </div>
+          </div>
+          <!-- Config snippet -->
+          <div style="background:#0f0f0f; border:1px solid #2e2e2e; border-radius:10px; padding:16px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.9;">
+            <div style="color:#737373; margin-bottom:8px; font-size:11px;"># Lambda env vars</div>
+            <div><span style="color:#737373;">NOTIFICATION_CHANNELS</span><span style="color:#fafaf9;">=</span><span style="color:#f97316;">"slack,telegram"</span></div>
+            <div style="margin-top:6px;"><span style="color:#737373;">SLACK_WEBHOOK_URL</span><span style="color:#fafaf9;">=</span><span style="color:#22c55e;">"https://hooks.slack.com/…"</span></div>
+            <div><span style="color:#737373;">TELEGRAM_BOT_TOKEN</span><span style="color:#fafaf9;">=</span><span style="color:#22c55e;">"7123…"</span></div>
+            <div><span style="color:#737373;">TELEGRAM_CHAT_ID</span><span style="color:#fafaf9;">=</span><span style="color:#22c55e;">"281316…"</span></div>
+            <div style="margin-top:6px; color:#737373; font-size:11px;"># Add pagerduty for on-call routing:</div>
+            <div><span style="color:#737373;">PAGERDUTY_ROUTING_KEY</span><span style="color:#fafaf9;">=</span><span style="color:#22c55e;">"abc123…"</span></div>
+            <div style="margin-top:8px; padding-top:8px; border-top:1px solid #2e2e2e; color:#a3a3a3; font-size:11px;">→ alerts fan out to all listed channels</div>
+          </div>
+        </div>
       </div>
 
       <div class="card md:col-span-3" style="border-color:rgba(249,115,22,0.2);">
@@ -634,7 +708,8 @@
         <div class="text-xs mb-6" style="color:#f97316;">Early access price</div>
         <ul class="space-y-3 mb-8 text-sm">
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>1 AWS account</li>
-          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Spike alerts in Telegram</li>
+          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Slack <em>or</em> Telegram alerts</li>
+          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Per-service spike alerts</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Daily digest</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>6-hour check interval</li>
         </ul>
@@ -654,7 +729,7 @@
         <div class="text-xs mb-6" style="color:#f97316;">Early access price</div>
         <ul class="space-y-3 mb-8 text-sm">
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>3 AWS accounts</li>
-          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Up to 5 Telegram users</li>
+          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i><strong class="text-text">Slack + Telegram</strong> (both channels)</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Per-tag &amp; per-service alerts</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>1-hour check interval</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Monthly report PDF</li>
@@ -665,7 +740,7 @@
       <div class="price-card">
         <div class="font-semibold text-text text-lg mb-1">Studio</div>
         <div class="text-muted text-sm mb-1">10 accounts, unlimited users</div>
-        <div class="text-xs mb-5" style="color:#737373;">For agencies managing client AWS</div>
+        <div class="text-xs mb-5" style="color:#737373;">For agencies &amp; on-call teams</div>
         <div class="flex items-baseline gap-1.5 mb-1">
           <span class="text-subtle line-through font-mono">€79</span>
           <span class="font-bold text-4xl text-text font-mono">€39</span>
@@ -674,7 +749,7 @@
         <div class="text-xs mb-6" style="color:#f97316;">Early access price</div>
         <ul class="space-y-3 mb-8 text-sm">
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>10 AWS accounts</li>
-          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Unlimited Telegram users</li>
+          <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i><strong class="text-text">Slack + Telegram + PagerDuty</strong></li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Custom alert thresholds</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>15-min check interval</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Priority support (DE/EN)</li>
