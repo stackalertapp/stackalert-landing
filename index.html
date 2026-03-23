@@ -3,21 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StackAlert — Telegram alerts when your AWS costs spike</title>
-  <meta name="description" content="StackAlert sends you a Telegram message the moment your AWS costs spike — before the bill arrives. Built for small teams spending $1k–$20k/month on AWS." />
-  <meta property="og:title" content="StackAlert — Know when your AWS bill spikes" />
-  <meta property="og:description" content="Instant Telegram alerts when AWS costs spike. No dashboards, no YAML. 60-second setup." />
+  <title>StackAlert — AWS Cost Spike Alerts via Telegram | Per-Service Breakdown</title>
+  <meta name="description" content="Get a Telegram alert the moment any AWS service spikes. StackAlert shows which service — EC2, Bedrock, RDS — caused the spike. GDPR compliant. 60-second setup. From €4/month." />
+  <meta property="og:title" content="StackAlert — AWS Cost Spike Alerts in Telegram" />
+  <meta property="og:description" content="Per-service AWS cost alerts in Telegram. Know exactly which service caused the spike — not just that your total bill went up. 60-second setup." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://stackalert.app" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="StackAlert — AWS cost alerts in Telegram" />
-  <meta name="twitter:description" content="Stop getting surprised by your AWS bill." />
+  <meta name="twitter:title" content="StackAlert — AWS Cost Spike Alerts in Telegram" />
+  <meta name="twitter:description" content="Per-service AWS cost alerts. Know which service caused the spike before the bill arrives." />
   <link rel="canonical" href="https://stackalert.app" />
   <meta name="robots" content="index, follow" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "StackAlert",
+    "url": "https://stackalert.app",
+    "description": "AWS cost spike alerts via Telegram with per-service breakdown"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "StackAlert",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "AWS cost spike detection and Telegram alerting with per-service breakdown. GDPR compliant, open-source Lambda.",
+    "url": "https://stackalert.app",
+    "offers": {
+      "@type": "Offer",
+      "price": "4.00",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "4.00",
+        "priceCurrency": "EUR",
+        "billingDuration": "P1M"
+      }
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "StackAlert",
+      "url": "https://stackalert.app"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is it safe to give StackAlert access to my AWS account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. StackAlert uses a read-only IAM role — it can only read Cost Explorer data, never make changes. The Lambda is open-source on GitHub. We follow least privilege: the role is scoped to only the Cost Explorer API calls we need."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does StackAlert tell me which AWS service caused the spike?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — that's the whole point. StackAlert monitors each AWS service independently. When Bedrock spikes 400% but EC2 is stable, you see exactly that — not just 'total bill went up 12%.' This is what AWS Budgets and Cost Anomaly Detection don't give you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "I already have AWS Budgets set up. Why do I need StackAlert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AWS Budgets sends emails when you cross a monthly threshold — that's too late. StackAlert checks every 6 hours, detects unusual patterns early, and delivers context (which service, which region, what changed) directly in Telegram — instant push, not buried in email."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my AWS billing data stored in the EU? (GDPR)",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All data is processed and stored in AWS Frankfurt (eu-central-1). We are GDPR compliant and do not transfer data outside the EU. A Data Processing Agreement (DPA / AVV) is available on request."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Space Grotesk (heading + body) + JetBrains Mono (code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -73,7 +149,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Hero: subtle dot grid + orange glow ── */
     .hero-bg {
       position: relative;
       background-image: radial-gradient(circle, #2e2e2e 1px, transparent 1px);
@@ -92,7 +167,6 @@
       z-index: 0;
     }
 
-    /* ── Gradient text: orange → red ── */
     .gradient-text {
       background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
       -webkit-background-clip: text;
@@ -100,11 +174,9 @@
       background-clip: text;
     }
 
-    /* ── Section spacing ── */
     section { padding: 96px 24px; }
     @media (max-width: 640px) { section { padding: 64px 16px; } }
 
-    /* ── Cards ── */
     .card {
       background: #141414;
       border: 1px solid #2e2e2e;
@@ -114,7 +186,6 @@
     }
     .card:hover { border-color: rgba(249,115,22,0.5); }
 
-    /* ── Spike alert mockup ── */
     .alert-card {
       background: #141414;
       border: 1px solid #2e2e2e;
@@ -133,7 +204,6 @@
       text-align: center;
     }
 
-    /* ── Buttons ── */
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       background: #f97316;
@@ -164,7 +234,6 @@
     }
     .btn-secondary:hover { background: #1a1a1a; border-color: #f97316; }
 
-    /* ── Section label ── */
     .section-label {
       font-size: 12px;
       font-weight: 600;
@@ -184,17 +253,6 @@
       border-radius: 1px;
     }
 
-    /* ── Metric block ── */
-    .metric {
-      background: #0f0f0f;
-      border: 1px solid #2e2e2e;
-      border-radius: 10px;
-      padding: 20px;
-    }
-    .metric-value { font-size: 28px; font-weight: 700; line-height: 1; }
-    .metric-label { font-size: 12px; color: #a3a3a3; margin-top: 4px; }
-
-    /* ── Step ── */
     .step-num {
       width: 36px; height: 36px;
       background: #f97316;
@@ -211,7 +269,6 @@
       margin: 4px auto;
     }
 
-    /* ── Pricing card ── */
     .price-card {
       background: #141414;
       border: 1px solid #2e2e2e;
@@ -225,17 +282,14 @@
       background: linear-gradient(160deg, #141414, rgba(249,115,22,0.06));
     }
 
-    /* ── Divider ── */
     .divider { border-color: #1e1e1e; }
 
-    /* ── FAQ ── */
     details summary { cursor: pointer; list-style: none; }
     details summary::-webkit-details-marker { display: none; }
     details[open] summary { color: #f97316; }
     details[open] .faq-icon { transform: rotate(45deg); }
     .faq-icon { transition: transform 0.2s; }
 
-    /* ── Inline code ── */
     code {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.85em;
@@ -246,7 +300,6 @@
       color: #f97316;
     }
 
-    /* ── Sticky mobile CTA ── */
     .sticky-cta {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
       padding: 12px 16px;
@@ -260,13 +313,10 @@
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════════
-       NAVBAR
-  ══════════════════════════════════════════ -->
+  <!-- NAVBAR -->
   <nav class="sticky top-0 z-40 border-b divider backdrop-blur-md" style="background:rgba(8,8,8,0.88);">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-2.5">
-        <!-- Logo mark: spike chart -->
         <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#f97316;">
           <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
             <polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#080808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -281,7 +331,7 @@
       </div>
       <div class="hidden md:flex items-center gap-3">
         <a href="https://github.com/stackalertapp" target="_blank" rel="noopener" class="btn-secondary text-sm px-4 py-2">
-          <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56C20.21 21.42 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56C20.21 21.42 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
           GitHub
         </a>
         <a href="#waitlist" class="btn-primary text-sm px-5 py-2">
@@ -292,32 +342,26 @@
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════
-       HERO
-  ══════════════════════════════════════════ -->
+  <!-- HERO -->
   <div class="hero-bg relative overflow-hidden">
     <div class="hero-glow"></div>
     <section class="max-w-5xl mx-auto text-center relative z-10">
 
-      <!-- Badge -->
       <div class="inline-flex items-center gap-2 mb-8 text-sm font-medium"
            style="background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:20px; padding:6px 16px; color:#f97316;">
         <span class="w-2 h-2 bg-orange rounded-full animate-pulse"></span>
         Early access — first 100 users get 50% off forever
       </div>
 
-      <!-- Headline -->
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 max-w-3xl mx-auto tracking-tight">
         Your AWS bill just spiked.<br />
         <span class="gradient-text">Did you notice?</span>
       </h1>
 
-      <!-- Subheadline -->
       <p class="text-xl text-muted max-w-xl mx-auto mb-10 leading-relaxed">
-        StackAlert sends you a Telegram message the moment AWS costs spike — before the bill arrives. For teams spending <strong class="text-text font-semibold">$1k–$20k/month</strong> on AWS — including costs from <strong class="text-text font-semibold">AI agents and coding assistants</strong>.
+        StackAlert sends a Telegram message the moment any AWS service spikes — with exactly <strong class="text-text font-semibold">which service caused it</strong> and by how much. For teams spending <strong class="text-text font-semibold">$1k–$20k/month</strong> on AWS.
       </p>
 
-      <!-- CTAs -->
       <div id="hero-ctas" class="flex flex-col sm:flex-row gap-3 justify-center mb-16">
         <a href="#waitlist" class="btn-primary text-base px-8 py-3.5">
           <i data-feather="bell" class="w-4 h-4"></i>
@@ -329,11 +373,9 @@
         </a>
       </div>
 
-      <!-- Spike alert mockup — the hero visual -->
+      <!-- Single hero visual -->
       <div class="max-w-md mx-auto">
         <div class="alert-card text-left overflow-hidden">
-
-          <!-- Telegram-style header bar -->
           <div style="background:#111111; border-bottom:1px solid #2e2e2e; padding:10px 16px; display:flex; align-items:center; gap:10px;">
             <div style="width:28px; height:28px; border-radius:6px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="14" height="10" viewBox="0 0 16 12" fill="none">
@@ -346,15 +388,11 @@
             </div>
             <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">via Telegram</div>
           </div>
-
-          <!-- Alert content -->
           <div style="padding:18px 20px;">
             <div class="spike-bar mb-4">
               <div style="font-size:14px; font-weight:700; color:#ef4444; margin-bottom:4px;">⚠️ Cost Spike Detected — EC2 (eu-west-1)</div>
               <p style="font-size:13px; color:#a3a3a3; line-height:1.5;">Your EC2 spend jumped <strong style="color:#ef4444;">+312%</strong> in the last 6 hours compared to your 7-day average.</p>
             </div>
-
-            <!-- Stats row -->
             <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px;">
               <div class="stat-cell">
                 <div style="font-size:11px; color:#737373; margin-bottom:4px;">7-day avg</div>
@@ -369,8 +407,6 @@
                 <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#fafaf9;">i3.2xlarge</div>
               </div>
             </div>
-
-            <!-- Actions -->
             <div style="display:flex; gap:8px;">
               <button style="flex:1; font-size:12px; font-weight:600; background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.3); color:#f97316; border-radius:6px; padding:8px 12px; cursor:pointer;">View breakdown →</button>
               <button style="font-size:12px; background:#1a1a1a; border:1px solid #2e2e2e; color:#a3a3a3; border-radius:6px; padding:8px 14px; cursor:pointer;">Snooze 1h</button>
@@ -378,91 +414,12 @@
           </div>
         </div>
         <p class="text-xs text-muted mt-3">Real Telegram message · Sent within 6 hours of the spike</p>
-
-        <!-- AI agent spike example -->
-        <div class="alert-card text-left overflow-hidden mt-4">
-          <div style="background:#111111; border-bottom:1px solid #2e2e2e; padding:10px 16px; display:flex; align-items:center; gap:10px;">
-            <div style="width:28px; height:28px; border-radius:6px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <svg width="14" height="10" viewBox="0 0 16 12" fill="none"><polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#080808" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div style="font-size:13px; font-weight:600; color:#fafaf9;">StackAlert</div>
-              <div style="font-size:11px; color:#737373;">App · 14 minutes ago</div>
-            </div>
-            <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">via Telegram</div>
-          </div>
-          <div style="padding:18px 20px;">
-            <div class="spike-bar mb-4">
-              <div style="font-size:14px; font-weight:700; color:#ef4444; margin-bottom:4px;">🤖 AI Agent Cost Spike — Amazon Bedrock</div>
-              <p style="font-size:13px; color:#a3a3a3; line-height:1.5;">Bedrock spend jumped <strong style="color:#ef4444;">+847%</strong> — Claude Code agent loop detected. <span style="color:#f97316;">~15,000 API calls in 6h.</span></p>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px;">
-              <div class="stat-cell">
-                <div style="font-size:11px; color:#737373; margin-bottom:4px;">7-day avg</div>
-                <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#fafaf9;">$2.10<span style="color:#737373;">/d</span></div>
-              </div>
-              <div class="stat-cell" style="border-color:rgba(239,68,68,0.25);">
-                <div style="font-size:11px; color:#737373; margin-bottom:4px;">Today</div>
-                <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#ef4444; font-weight:600;">$19.80</div>
-              </div>
-              <div class="stat-cell">
-                <div style="font-size:11px; color:#737373; margin-bottom:4px;">Model</div>
-                <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#fafaf9;">claude-3-5</div>
-              </div>
-            </div>
-            <div style="display:flex; gap:8px;">
-              <button style="flex:1; font-size:12px; font-weight:600; background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.3); color:#f97316; border-radius:6px; padding:8px 12px; cursor:pointer;">Stop agent →</button>
-              <button style="font-size:12px; background:#1a1a1a; border:1px solid #2e2e2e; color:#a3a3a3; border-radius:6px; padding:8px 14px; cursor:pointer;">Snooze 1h</button>
-            </div>
-          </div>
-        </div>
-        <!-- Per-service breakdown example -->
-        <div class="alert-card text-left overflow-hidden mt-4">
-          <div style="background:#111111; border-bottom:1px solid #2e2e2e; padding:10px 16px; display:flex; align-items:center; gap:10px;">
-            <div style="width:28px; height:28px; border-radius:6px; background:#f97316; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-              <svg width="14" height="10" viewBox="0 0 16 12" fill="none"><polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#080808" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div style="font-size:13px; font-weight:600; color:#fafaf9;">StackAlert</div>
-              <div style="font-size:11px; color:#737373;">Daily digest · 08:00 UTC</div>
-            </div>
-            <div style="margin-left:auto; font-size:11px; color:#737373; font-family:'JetBrains Mono',monospace;">via Telegram</div>
-          </div>
-          <div style="padding:16px 20px;">
-            <div style="font-size:12px; font-weight:700; color:#fafaf9; margin-bottom:10px; letter-spacing:0.02em;">📊 Per-service breakdown — Mon 23 Mar</div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:6px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2);">
-                <span style="font-size:12px; color:#fafaf9; font-family:'JetBrains Mono',monospace;">Amazon Bedrock</span>
-                <span style="font-size:12px; color:#ef4444; font-weight:700; font-family:'JetBrains Mono',monospace;">$8.20 ↑ +847%</span>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:6px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15);">
-                <span style="font-size:12px; color:#fafaf9; font-family:'JetBrains Mono',monospace;">Amazon EC2</span>
-                <span style="font-size:12px; color:#ef4444; font-weight:600; font-family:'JetBrains Mono',monospace;">$18.50 ↑ +54%</span>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid #2e2e2e;">
-                <span style="font-size:12px; color:#737373; font-family:'JetBrains Mono',monospace;">Amazon S3</span>
-                <span style="font-size:12px; color:#737373; font-family:'JetBrains Mono',monospace;">$0.42  stable</span>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid #2e2e2e;">
-                <span style="font-size:12px; color:#737373; font-family:'JetBrains Mono',monospace;">AWS Lambda</span>
-                <span style="font-size:12px; color:#737373; font-family:'JetBrains Mono',monospace;">$0.01  stable</span>
-              </div>
-              <div style="border-top:1px solid #2e2e2e; margin-top:4px; padding-top:8px; display:flex; justify-content:space-between;">
-                <span style="font-size:12px; color:#a3a3a3; font-weight:600;">Total</span>
-                <span style="font-size:12px; color:#fafaf9; font-weight:700; font-family:'JetBrains Mono',monospace;">$27.13</span>
-              </div>
-            </div>
-          </div>
-        </div>
-                <p class="text-xs text-muted mt-3">AI coding agents can silently drain your AWS budget — StackAlert catches them</p>
       </div>
 
     </section>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       ROI METRICS STRIP
-  ══════════════════════════════════════════ -->
+  <!-- ROI METRICS STRIP -->
   <div class="border-y divider px-4" style="background:rgba(15,15,15,0.95);">
     <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
       <div class="py-6 px-6 text-center">
@@ -484,9 +441,7 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       TRUST STRIP
-  ══════════════════════════════════════════ -->
+  <!-- TRUST STRIP -->
   <div class="border-b divider py-5 px-4" style="background:rgba(26,26,26,0.5);">
     <div class="max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-8 text-sm text-muted font-medium">
       <span class="flex items-center gap-2"><i data-feather="shield" class="w-4 h-4 text-orange"></i>GDPR · EU data residency</span>
@@ -497,9 +452,7 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       PROBLEM
-  ══════════════════════════════════════════ -->
+  <!-- PROBLEM -->
   <section class="max-w-4xl mx-auto">
     <div class="section-label">The problem</div>
     <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4 tracking-tight">
@@ -524,31 +477,15 @@
           Hacker News · Dec 2025
         </div>
       </div>
-      <div class="card md:col-span-2" style="border-color:rgba(249,115,22,0.2); background:rgba(249,115,22,0.03);">
-        <div class="flex items-start gap-4">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-1" style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.2);">
-            🤖
-          </div>
-          <div>
-            <div class="text-xs font-semibold uppercase tracking-wider mb-2" style="color:#f97316;">New in 2025–2026: AI Agent Cost Overruns</div>
-            <p class="text-secondary text-base leading-relaxed mb-3">My Claude Code agent got into a loop refactoring a file. By morning it had made <strong class="text-text">12,000 Bedrock API calls</strong>. The bill was fine only because I happened to check — there was no alert.</p>
-            <div class="flex items-center gap-2 text-xs text-subtle">
-              <i data-feather="message-circle" class="w-3 h-3"></i>
-              r/ClaudeAI · Feb 2026
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- Gap visual -->
     <div class="card">
-      <p class="font-semibold text-text mb-6">The tooling gap is huge:</p>
+      <p class="font-semibold text-text mb-6">The tooling gap:</p>
       <div class="grid sm:grid-cols-3 gap-4">
         <div class="text-center p-5 rounded-xl border border-border bg-bg">
           <div class="text-2xl mb-3">😤</div>
           <div class="font-semibold text-text mb-1">AWS Native</div>
-          <div class="text-xs text-muted leading-relaxed">Free but clunky. Email-only. No Telegram. No context. Alerts arrive too late.</div>
+          <div class="text-xs text-muted leading-relaxed">Free but clunky. Email-only. No Telegram. No per-service context. Alerts arrive too late.</div>
         </div>
         <div class="text-center p-5 rounded-xl relative" style="border:2px solid #f97316; background:rgba(249,115,22,0.05);">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-3 py-0.5 rounded-full" style="background:#f97316; color:#080808;">StackAlert</div>
@@ -565,10 +502,8 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       FEATURES / WHY STACKALERT
-  ══════════════════════════════════════════ -->
-  <section class="max-w-5xl mx-auto" style="background-color:transparent;">
+  <!-- FEATURES -->
+  <section class="max-w-5xl mx-auto">
     <div class="section-label">Why StackAlert</div>
     <h2 class="text-3xl sm:text-4xl font-bold text-text mb-12 tracking-tight">
       AWS cost control in your Telegram.
@@ -580,8 +515,8 @@
         <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.2);">
           <i data-feather="bell" class="w-5 h-5 text-orange"></i>
         </div>
-        <h3 class="font-bold text-text text-lg mb-2">Instant spike alerts with context.</h3>
-        <p class="text-muted text-sm leading-relaxed">The moment any AWS service spends more than its 7-day average, you get a Telegram message — with exactly which service spiked, by how much, and its dollar amount. Not just "your total bill went up."</p>
+        <h3 class="font-bold text-text text-lg mb-2">Per-service spike alerts — know exactly what's causing it.</h3>
+        <p class="text-muted text-sm leading-relaxed">The moment any AWS service exceeds its 7-day average, you get a Telegram message — with exactly which service spiked, by how much, and its dollar amount. EC2, Bedrock, RDS, Lambda, Data Transfer — each monitored independently. Not just "your total bill went up."</p>
       </div>
 
       <div class="card">
@@ -589,57 +524,43 @@
           <i data-feather="sunrise" class="w-5 h-5 text-orange"></i>
         </div>
         <h3 class="font-bold text-text mb-2">Daily digest.</h3>
-        <p class="text-muted text-sm leading-relaxed">Every morning: yesterday's spend, top 5 services, vs. last week. 30 seconds to read, zero dashboards to open.</p>
+        <p class="text-muted text-sm leading-relaxed">Every morning: yesterday's spend by service, vs. last week. 30 seconds to read, zero dashboards to open.</p>
       </div>
 
-      <div class="card">
-        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.2);">
-          <i data-feather="shield" class="w-5 h-5 text-orange"></i>
-        </div>
-        <h3 class="font-bold text-text mb-2">Read-only &amp; auditable.</h3>
-        <p class="text-muted text-sm leading-relaxed mb-4">One CloudFormation template deploys a read-only IAM role. The Lambda is open-source — audit exactly what we access.</p>
-        <a href="https://github.com/stackalertapp/stackalert-lambda" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold" style="color:#f97316;">
-          <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-current"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56C20.21 21.42 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
-          View source on GitHub →
-        </a>
-      </div>
-
-      <div class="card md:col-span-2">
-        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.2);">
-          <i data-feather="map-pin" class="w-5 h-5 text-orange"></i>
-        </div>
-        <h3 class="font-bold text-text text-lg mb-2">EU data residency. GDPR compliant.</h3>
-        <p class="text-muted text-sm leading-relaxed">All data processed and stored in AWS Frankfurt (eu-central-1). No US data transfer. German-language support available. CloudZero, Spot.io, and nOps are US-only — StackAlert is built for European teams.</p>
-      </div>
-
-      <!-- AI Agent use case card — full width -->
-      <div class="card md:col-span-3" style="border-color:rgba(249,115,22,0.25); background:linear-gradient(135deg,rgba(249,115,22,0.05),rgba(239,68,68,0.03));">
-        <div class="flex flex-col md:flex-row md:items-center gap-6">
-          <div class="flex-1">
-            <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-3" style="color:#f97316;">
-              <span>🤖</span> New use case
+      <div class="card md:col-span-3" style="border-color:rgba(249,115,22,0.2);">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.2);">
+              <i data-feather="shield" class="w-5 h-5 text-orange"></i>
             </div>
-            <h3 class="font-bold text-text text-lg mb-2">Stop runaway AI agent costs before they happen.</h3>
-            <p class="text-muted text-sm leading-relaxed">AI coding agents — Claude Code, Cursor, Devin, GitHub Copilot — autonomously create Lambda functions, spin up EC2 instances, and trigger Bedrock API calls. A looping agent or a forgotten dev environment can rack up hundreds in hours. StackAlert detects the spike within 6 hours and alerts you in Telegram before the bill arrives.</p>
+            <h3 class="font-bold text-text text-lg mb-2">Read-only, open-source &amp; EU-hosted.</h3>
+            <p class="text-muted text-sm leading-relaxed mb-4">One CloudFormation click creates a read-only IAM role — it can only read Cost Explorer data, never modify anything. The Lambda is open-source on GitHub. All data stays in AWS Frankfurt (eu-central-1) — GDPR compliant, no US data transfer.</p>
+            <a href="https://github.com/stackalertapp/stackalert-lambda" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold" style="color:#f97316;">
+              <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-current"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56C20.21 21.42 23.5 17.1 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+              View source on GitHub →
+            </a>
           </div>
-          <div class="flex-shrink-0 w-full md:w-64">
-            <div style="background:#0f0f0f; border:1px solid #2e2e2e; border-radius:10px; padding:14px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.7;">
-              <div style="color:#737373; margin-bottom:8px;">Recent spikes detected:</div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                <span style="color:#a3a3a3;">Bedrock</span>
-                <span style="color:#ef4444; font-weight:600;">+847% ↑</span>
-              </div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                <span style="color:#a3a3a3;">Lambda</span>
-                <span style="color:#ef4444; font-weight:600;">+312% ↑</span>
-              </div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                <span style="color:#a3a3a3;">EC2</span>
-                <span style="color:#22c55e; font-weight:600;">+2% ✓</span>
-              </div>
-              <div style="border-top:1px solid #2e2e2e; margin-top:10px; padding-top:10px; color:#737373; font-size:11px;">
-                🤖 Agent loop suspected · 15k Bedrock calls
-              </div>
+          <div style="background:#0f0f0f; border:1px solid #2e2e2e; border-radius:10px; padding:16px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.8;">
+            <div style="color:#737373; margin-bottom:10px; font-size:11px;">📊 Per-service breakdown — Mon 23 Mar</div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+              <span style="color:#a3a3a3;">Amazon Bedrock</span>
+              <span style="color:#ef4444; font-weight:600;">$8.20 ↑ +847%</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+              <span style="color:#a3a3a3;">Amazon EC2</span>
+              <span style="color:#ef4444; font-weight:600;">$18.50 ↑ +54%</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+              <span style="color:#737373;">Amazon S3</span>
+              <span style="color:#737373;">$0.42 stable</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+              <span style="color:#737373;">AWS Lambda</span>
+              <span style="color:#737373;">$0.01 stable</span>
+            </div>
+            <div style="border-top:1px solid #2e2e2e; padding-top:8px; display:flex; justify-content:space-between;">
+              <span style="color:#a3a3a3; font-weight:600;">Total</span>
+              <span style="color:#fafaf9; font-weight:700;">$27.13</span>
             </div>
           </div>
         </div>
@@ -648,65 +569,7 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       WHY PAY / SELF-HOST COMPARISON
-  ══════════════════════════════════════════ -->
-  <section class="max-w-4xl mx-auto">
-    <div class="section-label">Why pay?</div>
-    <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4 tracking-tight">
-      The Lambda is free.<br/>Your time isn't.
-    </h2>
-    <p class="text-muted text-lg mb-10 max-w-2xl">Yes, the core Lambda is open-source. You can self-host it. Here's what that actually looks like versus joining StackAlert.</p>
-
-    <div class="grid md:grid-cols-2 gap-4">
-
-      <!-- Self-host column -->
-      <div class="card" style="border-color:#2e2e2e;">
-        <div class="font-semibold text-text mb-4 flex items-center gap-2">
-          <span class="text-lg">🔧</span> Self-hosted (free)
-        </div>
-        <ul class="space-y-3 text-sm">
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>30+ steps: IAM, Lambda, EventBridge, SSM, S3, CI/CD</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>You maintain it — updates, broken deploys, silent failures</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>Telegram only — no web UI or dashboard</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>1 account per deployment</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>No web UI — config changes require redeployment</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>No history, no trends, no reports</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="x" class="w-4 h-4 text-subtle flex-shrink-0 mt-0.5"></i>~3–4h to set up properly · ongoing maintenance</li>
-        </ul>
-        <div class="mt-5 pt-5 border-t border-border">
-          <div class="text-xs text-subtle">At €60/h dev rate: setup alone = <span class="font-mono text-muted">€180–240</span></div>
-        </div>
-      </div>
-
-      <!-- StackAlert column -->
-      <div class="card" style="border-color:rgba(249,115,22,0.35); background:linear-gradient(160deg,#141414,rgba(249,115,22,0.04));">
-        <div class="font-semibold mb-4 flex items-center gap-2" style="color:#f97316;">
-          <span class="text-lg">✨</span> StackAlert hosted
-        </div>
-        <ul class="space-y-3 text-sm">
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>1 CloudFormation click — IAM role created in 30 seconds</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>We maintain it — updates ship automatically, zero ops</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Telegram — instant push notifications, no email</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Multi-account dashboard — monitor all accounts in one view</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>Web UI — change thresholds, pause alerts, manage team</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>30-day history, trend charts, monthly PDF reports</li>
-          <li class="flex items-start gap-2.5 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0 mt-0.5"></i>60 seconds to connect · then forget about it</li>
-        </ul>
-        <div class="mt-5 pt-5 border-t" style="border-color:rgba(249,115,22,0.2);">
-          <div class="flex items-center justify-between">
-            <div class="text-xs text-subtle">Total cost per year</div>
-            <div class="font-mono font-bold" style="color:#f97316;">€48 <span class="text-subtle font-normal text-xs">vs €180–240+ DIY</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
-       HOW IT WORKS
-  ══════════════════════════════════════════ -->
+  <!-- HOW IT WORKS -->
   <section id="how-it-works" class="max-w-3xl mx-auto text-center">
     <div class="section-label justify-center" style="justify-content:center;">Setup</div>
     <h2 class="text-3xl sm:text-4xl font-bold text-text mb-3 tracking-tight">Up and running in 60 seconds.</h2>
@@ -750,29 +613,7 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       FOUNDER QUOTE
-  ══════════════════════════════════════════ -->
-  <section class="border-y divider" style="background:rgba(20,20,20,0.6);">
-    <div class="max-w-3xl mx-auto text-center">
-      <blockquote class="text-xl sm:text-2xl text-secondary font-normal italic mb-8 leading-relaxed">
-        "I've spent 10 years managing AWS infrastructure. I've seen teams lose thousands to runaway Lambda functions, forgotten NAT gateways, and dev environments left running over a long weekend. I built StackAlert because AWS Budgets doesn't cut it — and no one should pay $500/month for basic cost awareness."
-      </blockquote>
-      <div class="flex items-center justify-center gap-3">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.2);">
-          <i data-feather="user" class="w-5 h-5 text-orange"></i>
-        </div>
-        <div class="text-left">
-          <div class="font-semibold text-text">Alex Z.</div>
-          <div class="text-sm text-muted">AWS DevOps Engineer · Hamburg, Germany</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
-       PRICING
-  ══════════════════════════════════════════ -->
+  <!-- PRICING -->
   <section id="pricing" class="max-w-5xl mx-auto">
     <div class="section-label justify-center" style="justify-content:center;">Pricing</div>
     <h2 class="text-3xl sm:text-4xl font-bold text-text mb-2 text-center tracking-tight">Less than a Spotify subscription.</h2>
@@ -797,9 +638,7 @@
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Daily digest</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>6-hour check interval</li>
         </ul>
-        <a href="#waitlist" class="block text-center btn-secondary py-2.5 text-sm">
-          Join waitlist
-        </a>
+        <a href="#waitlist" class="block text-center btn-secondary py-2.5 text-sm">Join waitlist</a>
       </div>
 
       <div class="price-card featured relative">
@@ -820,9 +659,7 @@
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>1-hour check interval</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Monthly report PDF</li>
         </ul>
-        <a href="#waitlist" class="block text-center btn-primary py-2.5 text-sm justify-center">
-          Join waitlist
-        </a>
+        <a href="#waitlist" class="block text-center btn-primary py-2.5 text-sm justify-center">Join waitlist</a>
       </div>
 
       <div class="price-card">
@@ -842,17 +679,13 @@
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>15-min check interval</li>
           <li class="flex items-center gap-2 text-muted"><i data-feather="check" class="w-4 h-4 text-orange flex-shrink-0"></i>Priority support (DE/EN)</li>
         </ul>
-        <a href="#waitlist" class="block text-center btn-secondary py-2.5 text-sm">
-          Join waitlist
-        </a>
+        <a href="#waitlist" class="block text-center btn-secondary py-2.5 text-sm">Join waitlist</a>
       </div>
 
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       WAITLIST
-  ══════════════════════════════════════════ -->
+  <!-- WAITLIST -->
   <section id="waitlist" class="border-y divider" style="background:rgba(20,20,20,0.5);">
     <div class="max-w-xl mx-auto text-center">
       <div class="section-label justify-center mb-4" style="justify-content:center;">Early access</div>
@@ -883,9 +716,7 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       FAQ
-  ══════════════════════════════════════════ -->
+  <!-- FAQ -->
   <section id="faq" class="max-w-3xl mx-auto">
     <div class="section-label justify-center mb-2" style="justify-content:center;">FAQ</div>
     <h2 class="text-3xl font-bold text-text mb-10 text-center tracking-tight">Frequently asked questions.</h2>
@@ -902,21 +733,13 @@
         </div>
       </details>
 
-      <details class="border-b divider py-5">
-        <summary class="flex items-center justify-between text-text font-semibold text-base cursor-pointer">
-          Does it tell me which AWS service caused the spike?
-          <span class="faq-icon text-muted ml-4 flex-shrink-0" style="font-size:20px;">+</span>
-        </summary>
-        <p class="text-muted text-sm leading-relaxed mt-4">Yes — that's the whole point. StackAlert monitors each AWS service independently (EC2, Bedrock, S3, RDS, Lambda, etc.). When Bedrock spikes 400% but EC2 is stable, you see exactly that — not just "total bill went up 12%." This is what AWS Budgets and Cost Anomaly Detection don't give you at a glance.</p>
-      </details>
-
       <details class="card">
         <summary class="flex items-center justify-between font-semibold text-text hover:text-orange transition-colors">
-          What AWS services does StackAlert monitor?
+          Does it tell me which AWS service caused the spike?
           <i data-feather="plus" class="w-5 h-5 faq-icon flex-shrink-0 text-muted ml-4"></i>
         </summary>
         <div class="mt-4 text-muted text-sm leading-relaxed">
-          All AWS services by default — EC2, RDS, Lambda, S3, CloudFront, Data Transfer, and everything else. You can configure alerts per service, per region, or per resource tag. The daily digest always shows your top 5 cost drivers.
+          Yes — that's the whole point. StackAlert monitors each AWS service independently (EC2, Bedrock, S3, RDS, Lambda, etc.). When Bedrock spikes 400% but EC2 is stable, you see exactly that — not just "total bill went up 12%." This is what AWS Budgets and Cost Anomaly Detection don't give you at a glance.
         </div>
       </details>
 
@@ -940,32 +763,10 @@
         </div>
       </details>
 
-      <details class="card">
-        <summary class="flex items-center justify-between font-semibold text-text hover:text-orange transition-colors">
-          We use AI coding agents (Claude, Cursor, Devin). Will StackAlert catch their costs?
-          <i data-feather="plus" class="w-5 h-5 faq-icon flex-shrink-0 text-muted ml-4"></i>
-        </summary>
-        <div class="mt-4 text-muted text-sm leading-relaxed">
-          Yes — and this is one of the most critical use cases in 2026. AI coding agents autonomously create AWS resources, trigger Bedrock API calls, and can loop indefinitely if something goes wrong. StackAlert monitors <em>all</em> AWS services including Amazon Bedrock, Lambda invocations, EC2, and Data Transfer. If an agent spins up unexpected resources or enters a loop, you'll know within 6 hours — not at the end of the month. The 7-day rolling average baseline means even a first-time agent spike gets caught immediately.
-        </div>
-      </details>
-
-      <details class="card">
-        <summary class="flex items-center justify-between font-semibold text-text hover:text-orange transition-colors">
-          When will StackAlert launch?
-          <i data-feather="plus" class="w-5 h-5 faq-icon flex-shrink-0 text-muted ml-4"></i>
-        </summary>
-        <div class="mt-4 text-muted text-sm leading-relaxed">
-          We're targeting Q2 2026. Waitlist members get access first and lock in the 50% early access pricing. We'll send one email when it's ready — no spam in between.
-        </div>
-      </details>
-
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       FINAL CTA
-  ══════════════════════════════════════════ -->
+  <!-- FINAL CTA -->
   <section id="final-cta" class="max-w-2xl mx-auto text-center">
     <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4 tracking-tight">
       The average surprise AWS bill is $340.<br/>
@@ -985,9 +786,7 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
-       FOOTER
-  ══════════════════════════════════════════ -->
+  <!-- FOOTER -->
   <footer class="border-t divider py-10 px-4 sm:px-6">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
       <div class="flex items-center gap-2.5">
