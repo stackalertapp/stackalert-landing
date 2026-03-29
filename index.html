@@ -3,20 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StackAlert — AWS Cost Spike Alerts via Slack, Telegram, Email & more</title>
-  <meta name="description" content="StackAlert detects AWS cost spikes against your 7-day baseline and alerts you on Telegram, Slack, Email, Teams, or PagerDuty — before your bill does. 60-second setup. From €4/month.">
-  <meta property="og:title" content="StackAlert — AWS Cost Spike Alerts in Any Channel">
-  <meta property="og:description" content="Know the moment your AWS costs spike. Alerts via Telegram, Slack, Email, Teams, PagerDuty and more. Per-service breakdown. 60-second setup.">
+  <title>AWS Cost Spike Alerts — StackAlert | Telegram, Slack & Email</title>
+  <meta name="description" content="StackAlert detects AWS cost spikes against a 7-day baseline and alerts you via Telegram, Slack, Email, Teams or PagerDuty — before your bill arrives. From €4/month.">
+  <meta name="keywords" content="AWS cost alerts, AWS billing alerts, AWS cost spike detection, AWS cost monitoring, cloud cost management, AWS cost anomaly, Telegram AWS alerts, Slack AWS billing">
+  <meta name="author" content="StackAlert">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AWS Cost Spike Alerts — StackAlert">
+  <meta property="og:description" content="Know the moment your AWS costs spike. Alerts via Telegram, Slack, Email, Teams or PagerDuty with per-service breakdown. Connect in 60 seconds. From €4/month.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://stackalert.app">
+  <meta property="og:image" content="https://stackalert.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="StackAlert">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="StackAlert — AWS Cost Spike Alerts">
-  <meta name="twitter:description" content="Catch AWS cost spikes before your bill does. Per-service breakdown. 7 alert channels.">
+  <meta name="twitter:site" content="@stackalertapp">
+  <meta name="twitter:title" content="AWS Cost Spike Alerts — StackAlert">
+  <meta name="twitter:description" content="Catch AWS cost spikes before your bill does. Per-service breakdown. Telegram, Slack, Email & more. From €4/month.">
+  <meta name="twitter:image" content="https://stackalert.app/og-image.png">
+
   <link rel="canonical" href="https://stackalert.app">
   <meta name="robots" content="index, follow">
 
+  <!-- SoftwareApplication schema -->
   <script type="application/ld+json">
-  { "@context":"https://schema.org","@type":"SoftwareApplication","name":"StackAlert","applicationCategory":"BusinessApplication","url":"https://stackalert.app","description":"AWS cost spike alerts with per-service breakdown","offers":{"@type":"Offer","price":"4","priceCurrency":"EUR"} }
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "StackAlert",
+    "url": "https://stackalert.app",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Real-time AWS cost spike alerts via Telegram, Slack, Email, Teams, PagerDuty and more. Per-service breakdown against a 7-day rolling baseline. Connect your AWS account in 60 seconds.",
+    "featureList": ["AWS cost spike detection", "Per-service baseline", "Telegram alerts", "Slack alerts", "Email alerts", "Teams alerts", "PagerDuty alerts", "Webhook support", "Multi-account support", "Daily cost digest", "GDPR compliant", "EU data processing"],
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "4",
+      "highPrice": "39",
+      "priceCurrency": "EUR",
+      "offerCount": "3"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "StackAlert",
+      "url": "https://stackalert.app",
+      "email": "hi@stackalert.app",
+      "address": { "@type": "PostalAddress", "addressLocality": "Norderstedt", "addressCountry": "DE" }
+    }
+  }
+  </script>
+
+  <!-- FAQPage schema — enables rich snippets in Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which notification channels are supported?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Telegram, Slack, Email, Microsoft Teams, PagerDuty, and custom webhooks — 6 channels today, with Discord coming soon. Configure multiple channels per AWS account and alerts fan out to all simultaneously." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is StackAlert different from AWS Cost Anomaly Detection?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AWS Cost Anomaly Detection requires 10+ days warmup, alerts only via email or SNS, and can miss obvious spikes. StackAlert uses a simple 7-day rolling average — no warmup, no black box, instant alerts from day one on any channel you choose." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my AWS cost data go to StackAlert servers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. StackAlert runs on our infrastructure and calls the AWS Cost Explorer API on your behalf via a read-only IAM role you grant. Cost data is processed in Frankfurt (eu-central-1), used only to compute baselines and detect spikes, and never sold or shared. GDPR compliant." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does the open-source version cost to run?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Effectively €0/month. The ARM64 Lambda runs 4 times per day — well within the AWS free tier. Cost Explorer API calls cost less than $0.04/month total." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will the open-source version stay free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, always. The open-source Lambda is Apache-2.0 licensed and will remain free forever. The paid product is the hosted dashboard — multi-account overview, anomaly history, and notification management UI." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the dashboard do?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The dashboard at app.stackalert.app gives a visual overview of your cost history, trends, per-service breakdown, and multi-account comparison. Use it when you want to dig deeper than a single alert." }
+      }
+    ]
+  }
   </script>
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -124,6 +202,7 @@
 
 
 <!-- ─── NAVBAR ─────────────────────────────────────────────────────────────── -->
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-sky-400 focus:text-gray-950 focus:rounded-lg focus:font-semibold">Skip to main content</a>
 <nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-800/60 backdrop-blur-xl" style="background:rgba(3,7,18,0.85);">
   <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
@@ -159,7 +238,8 @@
 
 
 <!-- ─── HERO ───────────────────────────────────────────────────────────────── -->
-<section class="relative min-h-screen flex items-center pt-16 overflow-hidden grid-bg">
+<main id="main-content">
+<section aria-label="Hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden grid-bg">
   <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none" style="background:rgba(56,189,248,0.04);filter:blur(120px);"></div>
   <div class="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:rgba(99,102,241,0.03);filter:blur(100px);"></div>
 
@@ -265,11 +345,11 @@
 
 
 <!-- ─── PROBLEM ────────────────────────────────────────────────────────────── -->
-<section class="py-24 border-t" style="border-color:#1f2937;">
+<section aria-labelledby="heading-problem" class="py-24 border-t" style="border-color:#1f2937;">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <div data-aos="fade-up">
       <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">The problem</p>
-      <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-6">AWS billing has a 24-hour blindspot</h2>
+      <h2 id="heading-problem" class="text-3xl lg:text-4xl font-heading font-bold mb-6">AWS billing has a 24-hour blindspot</h2>
       <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto mb-12">
         AWS Cost Explorer shows yesterday's data. Budgets alert on monthly thresholds.
         Cost Anomaly Detection needs 10 days to warm up per service.
@@ -394,7 +474,7 @@
 
 
 <!-- ─── DASHBOARD TEASER ───────────────────────────────────────────────────── -->
-<section class="py-24 border-t relative overflow-hidden" style="border-color:#1f2937;">
+<section id="dashboard" aria-label="Dashboard" class="py-24 border-t relative overflow-hidden" style="border-color:#1f2937;">
   <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(135deg, rgba(56,189,248,0.03), transparent, rgba(99,102,241,0.03));"></div>
   <div class="max-w-5xl mx-auto px-6">
     <div class="grid md:grid-cols-2 gap-16 items-center">
@@ -519,10 +599,10 @@
 
 
 <!-- ─── FAQ ───────────────────────────────────────────────────────────────── -->
-<section class="py-24 border-t" style="border-color:#1f2937;">
+<section aria-labelledby="heading-faq" class="py-24 border-t" style="border-color:#1f2937;">
   <div class="max-w-3xl mx-auto px-6">
     <div class="text-center mb-12" data-aos="fade-up">
-      <h2 class="text-3xl font-heading font-bold mb-4">Common questions</h2>
+      <h2 id="heading-faq" class="text-3xl font-heading font-bold mb-4">Common questions</h2>
     </div>
     <!-- FAQ rendered by JS -->
     <div id="faq-list" class="space-y-4" data-aos="fade-up" data-aos-delay="100"></div>
@@ -531,6 +611,7 @@
 
 
 <!-- ─── FOOTER ─────────────────────────────────────────────────────────────── -->
+</main>
 <footer class="border-t py-12" style="border-color:#1f2937;">
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">

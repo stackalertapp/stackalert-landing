@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stackalert.app/sitemap.xml
