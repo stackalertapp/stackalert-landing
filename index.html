@@ -50,19 +50,19 @@
     h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
 
     .gradient-text {
-      background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .grid-bg {
       background-image:
-        linear-gradient(rgba(249,115,22,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(249,115,22,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(56,189,248,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.025) 1px, transparent 1px);
       background-size: 40px 40px;
     }
-    .glow-orange    { box-shadow: 0 0 40px rgba(249,115,22,0.12); }
-    .glow-orange-sm { box-shadow: 0 0 20px rgba(249,115,22,0.08); }
+    .glow-orange    { box-shadow: 0 0 40px rgba(56,189,248,0.12); }
+    .glow-orange-sm { box-shadow: 0 0 20px rgba(56,189,248,0.08); }
     .card-hover  { transition: border-color .2s, box-shadow .2s, transform .2s; }
-    .card-hover:hover { border-color: rgba(249,115,22,0.4); box-shadow: 0 0 30px rgba(249,115,22,0.08); transform: translateY(-2px); }
+    .card-hover:hover { border-color: rgba(56,189,248,0.4); box-shadow: 0 0 30px rgba(56,189,248,0.08); transform: translateY(-2px); }
 
     @keyframes blink      { 0%,100%{opacity:1} 50%{opacity:0} }
     .cursor               { animation: blink 1s step-end infinite; }
@@ -71,31 +71,31 @@
     @keyframes bounce-slow{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
     .bounce-slow          { animation: bounce-slow 2s ease-in-out infinite; }
 
-    .step-number { background: linear-gradient(135deg, rgba(249,115,22,.2), rgba(239,68,68,.2)); border: 1px solid rgba(249,115,22,.3); }
+    .step-number { background: linear-gradient(135deg, rgba(56,189,248,.2), rgba(129,140,248,.2)); border: 1px solid rgba(56,189,248,.3); }
     details > summary { list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
 
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: #f97316; border: 1px solid rgba(255,255,255,0.08);
+      background: #38bdf8; border: 1px solid rgba(255,255,255,0.08);
       color: #080808; font-weight: 700; font-size: 15px; padding: 12px 24px;
       border-radius: 8px; text-decoration: none; transition: background .15s; cursor: pointer; font-family: 'Source Sans 3', sans-serif;
     }
-    .btn-primary:hover { background: #ea6d0e; }
+    .btn-primary:hover { background: #0284c7; }
     .btn-secondary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       background: transparent; border: 1px solid #374151;
       color: #e5e7eb; font-weight: 500; font-size: 15px; padding: 12px 24px;
       border-radius: 8px; text-decoration: none; transition: border-color .15s, background .15s; cursor: pointer; font-family: 'Source Sans 3', sans-serif;
     }
-    .btn-secondary:hover { background: #1f2937; border-color: #f97316; }
+    .btn-secondary:hover { background: #1f2937; border-color: #38bdf8; }
     .btn-dashboard {
       display: inline-flex; align-items: center; gap: 6px;
-      background: transparent; border: 1px solid rgba(249,115,22,0.3);
-      color: #f97316; font-weight: 600; font-size: 14px; padding: 9px 16px;
+      background: transparent; border: 1px solid rgba(56,189,248,0.3);
+      color: #38bdf8; font-weight: 600; font-size: 14px; padding: 9px 16px;
       border-radius: 8px; text-decoration: none; transition: background .15s; font-family: 'Source Sans 3', sans-serif;
     }
-    .btn-dashboard:hover { background: rgba(249,115,22,0.08); }
+    .btn-dashboard:hover { background: rgba(56,189,248,0.08); }
 
     a { text-decoration: none; }
     ::-webkit-scrollbar { width: 5px; }
@@ -129,12 +129,12 @@
 
     <a href="/" class="flex items-center gap-2.5 group">
       <div class="relative">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#f97316,#ea580c);">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#38bdf8,#0ea5e9);">
           <svg width="15" height="11" viewBox="0 0 16 12" fill="none" aria-hidden="true">
             <polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#030712" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-40 blur-md transition-opacity" style="background:linear-gradient(135deg,#f97316,#ea580c);"></div>
+        <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-40 blur-md transition-opacity" style="background:linear-gradient(135deg,#38bdf8,#0ea5e9);"></div>
       </div>
       <span class="font-heading font-bold text-white text-lg">StackAlert</span>
     </a>
@@ -160,16 +160,16 @@
 
 <!-- ─── HERO ───────────────────────────────────────────────────────────────── -->
 <section class="relative min-h-screen flex items-center pt-16 overflow-hidden grid-bg">
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none" style="background:rgba(249,115,22,0.04);filter:blur(120px);"></div>
-  <div class="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:rgba(239,68,68,0.03);filter:blur(100px);"></div>
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none" style="background:rgba(56,189,248,0.04);filter:blur(120px);"></div>
+  <div class="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:rgba(99,102,241,0.03);filter:blur(100px);"></div>
 
   <div class="relative max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
 
     <div data-aos="fade-right" data-aos-duration="700">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium mb-8 border" style="background:rgba(249,115,22,0.08);color:#f97316;border-color:rgba(249,115,22,0.2);">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium mb-8 border" style="background:rgba(56,189,248,0.08);color:#38bdf8;border-color:rgba(56,189,248,0.2);">
         <span class="relative flex h-2 w-2">
-          <span class="ping-slow absolute inline-flex h-full w-full rounded-full opacity-75" style="background:#f97316;"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2" style="background:#f97316;"></span>
+          <span class="ping-slow absolute inline-flex h-full w-full rounded-full opacity-75" style="background:#38bdf8;"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2" style="background:#38bdf8;"></span>
         </span>
         Early access · First 100 users get 50% off forever
       </div>
@@ -185,7 +185,7 @@
         Before your bill arrives.
       </p>
 
-      <div class="flex items-start gap-3 p-4 rounded-xl mb-8" style="background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.15);">
+      <div class="flex items-start gap-3 p-4 rounded-xl mb-8" style="background:rgba(99,102,241,0.04);border:1px solid rgba(239,68,68,0.15);">
         <span class="text-red-400 text-lg mt-0.5">⚠️</span>
         <p class="text-sm text-gray-400 italic leading-relaxed">
           "Our Lambda hit $47,000 in one weekend because of a single line of code.
@@ -223,7 +223,7 @@
         <div class="p-5 font-mono text-sm space-y-2">
           <div class="text-gray-600">// 2026-03-29 02:14 UTC · spike detected</div>
           <div class="flex items-start gap-2">
-            <span style="color:#f97316;">⚡</span>
+            <span style="color:#38bdf8;">⚡</span>
             <div>
               <div class="text-white font-medium">AWSLambda spike detected</div>
               <div class="text-xs text-gray-500 mt-0.5">+2,847% vs 7-day baseline</div>
@@ -236,7 +236,7 @@
             <div class="flex justify-between"><span class="text-gray-500">Projected</span>  <span class="text-red-400 font-semibold">~$1,200 today</span></div>
           </div>
           <div class="flex flex-wrap gap-2 pt-1">
-            <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(249,115,22,0.1);color:#f97316;border-color:rgba(249,115,22,0.2);">📱 Telegram sent</span>
+            <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(56,189,248,0.1);color:#38bdf8;border-color:rgba(56,189,248,0.2);">📱 Telegram sent</span>
             <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(74,21,75,0.3);color:#e879f9;border-color:rgba(232,121,249,0.2);">#alerts Slack sent</span>
             <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(34,197,94,0.1);color:#4ade80;border-color:rgba(74,222,128,0.2);">✉ Email sent</span>
             <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(239,68,68,0.1);color:#f87171;border-color:rgba(248,113,113,0.2);">🔴 PagerDuty incident</span>
@@ -247,7 +247,7 @@
         </div>
       </div>
       <div class="mt-4 flex items-center justify-center">
-        <a href="https://app.stackalert.app" class="group flex items-center gap-2 text-sm text-gray-500 hover:text-orange-400 transition-colors" style="">
+        <a href="https://app.stackalert.app" class="group flex items-center gap-2 text-sm text-gray-500 hover:text-sky-400 transition-colors" style="">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
           View full dashboard preview
           <svg width="12" height="12" class="group-hover:translate-x-0.5 transition-transform"><use href="#icon-arrow-right"/></svg>
@@ -268,7 +268,7 @@
 <section class="py-24 border-t" style="border-color:#1f2937;">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <div data-aos="fade-up">
-      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">The problem</p>
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">The problem</p>
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-6">AWS billing has a 24-hour blindspot</h2>
       <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto mb-12">
         AWS Cost Explorer shows yesterday's data. Budgets alert on monthly thresholds.
@@ -286,7 +286,7 @@
 <section id="features" class="py-24 border-t" style="border-color:#1f2937;">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-16" data-aos="fade-up">
-      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">Features</p>
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">Features</p>
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Alerts that actually arrive in time</h2>
       <p class="text-gray-400 text-lg max-w-xl mx-auto">Not another dashboard to check. Real-time notifications to wherever your team already lives.</p>
     </div>
@@ -294,9 +294,9 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
       <div class="md:col-span-2 border rounded-2xl p-8 card-hover relative overflow-hidden" style="background:#111827;border-color:#1f2937;" data-aos="fade-up">
-        <div class="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none" style="background:rgba(249,115,22,0.04);filter:blur(40px);"></div>
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.2);">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <div class="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none" style="background:rgba(56,189,248,0.04);filter:blur(40px);"></div>
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.2);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <h3 class="text-xl font-heading font-bold mb-3">Per-service spike detection</h3>
         <p class="text-gray-400 leading-relaxed mb-6">Every AWS service gets its own 7-day rolling baseline. Lambda, EC2, RDS, S3, Bedrock — each tracked independently. No more "is this spike normal?" guessing.</p>
@@ -335,9 +335,9 @@
         <div class="rounded-xl p-4 font-mono text-sm overflow-x-auto" style="background:#030712;">
           <div class="text-gray-600 text-xs mb-2">// AWS CDK (TypeScript)</div>
           <div><span class="text-indigo-400">import</span> <span class="text-white">&#123; StackAlert &#125;</span> <span class="text-indigo-400">from</span> <span class="text-green-400">'stackalert-cdk'</span></div>
-          <div class="mt-1"><span class="text-indigo-400">new</span> <span style="color:#f97316;">StackAlert</span><span class="text-white">(this, </span><span class="text-green-400">'CostAlerts'</span><span class="text-white">, &#123;</span></div>
+          <div class="mt-1"><span class="text-indigo-400">new</span> <span style="color:#38bdf8;">StackAlert</span><span class="text-white">(this, </span><span class="text-green-400">'CostAlerts'</span><span class="text-white">, &#123;</span></div>
           <div class="pl-4"><span class="text-yellow-400">notifyChannels</span><span class="text-white">: [</span><span class="text-green-400">'telegram'</span><span class="text-white">, </span><span class="text-green-400">'slack'</span><span class="text-white">, </span><span class="text-green-400">'email'</span><span class="text-white">],</span></div>
-          <div class="pl-4"><span class="text-yellow-400">spikeThreshold</span><span class="text-white">: </span><span style="color:#f97316;">1.5</span><span class="text-white">,</span></div>
+          <div class="pl-4"><span class="text-yellow-400">spikeThreshold</span><span class="text-white">: </span><span style="color:#38bdf8;">1.5</span><span class="text-white">,</span></div>
           <div><span class="text-white">&#125;)</span></div>
         </div>
       </div>
@@ -359,7 +359,7 @@
 <section id="channels" class="py-24 border-t" style="border-color:#1f2937;">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-16" data-aos="fade-up">
-      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">Alert channels</p>
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">Alert channels</p>
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Alerts wherever your team already is</h2>
       <p class="text-gray-400 text-lg max-w-xl mx-auto">7 notification channels. Mix and match. Configure multiple per AWS account.</p>
     </div>
@@ -367,7 +367,7 @@
     <div id="channels-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3" data-aos="fade-up" data-aos-delay="100"></div>
     <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="150">
       <p class="font-mono text-sm">
-        <span style="color:#f97316;">NOTIFY_CHANNELS</span>=<span class="text-green-400">"telegram,slack,email,discord"</span>
+        <span style="color:#38bdf8;">NOTIFY_CHANNELS</span>=<span class="text-green-400">"telegram,slack,email,discord"</span>
         <span class="ml-3 text-gray-600">// mix and match, comma-separated</span>
       </p>
     </div>
@@ -379,12 +379,12 @@
 <section id="how-it-works" class="py-24 border-t" style="border-color:#1f2937;">
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-16" data-aos="fade-up">
-      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">How it works</p>
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">How it works</p>
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Up and running in 60 seconds</h2>
       <p class="text-gray-400 text-lg max-w-xl mx-auto">No SaaS account to create. No agent to run. Just your AWS account and your preferred channel.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-6 relative">
-      <div class="hidden md:block absolute top-12 left-1/3 right-1/3 h-px" style="background:linear-gradient(to right, #374151, rgba(249,115,22,0.4), #374151);"></div>
+      <div class="hidden md:block absolute top-12 left-1/3 right-1/3 h-px" style="background:linear-gradient(to right, #374151, rgba(56,189,248,0.4), #374151);"></div>
       <!-- Steps rendered by JS -->
       <div id="steps-grid" class="contents"></div>
     </div>
@@ -394,11 +394,11 @@
 
 <!-- ─── DASHBOARD TEASER ───────────────────────────────────────────────────── -->
 <section class="py-24 border-t relative overflow-hidden" style="border-color:#1f2937;">
-  <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(135deg, rgba(249,115,22,0.03), transparent, rgba(239,68,68,0.03));"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(135deg, rgba(56,189,248,0.03), transparent, rgba(99,102,241,0.03));"></div>
   <div class="max-w-5xl mx-auto px-6">
     <div class="grid md:grid-cols-2 gap-16 items-center">
       <div data-aos="fade-right">
-        <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">Dashboard</p>
+        <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">Dashboard</p>
         <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-6">Cost history,<br>multi-account, team view</h2>
         <p class="text-gray-400 text-lg leading-relaxed mb-8">
           The open-source Lambda handles alerting. The dashboard gives your team a 90-day anomaly history,
@@ -416,15 +416,15 @@
         <div class="rounded-2xl border overflow-hidden glow-orange" style="background:#111827;border-color:#374151;">
           <div class="border-b px-4 py-3 flex items-center justify-between" style="border-color:#1f2937;">
             <div class="flex items-center gap-2">
-              <div class="w-2 h-2 rounded-full" style="background:#f97316;"></div>
+              <div class="w-2 h-2 rounded-full" style="background:#38bdf8;"></div>
               <span class="text-xs text-gray-400 font-mono">app.stackalert.app</span>
             </div>
-            <span class="text-xs font-mono px-2 py-0.5 rounded" style="color:#f97316;background:rgba(249,115,22,0.1);">Live</span>
+            <span class="text-xs font-mono px-2 py-0.5 rounded" style="color:#38bdf8;background:rgba(56,189,248,0.1);">Live</span>
           </div>
           <div class="p-5 space-y-4">
             <div class="grid grid-cols-3 gap-3">
               <div class="rounded-xl p-3 text-center" style="background:#1f2937;">
-                <div class="text-lg font-bold" style="color:#f97316;">3</div>
+                <div class="text-lg font-bold" style="color:#38bdf8;">3</div>
                 <div class="text-xs text-gray-500">Accounts</div>
               </div>
               <div class="rounded-xl p-3 text-center" style="background:#1f2937;">
@@ -473,7 +473,7 @@
 <section id="pricing" class="py-24 border-t" style="border-color:#1f2937;">
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-4" data-aos="fade-up">
-      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">Pricing</p>
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">Pricing</p>
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-2">Less than a Spotify subscription.</h2>
       <p class="text-gray-400 mb-1">One caught spike pays for <strong class="text-gray-200">7 years</strong> of StackAlert. Early access: 50% off forever.</p>
       <p class="text-xs text-gray-600 mb-12">Alle Preise inkl. MwSt. · All prices include VAT</p>
@@ -488,12 +488,12 @@
 <section id="waitlist" class="py-24 border-t" style="border-color:#1f2937;">
   <div class="max-w-2xl mx-auto px-6 text-center">
     <div data-aos="fade-up">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium mb-8 border" style="background:rgba(249,115,22,0.08);color:#f97316;border-color:rgba(249,115,22,0.2);">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium mb-8 border" style="background:rgba(56,189,248,0.08);color:#38bdf8;border-color:rgba(56,189,248,0.2);">
         🚀 Dashboard launching Q2 2026
       </div>
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Get early access to the dashboard</h2>
       <p class="text-gray-400 text-lg leading-relaxed mb-4">
-        Join the waitlist and get <strong style="color:#f97316;">50% off forever</strong> as a founding member.
+        Join the waitlist and get <strong style="color:#38bdf8;">50% off forever</strong> as a founding member.
         Shape what gets built first.
       </p>
       <p class="text-gray-500 text-sm mb-10">
@@ -509,7 +509,7 @@
           title="StackAlert Waitlist"
           style="background:transparent;border:none;"
         ></iframe>
-        <p class="text-xs mt-4" style="color:#6b7280;">Or email: <a href="mailto:hello@stackalert.app" style="color:#f97316;">hello@stackalert.app</a></p>
+        <p class="text-xs mt-4" style="color:#6b7280;">Or email: <a href="mailto:hello@stackalert.app" style="color:#38bdf8;">hello@stackalert.app</a></p>
       </div>
       <p class="text-xs text-gray-600 mt-4">No spam. Unsubscribe anytime. Your email is never shared.</p>
     </div>
@@ -534,7 +534,7 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-2.5">
-        <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#f97316,#ea580c);">
+        <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#38bdf8,#0ea5e9);">
           <svg width="13" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
             <polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#030712" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -586,16 +586,16 @@ const CHANNELS = [
     svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="#2AABEE"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.47c-.149.664-.537.826-1.089.514l-3-2.21-1.447 1.394c-.16.16-.294.294-.603.294l.213-3.053 5.56-5.023c.242-.213-.052-.332-.373-.119L6.54 14.425l-2.95-.924c-.641-.2-.654-.641.136-.948l11.527-4.446c.534-.193 1.001.13.309.141z"/></svg>` },
   { name: 'Slack',     subtitle: 'Webhook',        subColor: '#9ca3af', bg: 'rgba(74,21,75,0.25)',
     svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#E01E5A"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>` },
-  { name: 'Email',     subtitle: '✓ New',          subColor: '#4ade80', bg: 'rgba(249,115,22,0.13)',
-    svg: `<svg width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="2" width="22" height="16" rx="2"/><path d="M1 5l11 8 11-8"/></svg>` },
+  { name: 'Email',     subtitle: '✓ New',          subColor: '#4ade80', bg: 'rgba(56,189,248,0.13)',
+    svg: `<svg width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="2" width="22" height="16" rx="2"/><path d="M1 5l11 8 11-8"/></svg>` },
   { name: 'Discord',   subtitle: '✓ New',          subColor: '#4ade80', bg: 'rgba(88,101,242,0.18)',
     svg: `<svg width="24" height="18" viewBox="0 0 24 18" fill="#5865F2"><path d="M20.317 1.492a19.84 19.84 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.74 19.74 0 0 0-4.885 1.515.07.07 0 0 0-.032.027C.533 6.168-.32 10.7.099 15.177c.002.132.02.202.03.222a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 12.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>` },
   { name: 'Teams',     subtitle: 'Adaptive Cards', subColor: '#9ca3af', bg: 'rgba(70,78,184,0.18)',
     svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#464EB8"><path d="M20.625 7.688h-5.25V5.812a1.312 1.312 0 0 0-1.313-1.312H9.938a1.312 1.312 0 0 0-1.313 1.312v1.876H3.375A1.313 1.313 0 0 0 2.063 9v7.5a1.312 1.312 0 0 0 1.312 1.313h5.25v1.875a1.313 1.313 0 0 0 1.313 1.312h4.124a1.313 1.313 0 0 0 1.313-1.312v-1.875h5.25A1.313 1.313 0 0 0 21.937 16.5V9a1.312 1.312 0 0 0-1.312-1.312zM12 13.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>` },
   { name: 'PagerDuty', subtitle: 'Incidents API',  subColor: '#9ca3af', bg: 'rgba(6,172,56,0.13)',
     svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#06AC38"><path d="M16.008 0H7.993C5.19 0 2.993 2.197 2.993 5v14c0 2.803 2.197 5 5 5h8.015c2.803 0 5-2.197 5-5V5c0-2.803-2.197-5-5-5zM9.5 17.5h-2v-8h2v8zm5.5 0H13V10h2v7.5zm0-9.5H13V6.5h2V8zm-5.5 0h-2V6h2v2z"/></svg>` },
-  { name: 'Webhook',   subtitle: 'Any HTTP',       subColor: '#9ca3af', bg: 'rgba(249,115,22,0.08)',
-    svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>` },
+  { name: 'Webhook',   subtitle: 'Any HTTP',       subColor: '#9ca3af', bg: 'rgba(56,189,248,0.08)',
+    svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>` },
 ];
 
 const STEPS = [
@@ -637,7 +637,7 @@ const FAQS = [
   },
   {
     q: 'What does the dashboard do?',
-    a: 'The dashboard at <a href="https://app.stackalert.app" style="color:#f97316;">app.stackalert.app</a> gives a visual overview of your cost history, trends, per-service breakdown, and multi-account comparison. Use it when you want to dig deeper than a single alert.',
+    a: 'The dashboard at <a href="https://app.stackalert.app" style="color:#38bdf8;">app.stackalert.app</a> gives a visual overview of your cost history, trends, per-service breakdown, and multi-account comparison. Use it when you want to dig deeper than a single alert.',
   },
   {
     q: 'Does my AWS cost data go to your servers?',
@@ -700,7 +700,7 @@ function renderSteps() {
   if (!el) return;
   el.innerHTML = STEPS.map((s, i) => `
     <div class="text-center" data-aos="fade-up" data-aos-delay="${i * 100}">
-      <div class="step-number w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-heading font-extrabold mx-auto mb-6" style="color:#f97316;">${s.n}</div>
+      <div class="step-number w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-heading font-extrabold mx-auto mb-6" style="color:#38bdf8;">${s.n}</div>
       <h3 class="font-heading font-bold text-lg mb-3">${s.title}</h3>
       <p class="text-gray-500 text-sm leading-relaxed">${s.desc}</p>
     </div>
@@ -712,8 +712,8 @@ function renderDashboardFeatures() {
   if (!el) return;
   el.innerHTML = DASHBOARD_FEATURES.map(f => `
     <li class="flex items-center gap-3">
-      <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(249,115,22,0.15);">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(56,189,248,0.15);">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <span class="text-gray-300 text-sm">${f}</span>
     </li>
@@ -724,21 +724,21 @@ function renderPricing() {
   const el = document.getElementById('pricing-grid');
   if (!el) return;
   el.innerHTML = PRICING.map(plan => `
-    <div class="border rounded-2xl p-8 relative transition-all hover:-translate-y-1" style="background:${plan.featured ? 'linear-gradient(160deg,#111827,rgba(249,115,22,0.06))' : '#111827'};border-color:${plan.featured ? '#f97316' : '#1f2937'};">
-      ${plan.badge ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-4 py-1 rounded-full" style="background:#f97316;color:#030712;">${plan.badge}</div>` : ''}
+    <div class="border rounded-2xl p-8 relative transition-all hover:-translate-y-1" style="background:${plan.featured ? 'linear-gradient(160deg,#111827,rgba(56,189,248,0.06))' : '#111827'};border-color:${plan.featured ? '#38bdf8' : '#1f2937'};">
+      ${plan.badge ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-4 py-1 rounded-full" style="background:#38bdf8;color:#030712;">${plan.badge}</div>` : ''}
       <div class="font-heading font-semibold text-lg mb-1 text-white">${plan.name}</div>
       <div class="text-gray-500 text-sm mb-1">${plan.desc}</div>
       <div class="text-xs text-gray-600 mb-5">${plan.note}</div>
       <div class="flex items-baseline gap-1.5 mb-1">
         <span class="font-mono text-gray-600 line-through">${plan.oldPrice}</span>
-        <span class="font-bold font-mono text-4xl" style="${plan.featured ? 'color:#f97316;' : 'color:#f9fafb;'}">${plan.price}</span>
+        <span class="font-bold font-mono text-4xl" style="${plan.featured ? 'color:#38bdf8;' : 'color:#f9fafb;'}">${plan.price}</span>
         <span class="text-gray-500 text-sm">/month</span>
       </div>
-      <div class="text-xs mb-6" style="color:#f97316;">Early access price</div>
+      <div class="text-xs mb-6" style="color:#38bdf8;">Early access price</div>
       <ul class="space-y-3 mb-8 text-sm">
         ${plan.features.map(f => `
           <li class="flex items-center gap-2 text-gray-400">
-            <svg class="w-4 h-4 flex-shrink-0" style="color:#f97316;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg class="w-4 h-4 flex-shrink-0" style="color:#38bdf8;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             ${f}
           </li>
         `).join('')}
@@ -753,7 +753,7 @@ function renderFAQs() {
   if (!el) return;
   el.innerHTML = FAQS.map(f => `
     <details class="group border rounded-2xl overflow-hidden" style="background:#111827;border-color:#1f2937;">
-      <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold transition-colors hover:text-orange-400" style="color:#f9fafb;">
+      <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold transition-colors hover:text-sky-400" style="color:#f9fafb;">
         ${f.q}
         <svg width="20" height="20" class="flex-shrink-0 transition-transform group-open:rotate-180 ml-4" style="color:#6b7280;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </summary>
