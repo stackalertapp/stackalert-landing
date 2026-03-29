@@ -100,6 +100,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
+  <script async src="https://tally.so/widgets/embed.js"></script>
 
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3VsFV1yoNQZTFGOQGA6ckG7KUFCwFAT214xHzv5M"}'></script>
@@ -769,17 +770,13 @@
 
       <div class="rounded-2xl p-8" style="background:#141414; border:1px solid #2e2e2e;">
         <iframe
-          data-tally-src="https://tally.so/embed/PdExDx?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-          loading="lazy"
+          src="https://tally.so/embed/PdExDx?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
           width="100%"
           height="200"
           frameborder="0"
           title="StackAlert Waitlist"
           style="background: transparent; border: none;"
         ></iframe>
-        <script>
-          var d=document,w="https://tally.so/widgets/embed.js",v=function(){if(typeof Tally!=="undefined"){Tally.loadEmbeds();}else{d.querySelectorAll("[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc});}};if(typeof Tally!=="undefined"){v();}else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}
-        </script>
         <p class="text-xs text-muted mt-4">Or email: <a href="mailto:hello@stackalert.app" style="color:#f97316;" class="hover:underline">hello@stackalert.app</a></p>
       </div>
 
