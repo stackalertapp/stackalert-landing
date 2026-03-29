@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AWS Cost Spike Alerts — StackAlert | Telegram, Slack, SNS & More</title>
-  <meta name="description" content="StackAlert detects AWS cost spikes against a 7-day baseline and alerts you via Telegram, Slack, Email, SNS, SQS, Teams or PagerDuty — before your bill arrives. From €4/month.">
-  <meta name="keywords" content="AWS cost alerts, AWS billing alerts, AWS cost spike detection, AWS cost monitoring, cloud cost management, AWS cost anomaly, Telegram AWS alerts, Slack AWS billing, AWS SNS alerts, AWS SQS alerts, Pulumi StackAlert, CDK cost monitoring">
+  <meta name="description" content="StackAlert detects AWS cost spikes against a 7-day baseline and alerts you via Telegram, Slack, Email, SNS, Teams or PagerDuty — before your bill arrives. From €4/month.">
+  <meta name="keywords" content="AWS cost alerts, AWS billing alerts, AWS cost spike detection, AWS cost monitoring, cloud cost management, AWS cost anomaly, Telegram AWS alerts, Slack AWS billing, AWS SNS alerts, Pulumi StackAlert, CDK cost monitoring">
   <meta name="author" content="StackAlert">
 
   <!-- Open Graph -->
   <meta property="og:title" content="AWS Cost Spike Alerts — StackAlert">
-  <meta property="og:description" content="Know the moment your AWS costs spike. Alerts via Telegram, Slack, Email, SNS, SQS, Teams or PagerDuty with per-service breakdown. Connect in 60 seconds. From €4/month.">
+  <meta property="og:description" content="Know the moment your AWS costs spike. Alerts via Telegram, Slack, Email, SNS, Teams or PagerDuty with per-service breakdown. Connect in 60 seconds. From €4/month.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://stackalert.app">
   <meta property="og:image" content="https://stackalert.app/og-image.png">
@@ -39,7 +39,7 @@
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
     "description": "Real-time AWS cost spike alerts via Telegram, Slack, Email, Teams, PagerDuty and more. Per-service breakdown against a 7-day rolling baseline. Connect your AWS account in 60 seconds.",
-    "featureList": ["AWS cost spike detection", "Per-service baseline", "Telegram alerts", "Slack alerts", "Email alerts", "SNS alerts", "SQS alerts", "Teams alerts", "PagerDuty alerts", "Webhook support", "Multi-account support", "Daily cost digest", "CDK wrapper", "Terraform module", "Pulumi component", "GDPR compliant", "EU data processing"],
+    "featureList": ["AWS cost spike detection", "Per-service baseline", "Telegram alerts", "Slack alerts", "Email alerts", "SNS alerts", "Teams alerts", "PagerDuty alerts", "Webhook support", "Multi-account support", "Daily cost digest", "CDK wrapper", "Terraform module", "Pulumi component", "GDPR compliant", "EU data processing"],
     "offers": {
       "@type": "AggregateOffer",
       "lowPrice": "4",
@@ -66,7 +66,7 @@
       {
         "@type": "Question",
         "name": "Which notification channels are supported?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Telegram, Slack, Email, Microsoft Teams, PagerDuty, SNS, SQS, and custom webhooks — 8 channels. Configure multiple channels per AWS account and alerts fan out to all simultaneously." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Telegram, Slack, Email, Microsoft Teams, PagerDuty, SNS, and custom webhooks — 7 channels. Configure multiple channels per AWS account and alerts fan out to all simultaneously." }
       },
       {
         "@type": "Question",
@@ -261,7 +261,7 @@
 
       <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-lg">
         StackAlert watches your AWS costs against a 7-day baseline and pings you the moment something spikes —
-        on <strong class="text-gray-200">Telegram, Slack, Email, SNS/SQS</strong> or your webhook.
+        on <strong class="text-gray-200">Telegram, Slack, Email, SNS</strong> or your webhook.
         Before your bill arrives.
       </p>
 
@@ -441,10 +441,10 @@
     <div class="text-center mb-16" data-aos="fade-up">
       <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">Alert channels</p>
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Alerts wherever your team already is</h2>
-      <p class="text-gray-400 text-lg max-w-xl mx-auto">8 notification channels. Mix and match. Configure multiple per AWS account.</p>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto">7 notification channels. Mix and match. Configure multiple per AWS account.</p>
     </div>
     <!-- Channel cards — rendered by JS -->
-    <div id="channels-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-8 gap-3" data-aos="fade-up" data-aos-delay="100"></div>
+    <div id="channels-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3" data-aos="fade-up" data-aos-delay="100"></div>
     <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="150">
       <p class="font-mono text-sm">
         <span style="color:#38bdf8;">NOTIFY_CHANNELS</span>=<span class="text-green-400">"telegram,slack,sns"</span>
@@ -676,185 +676,3 @@ const CHANNELS = [
     svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#06AC38"><path d="M16.008 0H7.993C5.19 0 2.993 2.197 2.993 5v14c0 2.803 2.197 5 5 5h8.015c2.803 0 5-2.197 5-5V5c0-2.803-2.197-5-5-5zM9.5 17.5h-2v-8h2v8zm5.5 0H13V10h2v7.5zm0-9.5H13V6.5h2V8zm-5.5 0h-2V6h2v2z"/></svg>` },
   { name: 'SNS',       bg: 'rgba(255,153,0,0.15)',
     svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round"/></svg>` },
-  { name: 'SQS',       bg: 'rgba(255,153,0,0.15)',
-    svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="4.5" rx="1.5" fill="#FF9900"/><rect x="2" y="10" width="20" height="4.5" rx="1.5" fill="#FF9900" opacity="0.7"/><rect x="2" y="16" width="20" height="4.5" rx="1.5" fill="#FF9900" opacity="0.4"/></svg>` },
-  { name: 'Webhook',   bg: 'rgba(56,189,248,0.08)',
-    svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>` },
-];
-
-const STEPS = [
-  { n: '1', title: 'Connect your AWS account',        desc: 'Click to create a read-only IAM role in your AWS account. One-click CloudFormation template — takes under 60 seconds.' },
-  { n: '2', title: 'Configure your channels',         desc: 'Choose where to receive alerts: Telegram, Slack, Email, Teams, PagerDuty, or a webhook. Mix and match.' },
-  { n: '3', title: 'We monitor — you get alerted',    desc: 'StackAlert checks your costs continuously and sends an instant alert the moment a spike is detected. Per-service breakdown included.' },
-];
-
-const DASHBOARD_FEATURES = [
-  '90-day anomaly history per service',
-  'Manage all notification channels from UI',
-  'Multi-account overview in one place',
-  'Team access with role-based permissions',
-];
-
-const PRICING = [
-  {
-    name: 'Solo',   price: '€4',  oldPrice: '€9',  desc: '1 AWS account, 1 user',        note: 'Less than 1 coffee/month', featured: false,
-    features: ['1 AWS account', 'Telegram + Email alerts', 'Per-service spike alerts', 'Daily cost digest', '6-hour check interval', '14-day free trial'],
-  },
-  {
-    name: 'Team',   price: '€14', oldPrice: '€29', desc: '5 AWS accounts, unlimited users', note: 'Cheaper than 30 min of debugging', featured: true, badge: 'Most popular',
-    features: ['5 AWS accounts', 'All 8 alert channels', 'Per-service spike alerts', 'Daily cost digest', 'Dashboard access', '1-hour check interval', '14-day free trial'],
-  },
-  {
-    name: 'Studio', price: '€39', oldPrice: '€79', desc: 'Unlimited accounts',               note: 'For agencies & on-call teams', featured: false,
-    features: ['Unlimited AWS accounts', 'All 8 alert channels', 'Custom thresholds', 'Full dashboard access', '15-min check interval', 'Monthly report PDF', 'Priority support (DE/EN)', '14-day free trial'],
-  },
-];
-
-const FAQS = [
-  {
-    q: 'Which notification channels are supported?',
-    a: 'Telegram, Slack, Email, Microsoft Teams, PagerDuty, SNS, SQS, and custom webhooks — 8 channels. Configure multiple channels per AWS account and alerts fan out to all simultaneously.',
-  },
-  {
-    q: 'How is this different from AWS Cost Anomaly Detection?',
-    a: "AWS Cost Anomaly Detection requires 10+ days warmup, alerts only via email/SNS, and can miss obvious spikes. StackAlert uses a simple 7-day rolling average — no warmup, no black box, instant alerts from day one.",
-  },
-  {
-    q: 'What does the dashboard do?',
-    a: 'The dashboard at <a href="https://app.stackalert.app" style="color:#38bdf8;">app.stackalert.app</a> gives a visual overview of your cost history, trends, per-service breakdown, and multi-account comparison. Use it when you want to dig deeper than a single alert.',
-  },
-  {
-    q: 'Does my AWS cost data go to your servers?',
-    a: "Yes — StackAlert runs the monitoring Lambda on our infrastructure and calls the AWS Cost Explorer API on your behalf via an IAM role you grant. Cost data is processed in Frankfurt (eu-central-1), used only to compute baselines and detect spikes, and never sold or shared. GDPR compliant.",
-  },
-  {
-    q: 'How much does the open-source version cost to run?',
-    a: "Effectively €0/month. The ARM64 Lambda runs 4× per day — well within free tier. Cost Explorer API calls cost less than $0.04/month total.",
-  },
-  {
-    q: 'Will the open-source version stay free?',
-    a: "Yes, always. The open-source Lambda is Apache-2.0 licensed and will remain free forever. The paid product is the hosted dashboard — multi-account overview, anomaly history, notification management UI.",
-  },
-];
-
-
-// ─── RENDER ────────────────────────────────────────────────────────────────
-
-function renderTrustChips() {
-  const el = document.getElementById('trust-chips');
-  if (!el) return;
-  el.innerHTML = TRUST_CHIPS.map(c => `
-    <span class="inline-flex items-center gap-1.5 text-xs border px-3 py-1.5 rounded-full" style="color:#9ca3af;background:#111827;border-color:#1f2937;">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-      ${c.text}
-    </span>
-  `).join('');
-}
-
-function renderProblemCards() {
-  const el = document.getElementById('problem-cards');
-  if (!el) return;
-  el.innerHTML = PROBLEM_CARDS.map(c => `
-    <div class="border rounded-2xl p-6 text-left" style="background:rgba(17,24,39,0.6);border-color:#1f2937;">
-      <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 text-xl" style="background:rgba(239,68,68,0.08);">${c.emoji}</div>
-      <h3 class="font-heading font-semibold mb-2">${c.title}</h3>
-      <p class="text-gray-400 text-sm leading-relaxed">${c.body}</p>
-    </div>
-  `).join('');
-}
-
-function renderChannels() {
-  const el = document.getElementById('channels-grid');
-  if (!el) return;
-  el.innerHTML = CHANNELS.map(c => `
-    <div class="border rounded-2xl p-5 text-center card-hover flex flex-col items-center gap-3" style="background:#111827;border-color:#1f2937;">
-      <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:${c.bg};">
-        ${c.svg}
-      </div>
-      <div class="text-sm font-semibold text-white">${c.name}</div>
-    </div>
-  `).join('');
-}
-
-function renderSteps() {
-  const el = document.getElementById('steps-grid');
-  if (!el) return;
-  el.innerHTML = STEPS.map((s, i) => `
-    <div class="text-center" data-aos="fade-up" data-aos-delay="${i * 100}">
-      <div class="step-number w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-heading font-extrabold mx-auto mb-6" style="color:#38bdf8;">${s.n}</div>
-      <h3 class="font-heading font-bold text-lg mb-3">${s.title}</h3>
-      <p class="text-gray-400 text-sm leading-relaxed">${s.desc}</p>
-    </div>
-  `).join('');
-}
-
-function renderDashboardFeatures() {
-  const el = document.getElementById('dashboard-features');
-  if (!el) return;
-  el.innerHTML = DASHBOARD_FEATURES.map(f => `
-    <li class="flex items-center gap-3">
-      <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(56,189,248,0.15);">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <span class="text-gray-300 text-sm">${f}</span>
-    </li>
-  `).join('');
-}
-
-function renderPricing() {
-  const el = document.getElementById('pricing-grid');
-  if (!el) return;
-  el.innerHTML = PRICING.map(plan => `
-    <div class="border rounded-2xl p-8 relative transition-all hover:-translate-y-1" style="background:${plan.featured ? 'linear-gradient(160deg,#111827,rgba(56,189,248,0.06))' : '#111827'};border-color:${plan.featured ? '#38bdf8' : '#1f2937'};">
-      ${plan.badge ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-4 py-1 rounded-full" style="background:#38bdf8;color:#030712;">${plan.badge}</div>` : ''}
-      <div class="font-heading font-semibold text-lg mb-1 text-white">${plan.name}</div>
-      <div class="text-gray-400 text-sm mb-1">${plan.desc}</div>
-      <div class="text-xs text-gray-400 mb-5">${plan.note}</div>
-      <div class="flex items-baseline gap-1.5 mb-1">
-        <span class="font-mono text-gray-600 line-through">${plan.oldPrice}</span>
-        <span class="font-bold font-mono text-4xl" style="${plan.featured ? 'color:#38bdf8;' : 'color:#f9fafb;'}">${plan.price}</span>
-        <span class="text-gray-400 text-sm">/month</span>
-      </div>
-      <div class="text-xs mb-6" style="color:#38bdf8;">Early access price</div>
-      <ul class="space-y-3 mb-8 text-sm">
-        ${plan.features.map(f => `
-          <li class="flex items-center gap-2 text-gray-400">
-            <svg class="w-4 h-4 flex-shrink-0" style="color:#38bdf8;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            ${f}
-          </li>
-        `).join('')}
-      </ul>
-      <a href="#waitlist" class="${plan.featured ? 'btn-primary' : 'btn-secondary'} w-full" style="display:flex;justify-content:center;padding:10px 16px;font-size:14px;">Join waitlist</a>
-    </div>
-  `).join('');
-}
-
-function renderFAQs() {
-  const el = document.getElementById('faq-list');
-  if (!el) return;
-  el.innerHTML = FAQS.map(f => `
-    <details class="group border rounded-2xl overflow-hidden" style="background:#111827;border-color:#1f2937;">
-      <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold transition-colors hover:text-sky-400" style="color:#f9fafb;">
-        ${f.q}
-        <svg width="20" height="20" class="flex-shrink-0 transition-transform group-open:rotate-180 ml-4" style="color:#6b7280;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="px-6 pb-6 text-gray-400 leading-relaxed text-sm">${f.a}</div>
-    </details>
-  `).join('');
-}
-
-// ─── INIT ──────────────────────────────────────────────────────────────────
-
-renderTrustChips();
-renderProblemCards();
-renderChannels();
-renderSteps();
-renderDashboardFeatures();
-renderPricing();
-renderFAQs();
-
-AOS.init({ once: true, duration: 650, easing: 'ease-out-cubic', offset: 60 });
-</script>
-
-</body>
-</html>
