@@ -381,7 +381,8 @@
     <div class="text-center mb-16" data-aos="fade-up">
       <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#38bdf8;">How it works</p>
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Up and running in 60 seconds</h2>
-      <p class="text-gray-400 text-lg max-w-xl mx-auto">No SaaS account to create. No agent to run. Just your AWS account and your preferred channel.</p>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto">No Lambda to deploy. No YAML to write. Connect your AWS account once — we handle the rest.</p>
+      <p class="text-gray-600 text-sm mt-3 max-w-lg mx-auto">Prefer to self-host? The open-source Lambda installs via CDK or Terraform into your own account.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-6 relative">
       <div class="hidden md:block absolute top-12 left-1/3 right-1/3 h-px" style="background:linear-gradient(to right, #374151, rgba(56,189,248,0.4), #374151);"></div>
@@ -599,9 +600,9 @@ const CHANNELS = [
 ];
 
 const STEPS = [
-  { n: '1', title: 'Install via CDK or Terraform',    desc: 'Add the StackAlert construct to your IaC stack. Configure your notification channels and thresholds.' },
-  { n: '2', title: 'Choose your alert channels',      desc: 'Pick from Telegram, Slack, Email, Teams, PagerDuty, or a webhook. Mix and match per account.' },
-  { n: '3', title: 'Get alerted the moment costs spike', desc: 'Instant notifications with service name, cost, baseline, and projected daily total. Within minutes.' },
+  { n: '1', title: 'Connect your AWS account',        desc: 'Click to create a read-only IAM role in your AWS account. One-click CloudFormation template — takes under 60 seconds.' },
+  { n: '2', title: 'Configure your channels',         desc: 'Choose where to receive alerts: Telegram, Slack, Email, Teams, PagerDuty, or a webhook. Mix and match.' },
+  { n: '3', title: 'We monitor — you get alerted',    desc: 'StackAlert checks your costs continuously and sends an instant alert the moment a spike is detected. Per-service breakdown included.' },
 ];
 
 const DASHBOARD_FEATURES = [
