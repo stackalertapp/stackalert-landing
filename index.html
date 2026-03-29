@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StackAlert — AWS Cost Spike Alerts via Slack, Telegram, Email & more</title>
-  <meta name="description" content="StackAlert detects AWS cost spikes against your 7-day baseline and alerts you on Telegram, Slack, Email, Discord, Teams, or PagerDuty — before your bill does. 60-second setup. From €4/month.">
+  <meta name="description" content="StackAlert detects AWS cost spikes against your 7-day baseline and alerts you on Telegram, Slack, Email, Teams, or PagerDuty — before your bill does. 60-second setup. From €4/month.">
   <meta property="og:title" content="StackAlert — AWS Cost Spike Alerts in Any Channel">
-  <meta property="og:description" content="Know the moment your AWS costs spike. Alerts via Telegram, Slack, Email, Discord, Teams, PagerDuty and more. Per-service breakdown. 60-second setup.">
+  <meta property="og:description" content="Know the moment your AWS costs spike. Alerts via Telegram, Slack, Email, Teams, PagerDuty and more. Per-service breakdown. 60-second setup.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://stackalert.app">
   <meta name="twitter:card" content="summary_large_image">
@@ -181,7 +181,7 @@
 
       <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-lg">
         StackAlert watches your AWS costs against a 7-day baseline and pings you the moment something spikes —
-        on <strong class="text-gray-200">Telegram, Slack, Email, Discord, Teams</strong> or your webhook.
+        on <strong class="text-gray-200">Telegram, Slack, Email, Teams</strong> or your webhook.
         Before your bill arrives.
       </p>
 
@@ -315,7 +315,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3 class="text-xl font-heading font-bold mb-3">GDPR compliant by design</h3>
-        <p class="text-gray-400 leading-relaxed">All processing in Frankfurt (eu-central-1). Your cost data never leaves the EU. We process, alert, discard — nothing stored long-term.</p>
+        <p class="text-gray-400 leading-relaxed">All processing in Frankfurt (eu-central-1). Your cost data never leaves the EU. We call your AWS Cost Explorer API via a read-only IAM role — no write access, no billing changes.</p>
       </div>
 
       <div class="border rounded-2xl p-8 card-hover" style="background:#111827;border-color:#1f2937;" data-aos="fade-up" data-aos-delay="100">
@@ -367,7 +367,7 @@
     <div id="channels-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3" data-aos="fade-up" data-aos-delay="100"></div>
     <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="150">
       <p class="font-mono text-sm">
-        <span style="color:#38bdf8;">NOTIFY_CHANNELS</span>=<span class="text-green-400">"telegram,slack,email,discord"</span>
+        <span style="color:#38bdf8;">NOTIFY_CHANNELS</span>=<span class="text-green-400">"telegram,slack,email"</span>
         <span class="ml-3 text-gray-600">// mix and match, comma-separated</span>
       </p>
     </div>
@@ -588,7 +588,7 @@ const CHANNELS = [
     svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#E01E5A"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>` },
   { name: 'Email',     subtitle: '✓ New',          subColor: '#4ade80', bg: 'rgba(56,189,248,0.13)',
     svg: `<svg width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="2" width="22" height="16" rx="2"/><path d="M1 5l11 8 11-8"/></svg>` },
-  { name: 'Discord',   subtitle: '✓ New',          subColor: '#4ade80', bg: 'rgba(88,101,242,0.18)',
+  { name: 'Discord',   subtitle: 'Coming soon',    subColor: '#6b7280', bg: 'rgba(88,101,242,0.08)',
     svg: `<svg width="24" height="18" viewBox="0 0 24 18" fill="#5865F2"><path d="M20.317 1.492a19.84 19.84 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.74 19.74 0 0 0-4.885 1.515.07.07 0 0 0-.032.027C.533 6.168-.32 10.7.099 15.177c.002.132.02.202.03.222a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 12.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>` },
   { name: 'Teams',     subtitle: 'Adaptive Cards', subColor: '#9ca3af', bg: 'rgba(70,78,184,0.18)',
     svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#464EB8"><path d="M20.625 7.688h-5.25V5.812a1.312 1.312 0 0 0-1.313-1.312H9.938a1.312 1.312 0 0 0-1.313 1.312v1.876H3.375A1.313 1.313 0 0 0 2.063 9v7.5a1.312 1.312 0 0 0 1.312 1.313h5.25v1.875a1.313 1.313 0 0 0 1.313 1.312h4.124a1.313 1.313 0 0 0 1.313-1.312v-1.875h5.25A1.313 1.313 0 0 0 21.937 16.5V9a1.312 1.312 0 0 0-1.312-1.312zM12 13.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>` },
@@ -600,7 +600,7 @@ const CHANNELS = [
 
 const STEPS = [
   { n: '1', title: 'Install via CDK or Terraform',    desc: 'Add the StackAlert construct to your IaC stack. Configure your notification channels and thresholds.' },
-  { n: '2', title: 'Choose your alert channels',      desc: 'Pick from Telegram, Slack, Email, Discord, Teams, PagerDuty, or a webhook. Mix and match per account.' },
+  { n: '2', title: 'Choose your alert channels',      desc: 'Pick from Telegram, Slack, Email, Teams, PagerDuty, or a webhook. Mix and match per account.' },
   { n: '3', title: 'Get alerted the moment costs spike', desc: 'Instant notifications with service name, cost, baseline, and projected daily total. Within minutes.' },
 ];
 
@@ -629,7 +629,7 @@ const PRICING = [
 const FAQS = [
   {
     q: 'Which notification channels are supported?',
-    a: 'Telegram, Slack, Email, Discord, Microsoft Teams, PagerDuty, and custom webhooks — 7 total. Configure multiple channels per AWS account and alerts fan out to all of them simultaneously.',
+    a: 'Telegram, Slack, Email, Microsoft Teams, PagerDuty, and custom webhooks — 6 channels today, with Discord coming soon. Configure multiple channels per AWS account and alerts fan out to all simultaneously.',
   },
   {
     q: 'How is this different from AWS Cost Anomaly Detection?',
@@ -641,7 +641,7 @@ const FAQS = [
   },
   {
     q: 'Does my AWS cost data go to your servers?',
-    a: "StackAlert runs as a Lambda inside your own AWS account. It reads Cost Explorer data, computes the baseline, sends the alert — all without data leaving your account. GDPR compliant by architecture.",
+    a: "Yes — StackAlert runs the monitoring Lambda on our infrastructure and calls the AWS Cost Explorer API on your behalf via an IAM role you grant. Cost data is processed in Frankfurt (eu-central-1), used only to compute baselines and detect spikes, and never sold or shared. GDPR compliant.",
   },
   {
     q: 'How much does the open-source version cost to run?',
