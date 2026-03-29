@@ -1,49 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StackAlert — AWS Cost Spike Alerts via Slack, Telegram, Email & more</title>
-  <meta name="description" content="Get instant AWS cost spike alerts in Slack, Telegram, Email, Discord, Teams, or PagerDuty. Per-service breakdown shows exactly which service caused the spike. GDPR compliant. 60-second setup. From €4/month." />
-  <meta property="og:title" content="StackAlert — AWS Cost Spike Alerts in Any Channel" />
-  <meta property="og:description" content="Per-service AWS cost alerts delivered to Slack, Telegram, Email, Discord, Teams, or PagerDuty. Know exactly which service caused the spike. 60-second setup." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://stackalert.app" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="StackAlert — AWS Cost Alerts in Any Channel" />
-  <meta name="twitter:description" content="Per-service AWS cost spike alerts. Slack, Telegram, Email, Discord, Teams, PagerDuty. Know what caused it before the bill arrives." />
-  <link rel="canonical" href="https://stackalert.app" />
-  <meta name="robots" content="index, follow" />
+  <meta name="description" content="StackAlert detects AWS cost spikes against your 7-day baseline and alerts you on Telegram, Slack, Email, Discord, Teams, or PagerDuty — before your bill does. 60-second setup. From €4/month.">
+  <meta property="og:title" content="StackAlert — AWS Cost Spike Alerts in Any Channel">
+  <meta property="og:description" content="Know the moment your AWS costs spike. Alerts via Telegram, Slack, Email, Discord, Teams, PagerDuty and more. Per-service breakdown. 60-second setup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stackalert.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="StackAlert — AWS Cost Spike Alerts">
+  <meta name="twitter:description" content="Catch AWS cost spikes before your bill does. Per-service breakdown. 7 alert channels.">
+  <link rel="canonical" href="https://stackalert.app">
+  <meta name="robots" content="index, follow">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "StackAlert",
-    "url": "https://stackalert.app",
-    "description": "AWS cost spike alerts via Telegram, Slack, Email and more with per-service breakdown"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "StackAlert",
-    "applicationCategory": "BusinessApplication",
-    "url": "https://stackalert.app",
-    "description": "AWS cost spike alerts with per-service breakdown",
-    "offers": { "@type": "Offer", "price": "4", "priceCurrency": "EUR" }
-  }
+  { "@context":"https://schema.org","@type":"SoftwareApplication","name":"StackAlert","applicationCategory":"BusinessApplication","url":"https://stackalert.app","description":"AWS cost spike alerts with per-service breakdown","offers":{"@type":"Offer","price":"4","priceCurrency":"EUR"} }
   </script>
 
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <script async src="https://tally.so/widgets/embed.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
+  <script async src="https://tally.so/widgets/embed.js"></script>
 
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3VsFV1yoNQZTFGOQGA6ckG7KUFCwFAT214xHzv5M"}'></script>
@@ -52,13 +35,10 @@
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            bg: '#080808', surface: '#111111', border: '#2e2e2e',
-            text: '#f5f5f5', muted: '#a3a3a3', orange: '#f97316',
-          },
           fontFamily: {
-            sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            heading: ['Montserrat', 'sans-serif'],
+            body:    ['Source Sans 3', 'sans-serif'],
+            mono:    ['JetBrains Mono', 'monospace'],
           }
         }
       }
@@ -66,424 +46,521 @@
   </script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { background: #080808; color: #f5f5f5; font-family: 'Space Grotesk', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Source Sans 3', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
 
-    section { padding: 96px 24px; }
-    @media (max-width: 640px) { section { padding: 64px 16px; } }
+    .gradient-text {
+      background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(249,115,22,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(249,115,22,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .glow-orange    { box-shadow: 0 0 40px rgba(249,115,22,0.12); }
+    .glow-orange-sm { box-shadow: 0 0 20px rgba(249,115,22,0.08); }
+    .card-hover  { transition: border-color .2s, box-shadow .2s, transform .2s; }
+    .card-hover:hover { border-color: rgba(249,115,22,0.4); box-shadow: 0 0 30px rgba(249,115,22,0.08); transform: translateY(-2px); }
 
-    /* Hero background glow */
-    .hero-bg { background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(249,115,22,.18) 0%, transparent 70%); }
+    @keyframes blink      { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor               { animation: blink 1s step-end infinite; }
+    @keyframes ping-slow  { 0%{transform:scale(1);opacity:.4} 100%{transform:scale(1.8);opacity:0} }
+    .ping-slow            { animation: ping-slow 2s cubic-bezier(0,0,.2,1) infinite; }
+    @keyframes bounce-slow{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+    .bounce-slow          { animation: bounce-slow 2s ease-in-out infinite; }
 
-    /* Buttons */
+    .step-number { background: linear-gradient(135deg, rgba(249,115,22,.2), rgba(239,68,68,.2)); border: 1px solid rgba(249,115,22,.3); }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+
     .btn-primary {
-      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-      background: #f97316; color: #fff; font-weight: 600; border-radius: 10px;
-      padding: 12px 24px; font-size: 15px; text-decoration: none;
-      transition: background .15s, transform .1s; border: none; cursor: pointer; font-family: inherit;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: #f97316; border: 1px solid rgba(255,255,255,0.08);
+      color: #080808; font-weight: 700; font-size: 15px; padding: 12px 24px;
+      border-radius: 8px; text-decoration: none; transition: background .15s; cursor: pointer; font-family: 'Source Sans 3', sans-serif;
     }
-    .btn-primary:hover { background: #ea6c0f; transform: translateY(-1px); }
-
+    .btn-primary:hover { background: #ea6d0e; }
     .btn-secondary {
-      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-      background: transparent; color: #f5f5f5; font-weight: 600; border-radius: 10px;
-      padding: 12px 24px; font-size: 15px; text-decoration: none;
-      transition: background .15s, border-color .15s, transform .1s;
-      border: 1px solid #2e2e2e; cursor: pointer; font-family: inherit;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: transparent; border: 1px solid #374151;
+      color: #e5e7eb; font-weight: 500; font-size: 15px; padding: 12px 24px;
+      border-radius: 8px; text-decoration: none; transition: border-color .15s, background .15s; cursor: pointer; font-family: 'Source Sans 3', sans-serif;
     }
-    .btn-secondary:hover { background: #111; border-color: #444; transform: translateY(-1px); }
-
+    .btn-secondary:hover { background: #1f2937; border-color: #f97316; }
     .btn-dashboard {
       display: inline-flex; align-items: center; gap: 6px;
-      background: transparent; color: #f97316; font-weight: 600; border-radius: 8px;
-      padding: 9px 16px; font-size: 14px; text-decoration: none;
-      transition: background .15s; border: 1px solid rgba(249,115,22,.35); cursor: pointer;
+      background: transparent; border: 1px solid rgba(249,115,22,0.3);
+      color: #f97316; font-weight: 600; font-size: 14px; padding: 9px 16px;
+      border-radius: 8px; text-decoration: none; transition: background .15s; font-family: 'Source Sans 3', sans-serif;
     }
-    .btn-dashboard:hover { background: rgba(249,115,22,.08); }
-
-    /* Section label */
-    .section-label {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: #f97316; font-size: 11px; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px;
-    }
-    .section-label::before { content: ''; width: 20px; height: 2px; background: #f97316; }
-
-    /* Card */
-    .card { background: #111111; border: 1px solid #2e2e2e; border-radius: 16px; padding: 24px; }
-
-    /* Navbar */
-    nav {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(8,8,8,.88); backdrop-filter: blur(14px);
-      border-bottom: 1px solid #1a1a1a;
-    }
-
-    /* Channel cards */
-    .channel-card {
-      background: #111; border: 1px solid #2e2e2e; border-radius: 12px;
-      padding: 18px; transition: border-color .2s, transform .15s;
-    }
-    .channel-card:hover { border-color: #3a3a3a; transform: translateY(-2px); }
-
-    /* Metric strip */
-    .metric-cell {
-      padding: 24px 16px; text-align: center;
-      border-right: 1px solid #1e1e1e;
-    }
-    .metric-cell:last-child { border-right: none; }
-    @media (max-width: 640px) {
-      .metric-cell { border-right: none; border-bottom: 1px solid #1e1e1e; }
-      .metric-cell:last-child { border-bottom: none; }
-    }
-
-    /* Pricing */
-    .pricing-card {
-      background: #111; border: 1px solid #2e2e2e; border-radius: 16px;
-      padding: 28px; display: flex; flex-direction: column;
-    }
-    .pricing-card.featured { border-color: #f97316; background: #0f0c09; }
-
-    /* Step number bubble */
-    .step-num {
-      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
-      background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.25);
-      color: #f97316; font-weight: 700; font-size: 13px;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    /* FAQ accordion */
-    details summary { list-style: none; cursor: pointer; user-select: none; }
-    details summary::-webkit-details-marker { display: none; }
-    .faq-chevron { transition: transform .2s; }
-    details[open] .faq-chevron { transform: rotate(45deg); }
-
-    /* Mobile menu */
-    #mobile-menu { display: none; }
-    #mobile-menu.open { display: block; }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #080808; }
-    ::-webkit-scrollbar-thumb { background: #2e2e2e; border-radius: 3px; }
+    .btn-dashboard:hover { background: rgba(249,115,22,0.08); }
 
     a { text-decoration: none; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #030712; }
+    ::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
   </style>
+
+  <!-- SVG symbols — defined once, reused anywhere -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-github" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M6 9l6 6 6-6"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </symbol>
+  </svg>
 </head>
-<body>
 
-<!-- ─── NAVBAR ───────────────────────────────────────────────────────────── -->
-<nav>
-  <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+<body class="bg-gray-950 text-gray-100 antialiased" style="background:#030712;">
 
-    <a href="/" class="flex items-center gap-2">
-      <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <rect width="28" height="28" rx="7" fill="#f97316"/>
-        <path d="M9 7h10l-2 7h5l-9 9 2-8H9V7z" fill="white"/>
-      </svg>
-      <span style="font-weight:700;font-size:16px;color:#f5f5f5;letter-spacing:-.02em;">StackAlert</span>
+
+<!-- ─── NAVBAR ─────────────────────────────────────────────────────────────── -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-800/60 backdrop-blur-xl" style="background:rgba(3,7,18,0.85);">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <a href="/" class="flex items-center gap-2.5 group">
+      <div class="relative">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#f97316,#ea580c);">
+          <svg width="15" height="11" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+            <polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#030712" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-40 blur-md transition-opacity" style="background:linear-gradient(135deg,#f97316,#ea580c);"></div>
+      </div>
+      <span class="font-heading font-bold text-white text-lg">StackAlert</span>
     </a>
 
-    <div class="hidden md:flex items-center gap-7">
-      <a href="#channels" style="color:#a3a3a3;font-size:14px;transition:color .15s;" onmouseover="this.style.color='#f5f5f5'" onmouseout="this.style.color='#a3a3a3'">Channels</a>
-      <a href="#how-it-works" style="color:#a3a3a3;font-size:14px;transition:color .15s;" onmouseover="this.style.color='#f5f5f5'" onmouseout="this.style.color='#a3a3a3'">How it works</a>
-      <a href="#pricing" style="color:#a3a3a3;font-size:14px;transition:color .15s;" onmouseover="this.style.color='#f5f5f5'" onmouseout="this.style.color='#a3a3a3'">Pricing</a>
-      <a href="#faq" style="color:#a3a3a3;font-size:14px;transition:color .15s;" onmouseover="this.style.color='#f5f5f5'" onmouseout="this.style.color='#a3a3a3'">FAQ</a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
+      <a href="#features"     class="hover:text-white transition-colors">Features</a>
+      <a href="#channels"     class="hover:text-white transition-colors">Channels</a>
+      <a href="#how-it-works" class="hover:text-white transition-colors">How it works</a>
+      <a href="#pricing"      class="hover:text-white transition-colors">Pricing</a>
+      <a href="https://github.com/stackalertapp" target="_blank" rel="noopener" class="hover:text-white transition-colors flex items-center gap-1.5">
+        <svg width="14" height="14"><use href="#icon-github"/></svg>
+        GitHub
+      </a>
     </div>
 
-    <div class="hidden md:flex items-center gap-3">
-      <a href="https://app.stackalert.app" class="btn-dashboard">Dashboard →</a>
-      <a href="#waitlist" class="btn-primary" style="padding:9px 18px;font-size:14px;">Join waitlist</a>
-    </div>
-
-    <button id="menu-toggle" class="md:hidden p-2" style="background:none;border:none;color:#f5f5f5;cursor:pointer;" aria-label="Menu">
-      <i data-feather="menu" style="width:22px;height:22px;"></i>
-    </button>
-  </div>
-
-  <div id="mobile-menu" style="background:#0b0b0b;border-top:1px solid #1a1a1a;">
-    <div class="px-5 py-4 flex flex-col gap-4">
-      <a href="#channels" style="color:#a3a3a3;font-size:14px;">Channels</a>
-      <a href="#how-it-works" style="color:#a3a3a3;font-size:14px;">How it works</a>
-      <a href="#pricing" style="color:#a3a3a3;font-size:14px;">Pricing</a>
-      <a href="#faq" style="color:#a3a3a3;font-size:14px;">FAQ</a>
-      <div class="flex flex-col gap-2 pt-2" style="border-top:1px solid #222;">
-        <a href="https://app.stackalert.app" class="btn-dashboard" style="justify-content:center;">Dashboard →</a>
-        <a href="#waitlist" class="btn-primary">Join waitlist</a>
-      </div>
+    <div class="flex items-center gap-3">
+      <a href="https://app.stackalert.app" class="btn-dashboard hidden md:inline-flex">Dashboard →</a>
+      <a href="#waitlist" class="btn-primary text-sm px-5 py-2.5">Get early access</a>
     </div>
   </div>
 </nav>
 
-<!-- ─── HERO ─────────────────────────────────────────────────────────────── -->
-<div class="hero-bg relative overflow-hidden">
-  <section class="max-w-5xl mx-auto text-center relative z-10">
 
-    <div class="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full text-xs font-semibold"
-         style="background:rgba(249,115,22,.1);color:#f97316;border:1px solid rgba(249,115,22,.2);">
-      <i data-feather="zap" style="width:12px;height:12px;"></i>
-      AWS Cost Intelligence
-    </div>
+<!-- ─── HERO ───────────────────────────────────────────────────────────────── -->
+<section class="relative min-h-screen flex items-center pt-16 overflow-hidden grid-bg">
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none" style="background:rgba(249,115,22,0.04);filter:blur(120px);"></div>
+  <div class="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:rgba(239,68,68,0.03);filter:blur(100px);"></div>
 
-    <h1 class="font-bold leading-tight mb-5"
-        style="font-size:clamp(2rem,5.5vw,3.5rem);letter-spacing:-.035em;">
-      Know <span style="color:#f97316;font-style:italic;">which</span> AWS service<br/>blew your budget
-    </h1>
+  <div class="relative max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
 
-    <p class="mx-auto mb-10" style="color:#a3a3a3;font-size:1.1rem;max-width:540px;line-height:1.75;">
-      Instant cost spike alerts with per-service breakdown — delivered to
-      <strong style="color:#f5f5f5;">Telegram, Slack, Email, Discord, Teams</strong>
-      or your webhook. 60-second setup.
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-3 justify-center mb-14">
-      <a href="#waitlist" class="btn-primary text-base px-8 py-3.5">
-        <i data-feather="zap" style="width:17px;height:17px;"></i>
-        Join waitlist — it's free
-      </a>
-      <a href="https://app.stackalert.app" class="btn-secondary text-base px-8 py-3.5">
-        Open Dashboard
-        <i data-feather="arrow-right" style="width:17px;height:17px;"></i>
-      </a>
-    </div>
-
-    <!-- Alert mockup -->
-    <div class="mx-auto mb-8 text-left" style="max-width:400px;background:#0f0f0f;border:1px solid #2e2e2e;border-radius:16px;padding:16px;">
-      <div class="flex items-center gap-2 mb-3 pb-3" style="border-bottom:1px solid #1e1e1e;">
-        <div style="width:32px;height:32px;background:#f97316;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="15" height="15" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M9 7h10l-2 7h5l-9 9 2-8H9V7z" fill="white"/></svg>
-        </div>
-        <div>
-          <div style="font-size:13px;font-weight:600;">StackAlert</div>
-          <div style="font-size:11px;color:#737373;">AWS Cost Monitor</div>
-        </div>
-        <div class="ml-auto" style="background:rgba(239,68,68,.12);color:#ef4444;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;border:1px solid rgba(239,68,68,.2);flex-shrink:0;">⚠ SPIKE</div>
+    <div data-aos="fade-right" data-aos-duration="700">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium mb-8 border" style="background:rgba(249,115,22,0.08);color:#f97316;border-color:rgba(249,115,22,0.2);">
+        <span class="relative flex h-2 w-2">
+          <span class="ping-slow absolute inline-flex h-full w-full rounded-full opacity-75" style="background:#f97316;"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2" style="background:#f97316;"></span>
+        </span>
+        Early access · First 100 users get 50% off forever
       </div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;color:#d4d4d4;">
-        <div><span style="color:#737373;">Account:</span> production</div>
-        <div><span style="color:#737373;">Period :</span> today vs 7d avg</div>
-        <div class="mt-2" style="color:#ef4444;font-weight:600;">+$127.40 spike (+340%)</div>
-        <div class="mt-2" style="color:#737373;">Top services:</div>
-        <div>&#x20;&#x20;⬆ Bedrock&#x20;&#x20;&#x20;&#x20;<span style="color:#ef4444;">$89.20</span> <span style="color:#555;">(+820%)</span></div>
-        <div>&#x20;&#x20;⬆ EC2&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;<span style="color:#ef4444;">$24.10</span> <span style="color:#555;">(+180%)</span></div>
-        <div>&#x20;&#x20;⬆ Data Xfer <span style="color:#ef4444;">$14.10</span> <span style="color:#555;">(+95%)</span></div>
+
+      <h1 class="text-5xl lg:text-6xl font-heading font-extrabold leading-[1.1] mb-6 tracking-tight">
+        Your AWS bill<br>
+        <span class="gradient-text">shouldn't surprise you</span>
+      </h1>
+
+      <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-lg">
+        StackAlert watches your AWS costs against a 7-day baseline and pings you the moment something spikes —
+        on <strong class="text-gray-200">Telegram, Slack, Email, Discord, Teams</strong> or your webhook.
+        Before your bill arrives.
+      </p>
+
+      <div class="flex items-start gap-3 p-4 rounded-xl mb-8" style="background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.15);">
+        <span class="text-red-400 text-lg mt-0.5">⚠️</span>
+        <p class="text-sm text-gray-400 italic leading-relaxed">
+          "Our Lambda hit $47,000 in one weekend because of a single line of code.
+          AWS Budgets sent an email — after we'd already been billed."
+          <span class="text-gray-600 not-italic"> — r/aws</span>
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="#waitlist" class="btn-primary text-base px-6 py-3.5 glow-orange-sm">
+          Get early access
+          <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
+        </a>
+        <a href="https://app.stackalert.app" class="btn-secondary text-base px-6 py-3.5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Open Dashboard
+        </a>
+      </div>
+
+      <!-- Trust chips — rendered by JS -->
+      <div id="trust-chips" class="flex flex-wrap gap-3 mt-8"></div>
+    </div>
+
+    <!-- Terminal mockup -->
+    <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+      <div class="rounded-2xl border overflow-hidden glow-orange" style="border-color:#1f2937;background:#111827;">
+        <div class="flex items-center gap-2 px-4 py-3 border-b" style="background:#111827;border-color:#1f2937;">
+          <div class="flex gap-1.5">
+            <div class="w-3 h-3 rounded-full" style="background:rgba(239,68,68,0.6);"></div>
+            <div class="w-3 h-3 rounded-full" style="background:rgba(234,179,8,0.6);"></div>
+            <div class="w-3 h-3 rounded-full" style="background:rgba(34,197,94,0.6);"></div>
+          </div>
+          <span class="text-xs text-gray-500 font-mono mx-auto">stackalert · spike alert</span>
+        </div>
+        <div class="p-5 font-mono text-sm space-y-2">
+          <div class="text-gray-600">// 2026-03-29 02:14 UTC · spike detected</div>
+          <div class="flex items-start gap-2">
+            <span style="color:#f97316;">⚡</span>
+            <div>
+              <div class="text-white font-medium">AWSLambda spike detected</div>
+              <div class="text-xs text-gray-500 mt-0.5">+2,847% vs 7-day baseline</div>
+            </div>
+          </div>
+          <div class="rounded-lg p-3 space-y-1.5 text-xs" style="background:#1f2937;">
+            <div class="flex justify-between"><span class="text-gray-500">Service</span>    <span class="text-white">AWS Lambda</span></div>
+            <div class="flex justify-between"><span class="text-gray-500">Today so far</span><span class="text-red-400 font-semibold">$847.32</span></div>
+            <div class="flex justify-between"><span class="text-gray-500">7-day avg</span>  <span class="text-gray-300">$0.29/day</span></div>
+            <div class="flex justify-between"><span class="text-gray-500">Projected</span>  <span class="text-red-400 font-semibold">~$1,200 today</span></div>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(249,115,22,0.1);color:#f97316;border-color:rgba(249,115,22,0.2);">📱 Telegram sent</span>
+            <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(74,21,75,0.3);color:#e879f9;border-color:rgba(232,121,249,0.2);">#alerts Slack sent</span>
+            <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(34,197,94,0.1);color:#4ade80;border-color:rgba(74,222,128,0.2);">✉ Email sent</span>
+            <span class="px-2 py-0.5 rounded text-xs border" style="background:rgba(239,68,68,0.1);color:#f87171;border-color:rgba(248,113,113,0.2);">🔴 PagerDuty incident</span>
+          </div>
+          <div class="flex items-center gap-1 text-xs" style="color:#374151;">
+            <span>$</span><span class="cursor">▋</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 flex items-center justify-center">
+        <a href="https://app.stackalert.app" class="group flex items-center gap-2 text-sm text-gray-500 hover:text-orange-400 transition-colors" style="">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          View full dashboard preview
+          <svg width="12" height="12" class="group-hover:translate-x-0.5 transition-transform"><use href="#icon-arrow-right"/></svg>
+        </a>
       </div>
     </div>
 
-    <!-- Channel pills — filled by JS -->
-    <div id="hero-pills" class="flex flex-wrap justify-center items-center gap-2">
-      <span style="font-size:12px;color:#555;">Delivered to →</span>
-    </div>
+  </div>
 
-  </section>
-</div>
-
-<!-- ─── METRICS STRIP ─────────────────────────────────────────────────────── -->
-<div style="border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;background:#0b0b0b;">
-  <div id="metrics-strip" class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4"></div>
-</div>
-
-<!-- ─── TRUST STRIP ───────────────────────────────────────────────────────── -->
-<section style="padding:40px 24px;">
-  <div class="max-w-5xl mx-auto text-center">
-    <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#444;margin-bottom:20px;">Integrates with your existing stack</p>
-    <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-3">
-      <span style="color:#3a3a3a;font-size:13px;font-weight:600;">AWS Cost Explorer</span>
-      <span style="color:#3a3a3a;font-size:13px;font-weight:600;">Telegram</span>
-      <span style="color:#3a3a3a;font-size:13px;font-weight:600;">Slack</span>
-      <span style="color:#3a3a3a;font-size:13px;font-weight:600;">Email</span>
-      <span style="color:#3a3a3a;font-size:13px;font-weight:600;">Discord</span>
-      <span style="color:#3a3a3a;font-size:13px;font-weight:600;">Microsoft Teams</span>
-      <span style="color:#3a3a3a;font-size:13px;font-weight:600;">PagerDuty</span>
-      <span style="color:#3a3a3a;font-size:13px;font-weight:600;">Webhooks</span>
-    </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 bounce-slow">
+    <span class="text-xs text-gray-600 font-mono">scroll</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
 
-<!-- ─── PROBLEM ───────────────────────────────────────────────────────────── -->
-<section class="max-w-4xl mx-auto">
-  <div class="section-label">The problem</div>
-  <h2 class="font-bold mb-4" style="font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-.025em;">Your AWS bill is a surprise every month</h2>
-  <p style="color:#a3a3a3;font-size:1.05rem;max-width:540px;line-height:1.75;margin-bottom:48px;">
-    Small teams get the same tools as Fortune 500 companies — dashboards with 200 settings, email alerts that arrive too late, and a $500/month minimum.
-  </p>
-  <div class="grid md:grid-cols-3 gap-4">
-    <div class="card">
-      <div class="mb-3" style="color:#f97316;"><i data-feather="clock" style="width:22px;height:22px;"></i></div>
-      <div class="font-semibold mb-1">Too late</div>
-      <p style="color:#a3a3a3;font-size:14px;line-height:1.6;">AWS Budgets emails once a day. By the time you see it, the spike has been running for hours.</p>
+
+<!-- ─── PROBLEM ────────────────────────────────────────────────────────────── -->
+<section class="py-24 border-t" style="border-color:#1f2937;">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <div data-aos="fade-up">
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">The problem</p>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-6">AWS billing has a 24-hour blindspot</h2>
+      <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto mb-12">
+        AWS Cost Explorer shows yesterday's data. Budgets alert on monthly thresholds.
+        Cost Anomaly Detection needs 10 days to warm up per service.
+        <strong class="text-gray-200">A single bug can run up thousands while you sleep.</strong>
+      </p>
     </div>
-    <div class="card">
-      <div class="mb-3" style="color:#f97316;"><i data-feather="eye-off" style="width:22px;height:22px;"></i></div>
-      <div class="font-semibold mb-1">No context</div>
-      <p style="color:#a3a3a3;font-size:14px;line-height:1.6;">You learn your bill is over budget, but not <em>which</em> service caused it. You still have to dig through the console.</p>
-    </div>
-    <div class="card">
-      <div class="mb-3" style="color:#f97316;"><i data-feather="dollar-sign" style="width:22px;height:22px;"></i></div>
-      <div class="font-semibold mb-1">Overpriced</div>
-      <p style="color:#a3a3a3;font-size:14px;line-height:1.6;">Datadog, New Relic — great tools, but $200–500/month is overkill for a 3-person team that just needs alerts.</p>
-    </div>
+    <!-- Problem cards — rendered by JS -->
+    <div id="problem-cards" class="grid md:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="100"></div>
   </div>
 </section>
 
-<!-- ─── CHANNELS ──────────────────────────────────────────────────────────── -->
-<section id="channels" class="max-w-5xl mx-auto">
-  <div class="section-label">Channels</div>
-  <h2 class="font-bold mb-3" style="font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-.025em;">Alerts wherever your team already works</h2>
-  <p style="color:#a3a3a3;font-size:1.05rem;max-width:560px;margin-bottom:40px;line-height:1.7;">
-    Configure one or more channels per AWS account. Solo devs use Telegram, teams route to Slack, on-call engineers use PagerDuty. Mix and match.
-  </p>
-
-  <!-- Channel grid — filled by JS -->
-  <div id="channels-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8"></div>
-
-  <!-- Config snippet -->
-  <div class="card" style="max-width:480px;">
-    <div class="flex items-center gap-2 mb-3">
-      <i data-feather="code" style="width:13px;height:13px;color:#555;"></i>
-      <span style="font-size:12px;color:#555;font-family:'JetBrains Mono',monospace;">stackalert.yaml</span>
-    </div>
-    <pre style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#d4d4d4;line-height:1.8;overflow-x:auto;margin:0;"><code>notify:
-  - channel: telegram
-    chat_id: "@my-team-alerts"
-  - channel: slack
-    webhook: $SLACK_WEBHOOK_URL
-  - channel: email
-    to: "ops@company.com"
-  - channel: pagerduty
-    integration_key: $PD_KEY
-
-<span style="color:#555;"># → alerts fan out to all listed channels</span></code></pre>
-  </div>
-</section>
 
 <!-- ─── FEATURES BENTO ────────────────────────────────────────────────────── -->
-<section id="features" class="max-w-5xl mx-auto">
-  <div class="section-label">Why StackAlert</div>
-  <h2 class="font-bold mb-3" style="font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-.025em;">Built for lean teams, not enterprise budgets</h2>
-  <p style="color:#a3a3a3;font-size:1.05rem;max-width:560px;margin-bottom:40px;line-height:1.7;">No dashboards to maintain. No agents to install. Just alerts with enough context to act immediately.</p>
-
-  <div class="grid md:grid-cols-2 gap-4">
-    <div class="card">
-      <div class="mb-3" style="color:#f97316;"><i data-feather="bar-chart-2" style="width:22px;height:22px;"></i></div>
-      <div class="font-semibold text-lg mb-2">Daily cost digest</div>
-      <p style="color:#a3a3a3;font-size:14px;line-height:1.65;">Every morning: yesterday's spend by service, vs. last week. 30 seconds to read, zero dashboards to open.</p>
+<section id="features" class="py-24 border-t" style="border-color:#1f2937;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">Features</p>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Alerts that actually arrive in time</h2>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto">Not another dashboard to check. Real-time notifications to wherever your team already lives.</p>
     </div>
 
-    <div class="card">
-      <div class="mb-3" style="color:#f97316;"><i data-feather="layers" style="width:22px;height:22px;"></i></div>
-      <div class="font-semibold text-lg mb-2">Per-service breakdown</div>
-      <p style="color:#a3a3a3;font-size:14px;line-height:1.65;">When EC2 spikes, you see EC2. When Bedrock costs jump, you see Bedrock. No guessing, no console spelunking.</p>
-    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-    <div class="card" style="border-color:rgba(249,115,22,.3);">
-      <div class="flex items-start justify-between mb-3">
-        <div style="color:#f97316;"><i data-feather="monitor" style="width:22px;height:22px;"></i></div>
-        <span style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:rgba(249,115,22,.1);color:#f97316;padding:3px 8px;border-radius:5px;border:1px solid rgba(249,115,22,.2);">New</span>
+      <div class="md:col-span-2 border rounded-2xl p-8 card-hover relative overflow-hidden" style="background:#111827;border-color:#1f2937;" data-aos="fade-up">
+        <div class="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none" style="background:rgba(249,115,22,0.04);filter:blur(40px);"></div>
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.2);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 class="text-xl font-heading font-bold mb-3">Per-service spike detection</h3>
+        <p class="text-gray-400 leading-relaxed mb-6">Every AWS service gets its own 7-day rolling baseline. Lambda, EC2, RDS, S3, Bedrock — each tracked independently. No more "is this spike normal?" guessing.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1.5 rounded-full border" style="background:#1f2937;color:#9ca3af;border-color:#374151;">Lambda</span>
+          <span class="text-xs px-3 py-1.5 rounded-full border" style="background:#1f2937;color:#9ca3af;border-color:#374151;">EC2</span>
+          <span class="text-xs px-3 py-1.5 rounded-full border" style="background:#1f2937;color:#9ca3af;border-color:#374151;">RDS</span>
+          <span class="text-xs px-3 py-1.5 rounded-full border" style="background:#1f2937;color:#9ca3af;border-color:#374151;">S3</span>
+          <span class="text-xs px-3 py-1.5 rounded-full border" style="background:#1f2937;color:#9ca3af;border-color:#374151;">Bedrock</span>
+          <span class="text-xs px-3 py-1.5 rounded-full border" style="background:#1f2937;color:#9ca3af;border-color:#374151;">+ all services</span>
+        </div>
       </div>
-      <div class="font-semibold text-lg mb-2">Cost dashboard</div>
-      <p style="color:#a3a3a3;font-size:14px;line-height:1.65;margin-bottom:14px;">Full cost history in one view — trends, account comparison, per-service breakdown. When you want more than an alert.</p>
-      <a href="https://app.stackalert.app" class="btn-dashboard" style="font-size:13px;padding:8px 14px;">Open Dashboard →</a>
-    </div>
 
-    <div class="card">
-      <div class="mb-3" style="color:#f97316;"><i data-feather="shield" style="width:22px;height:22px;"></i></div>
-      <div class="font-semibold text-lg mb-2">GDPR compliant by design</div>
-      <p style="color:#a3a3a3;font-size:14px;line-height:1.65;">All processing in Frankfurt (eu-central-1). Your cost data never leaves the EU. We process, alert, and discard — nothing stored long-term.</p>
+      <div class="border rounded-2xl p-8 card-hover" style="background:#111827;border-color:#1f2937;" data-aos="fade-up" data-aos-delay="50">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="text-xl font-heading font-bold mb-3">GDPR compliant by design</h3>
+        <p class="text-gray-400 leading-relaxed">All processing in Frankfurt (eu-central-1). Your cost data never leaves the EU. We process, alert, discard — nothing stored long-term.</p>
+      </div>
+
+      <div class="border rounded-2xl p-8 card-hover" style="background:#111827;border-color:#1f2937;" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(129,140,248,0.1);border:1px solid rgba(129,140,248,0.2);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3 class="text-xl font-heading font-bold mb-3">Daily digest at 08:00</h3>
+        <p class="text-gray-400 leading-relaxed text-sm">Morning summary of yesterday's spend — every service, sorted by cost. Start your day informed without opening a dashboard.</p>
+      </div>
+
+      <div class="md:col-span-2 border rounded-2xl p-8 card-hover" style="background:#111827;border-color:#1f2937;" data-aos="fade-up" data-aos-delay="150">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3 class="text-xl font-heading font-bold mb-3">CDK construct or Terraform module</h3>
+        <p class="text-gray-400 leading-relaxed mb-4">Install as part of your existing IaC stack. One import, one deploy. No separate signup, no agent to run, no YAML to write.</p>
+        <div class="rounded-xl p-4 font-mono text-sm overflow-x-auto" style="background:#030712;">
+          <div class="text-gray-600 text-xs mb-2">// AWS CDK (TypeScript)</div>
+          <div><span class="text-indigo-400">import</span> <span class="text-white">&#123; StackAlert &#125;</span> <span class="text-indigo-400">from</span> <span class="text-green-400">'stackalert-cdk'</span></div>
+          <div class="mt-1"><span class="text-indigo-400">new</span> <span style="color:#f97316;">StackAlert</span><span class="text-white">(this, </span><span class="text-green-400">'CostAlerts'</span><span class="text-white">, &#123;</span></div>
+          <div class="pl-4"><span class="text-yellow-400">notifyChannels</span><span class="text-white">: [</span><span class="text-green-400">'telegram'</span><span class="text-white">, </span><span class="text-green-400">'slack'</span><span class="text-white">, </span><span class="text-green-400">'email'</span><span class="text-white">],</span></div>
+          <div class="pl-4"><span class="text-yellow-400">spikeThreshold</span><span class="text-white">: </span><span style="color:#f97316;">1.5</span><span class="text-white">,</span></div>
+          <div><span class="text-white">&#125;)</span></div>
+        </div>
+      </div>
+
+      <div class="border rounded-2xl p-8 card-hover" style="background:#111827;border-color:#1f2937;" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(192,132,252,0.1);border:1px solid rgba(192,132,252,0.2);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 class="text-xl font-heading font-bold mb-3">Multi-account support</h3>
+        <p class="text-gray-400 leading-relaxed text-sm">Monitor multiple AWS accounts via IAM role assumption. One StackAlert instance, all your accounts covered.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ─── HOW IT WORKS ──────────────────────────────────────────────────────── -->
-<section id="how-it-works" class="max-w-3xl mx-auto text-center">
-  <div class="section-label" style="justify-content:center;">Setup</div>
-  <h2 class="font-bold mb-3" style="font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-.025em;">60 seconds to your first alert</h2>
-  <p style="color:#a3a3a3;margin-bottom:40px;">No YAML. No dashboards. No agents to install.</p>
-  <!-- Steps — filled by JS -->
-  <div id="steps-list" class="flex flex-col gap-4 text-left"></div>
+
+<!-- ─── CHANNELS ───────────────────────────────────────────────────────────── -->
+<section id="channels" class="py-24 border-t" style="border-color:#1f2937;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">Alert channels</p>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Alerts wherever your team already is</h2>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto">7 notification channels. Mix and match. Configure multiple per AWS account.</p>
+    </div>
+    <!-- Channel cards — rendered by JS -->
+    <div id="channels-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3" data-aos="fade-up" data-aos-delay="100"></div>
+    <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="150">
+      <p class="font-mono text-sm">
+        <span style="color:#f97316;">NOTIFY_CHANNELS</span>=<span class="text-green-400">"telegram,slack,email,discord"</span>
+        <span class="ml-3 text-gray-600">// mix and match, comma-separated</span>
+      </p>
+    </div>
+  </div>
 </section>
 
-<!-- ─── PRICING ───────────────────────────────────────────────────────────── -->
-<section id="pricing" class="max-w-5xl mx-auto">
-  <div class="section-label" style="justify-content:center;">Pricing</div>
-  <h2 class="font-bold mb-3 text-center" style="font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-.025em;">Simple pricing, no surprises</h2>
-  <p class="text-center mb-12" style="color:#a3a3a3;">14-day free trial on all plans. No credit card required.</p>
-  <!-- Pricing cards — filled by JS -->
-  <div id="pricing-grid" class="grid md:grid-cols-3 gap-6"></div>
-  <p class="text-center mt-5 text-xs" style="color:#444;">Alle Preise inkl. MwSt. · Cancel anytime</p>
+
+<!-- ─── HOW IT WORKS ───────────────────────────────────────────────────────── -->
+<section id="how-it-works" class="py-24 border-t" style="border-color:#1f2937;">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">How it works</p>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Up and running in 60 seconds</h2>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto">No SaaS account to create. No agent to run. Just your AWS account and your preferred channel.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 relative">
+      <div class="hidden md:block absolute top-12 left-1/3 right-1/3 h-px" style="background:linear-gradient(to right, #374151, rgba(249,115,22,0.4), #374151);"></div>
+      <!-- Steps rendered by JS -->
+      <div id="steps-grid" class="contents"></div>
+    </div>
+  </div>
 </section>
+
+
+<!-- ─── DASHBOARD TEASER ───────────────────────────────────────────────────── -->
+<section class="py-24 border-t relative overflow-hidden" style="border-color:#1f2937;">
+  <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(135deg, rgba(249,115,22,0.03), transparent, rgba(239,68,68,0.03));"></div>
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div data-aos="fade-right">
+        <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">Dashboard</p>
+        <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-6">Cost history,<br>multi-account, team view</h2>
+        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+          The open-source Lambda handles alerting. The dashboard gives your team a 90-day anomaly history,
+          multi-account overview, and notification channel management — without touching environment variables.
+        </p>
+        <!-- Dashboard features rendered by JS -->
+        <ul id="dashboard-features" class="space-y-3 mb-8"></ul>
+        <a href="https://app.stackalert.app" class="btn-primary text-sm px-6 py-3.5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Open Dashboard
+        </a>
+      </div>
+
+      <div data-aos="fade-left" data-aos-delay="100">
+        <div class="rounded-2xl border overflow-hidden glow-orange" style="background:#111827;border-color:#374151;">
+          <div class="border-b px-4 py-3 flex items-center justify-between" style="border-color:#1f2937;">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 rounded-full" style="background:#f97316;"></div>
+              <span class="text-xs text-gray-400 font-mono">app.stackalert.app</span>
+            </div>
+            <span class="text-xs font-mono px-2 py-0.5 rounded" style="color:#f97316;background:rgba(249,115,22,0.1);">Live</span>
+          </div>
+          <div class="p-5 space-y-4">
+            <div class="grid grid-cols-3 gap-3">
+              <div class="rounded-xl p-3 text-center" style="background:#1f2937;">
+                <div class="text-lg font-bold" style="color:#f97316;">3</div>
+                <div class="text-xs text-gray-500">Accounts</div>
+              </div>
+              <div class="rounded-xl p-3 text-center" style="background:#1f2937;">
+                <div class="text-lg font-bold text-green-400">$1,247</div>
+                <div class="text-xs text-gray-500">This month</div>
+              </div>
+              <div class="rounded-xl p-3 text-center" style="background:#1f2937;">
+                <div class="text-lg font-bold text-yellow-400">2</div>
+                <div class="text-xs text-gray-500">Alerts today</div>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 font-mono mb-2">Recent anomalies</div>
+              <div class="space-y-2">
+                <div class="flex items-center justify-between rounded-lg p-3" style="background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.15);">
+                  <div>
+                    <div class="text-sm font-medium text-white">Lambda</div>
+                    <div class="text-xs text-gray-500">prod-account · 2h ago</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-sm font-semibold text-red-400">+847%</div>
+                    <div class="text-xs text-gray-500">$847 vs $0.29</div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between rounded-lg p-3" style="background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.15);">
+                  <div>
+                    <div class="text-sm font-medium text-white">EC2</div>
+                    <div class="text-xs text-gray-500">staging-account · 1d ago</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-sm font-semibold text-yellow-400">+180%</div>
+                    <div class="text-xs text-gray-500">$24 vs $8.50</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── PRICING ────────────────────────────────────────────────────────────── -->
+<section id="pricing" class="py-24 border-t" style="border-color:#1f2937;">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-4" data-aos="fade-up">
+      <p class="font-mono text-sm font-medium mb-4 uppercase tracking-widest" style="color:#f97316;">Pricing</p>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-2">Less than a Spotify subscription.</h2>
+      <p class="text-gray-400 mb-1">One caught spike pays for <strong class="text-gray-200">7 years</strong> of StackAlert. Early access: 50% off forever.</p>
+      <p class="text-xs text-gray-600 mb-12">Alle Preise inkl. MwSt. · All prices include VAT</p>
+    </div>
+    <!-- Pricing rendered by JS -->
+    <div id="pricing-grid" class="grid md:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="100"></div>
+  </div>
+</section>
+
 
 <!-- ─── WAITLIST ───────────────────────────────────────────────────────────── -->
-<section id="waitlist" class="max-w-2xl mx-auto text-center">
-  <div class="section-label" style="justify-content:center;">Early access</div>
-  <h2 class="font-bold mb-3" style="font-size:clamp(1.5rem,3.5vw,2.2rem);letter-spacing:-.025em;">Join the waitlist</h2>
-  <p style="color:#a3a3a3;margin-bottom:32px;">Get early access + 3 months free on any paid plan.</p>
-  <div class="card" style="text-align:left;">
-    <iframe
-      src="https://tally.so/embed/PdExDx?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1"
-      width="100%"
-      height="200"
-      frameborder="0"
-      title="StackAlert Waitlist"
-      style="background:transparent;border:none;"
-    ></iframe>
-    <p class="text-xs mt-4" style="color:#555;">Or email: <a href="mailto:hello@stackalert.app" style="color:#f97316;">hello@stackalert.app</a></p>
+<section id="waitlist" class="py-24 border-t" style="border-color:#1f2937;">
+  <div class="max-w-2xl mx-auto px-6 text-center">
+    <div data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium mb-8 border" style="background:rgba(249,115,22,0.08);color:#f97316;border-color:rgba(249,115,22,0.2);">
+        🚀 Dashboard launching Q2 2026
+      </div>
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">Get early access to the dashboard</h2>
+      <p class="text-gray-400 text-lg leading-relaxed mb-4">
+        Join the waitlist and get <strong style="color:#f97316;">50% off forever</strong> as a founding member.
+        Shape what gets built first.
+      </p>
+      <p class="text-gray-500 text-sm mb-10">
+        Early access: free beta access, direct line to the founder, and input on the feature roadmap.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden border p-8" style="background:#111827;border-color:#1f2937;">
+        <iframe
+          src="https://tally.so/embed/PdExDx?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1"
+          width="100%"
+          height="200"
+          frameborder="0"
+          title="StackAlert Waitlist"
+          style="background:transparent;border:none;"
+        ></iframe>
+        <p class="text-xs mt-4" style="color:#6b7280;">Or email: <a href="mailto:hello@stackalert.app" style="color:#f97316;">hello@stackalert.app</a></p>
+      </div>
+      <p class="text-xs text-gray-600 mt-4">No spam. Unsubscribe anytime. Your email is never shared.</p>
+    </div>
   </div>
 </section>
+
 
 <!-- ─── FAQ ───────────────────────────────────────────────────────────────── -->
-<section id="faq" class="max-w-2xl mx-auto">
-  <div class="section-label">FAQ</div>
-  <h2 class="font-bold mb-10" style="font-size:clamp(1.4rem,3vw,2rem);letter-spacing:-.025em;">Common questions</h2>
-  <!-- FAQ items — filled by JS -->
-  <div id="faq-list"></div>
-</section>
-
-<!-- ─── FINAL CTA ─────────────────────────────────────────────────────────── -->
-<section class="max-w-3xl mx-auto" style="padding-top:0;">
-  <div class="card" style="padding:48px 40px;text-align:center;">
-    <h2 class="font-bold mb-4" style="font-size:clamp(1.4rem,3vw,2rem);letter-spacing:-.025em;">Stop finding out about cost spikes from your monthly bill</h2>
-    <p style="color:#a3a3a3;margin-bottom:32px;">Join the waitlist and get 3 months free on any paid plan.</p>
-    <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="#waitlist" class="btn-primary text-base px-8 py-3.5">
-        <i data-feather="zap" style="width:17px;height:17px;"></i>
-        Join waitlist
-      </a>
-      <a href="https://app.stackalert.app" class="btn-secondary text-base px-8 py-3.5">
-        Open Dashboard
-        <i data-feather="arrow-right" style="width:17px;height:17px;"></i>
-      </a>
+<section class="py-24 border-t" style="border-color:#1f2937;">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <h2 class="text-3xl font-heading font-bold mb-4">Common questions</h2>
     </div>
+    <!-- FAQ rendered by JS -->
+    <div id="faq-list" class="space-y-4" data-aos="fade-up" data-aos-delay="100"></div>
   </div>
 </section>
 
-<!-- ─── FOOTER ────────────────────────────────────────────────────────────── -->
-<footer style="border-top:1px solid #1a1a1a;padding:48px 24px;margin-top:96px;">
-  <div class="max-w-5xl mx-auto">
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
-      <div>
-        <div class="flex items-center gap-2 mb-2">
-          <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect width="28" height="28" rx="7" fill="#f97316"/><path d="M9 7h10l-2 7h5l-9 9 2-8H9V7z" fill="white"/></svg>
-          <span style="font-weight:700;font-size:15px;">StackAlert</span>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────────────────────── -->
+<footer class="border-t py-12" style="border-color:#1f2937;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#f97316,#ea580c);">
+          <svg width="13" height="10" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+            <polyline points="1,10 4,6 7,8 10,3 12,5 15,1" stroke="#030712" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-        <p style="font-size:13px;color:#444;">AWS cost intelligence for lean teams</p>
+        <span class="font-heading font-semibold text-gray-300">StackAlert</span>
+        <span class="text-gray-700 text-sm">· Norderstedt, Germany 🇩🇪</span>
       </div>
-      <div class="flex flex-wrap gap-x-8 gap-y-2">
-        <a href="https://app.stackalert.app" style="font-size:13px;color:#555;">Dashboard</a>
-        <a href="#pricing" style="font-size:13px;color:#555;">Pricing</a>
-        <a href="#channels" style="font-size:13px;color:#555;">Channels</a>
-        <a href="mailto:hello@stackalert.app" style="font-size:13px;color:#555;">Contact</a>
-        <a href="impressum.html" style="font-size:13px;color:#555;">Impressum</a>
-        <a href="datenschutz.html" style="font-size:13px;color:#555;">Datenschutz</a>
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+        <a href="https://app.stackalert.app" class="hover:text-white transition-colors">Dashboard</a>
+        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+        <a href="https://github.com/stackalertapp" target="_blank" rel="noopener" class="hover:text-white transition-colors flex items-center gap-1.5">
+          <svg width="14" height="14"><use href="#icon-github"/></svg>
+          GitHub
+        </a>
+        <a href="impressum.html" class="hover:text-white transition-colors">Impressum</a>
+        <a href="datenschutz.html" class="hover:text-white transition-colors">Datenschutz</a>
+        <a href="mailto:hello@stackalert.app" class="hover:text-white transition-colors">Kontakt</a>
       </div>
-    </div>
-    <div class="pt-6 flex flex-wrap justify-between gap-3" style="border-top:1px solid #1a1a1a;font-size:12px;color:#383838;">
-      <span>© 2025 StackAlert. Made in Germany 🇩🇪</span>
-      <span>Processing in Frankfurt (eu-central-1) · GDPR compliant</span>
+      <div class="text-xs text-gray-600">© 2026 StackAlert · Alle Preise inkl. MwSt.</div>
     </div>
   </div>
 </footer>
+
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 
 <!-- ═══════════════════════════════════════════════════════════════════════════
@@ -492,106 +569,112 @@
 <script>
 // ─── DATA ──────────────────────────────────────────────────────────────────
 
-const CHANNELS = [
-  { name: 'Telegram',    icon: 'send',           color: '#229ED9', badge: 'Default', desc: 'Instant alerts to any bot or group. Zero setup friction.' },
-  { name: 'Slack',       icon: 'hash',           color: '#E01E5A', badge: null,      desc: 'Post to any channel or DM with rich message formatting.' },
-  { name: 'Email',       icon: 'mail',           color: '#f97316', badge: 'New',     desc: 'Plain or HTML digest emails to any address or distribution list.' },
-  { name: 'Discord',     icon: 'message-square', color: '#5865F2', badge: 'New',     desc: 'Deliver alerts to your server channel via incoming webhook.' },
-  { name: 'Teams',       icon: 'users',          color: '#6264A7', badge: 'New',     desc: 'Microsoft Teams incoming webhook — works in any channel.' },
-  { name: 'PagerDuty',   icon: 'alert-triangle', color: '#06AC38', badge: null,      desc: 'Trigger and auto-resolve incidents for critical cost anomalies.' },
-  { name: 'Webhook',     icon: 'link',           color: '#737373', badge: 'Custom',  desc: 'POST JSON to any endpoint. Build your own integrations.' },
+const TRUST_CHIPS = [
+  { color: '#4ade80', text: 'GDPR · EU data only (Frankfurt)' },
+  { color: '#4ade80', text: '60-second setup · no YAML'        },
+  { color: '#4ade80', text: 'Open-source Lambda on GitHub'     },
 ];
 
-const METRICS = [
-  { value: '< 60s', label: 'Setup time'      },
-  { value: '5 min', label: 'Alert latency'   },
-  { value: '7+',    label: 'Alert channels'  },
-  { value: '€4/mo', label: 'Starting price'  },
+const PROBLEM_CARDS = [
+  { emoji: '⏱️', title: '24-hour delay',            body: 'Cost Explorer data lags up to 24 hours. By the time you see it, the damage is already done.' },
+  { emoji: '📧', title: 'Email-only alerts',         body: "AWS Budgets sends an email. Nobody reads billing emails at 3am when their Lambda goes infinite." },
+  { emoji: '🤖', title: 'AI agents with AWS access', body: 'Claude Code, Cursor, Devin — AI agents with AWS credentials can trigger runaway costs in minutes.' },
+];
+
+const CHANNELS = [
+  { name: 'Telegram',  subtitle: '✓ Default',     subColor: '#4ade80', bg: 'rgba(42,171,238,0.13)',
+    svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="#2AABEE"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.47c-.149.664-.537.826-1.089.514l-3-2.21-1.447 1.394c-.16.16-.294.294-.603.294l.213-3.053 5.56-5.023c.242-.213-.052-.332-.373-.119L6.54 14.425l-2.95-.924c-.641-.2-.654-.641.136-.948l11.527-4.446c.534-.193 1.001.13.309.141z"/></svg>` },
+  { name: 'Slack',     subtitle: 'Webhook',        subColor: '#9ca3af', bg: 'rgba(74,21,75,0.25)',
+    svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#E01E5A"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>` },
+  { name: 'Email',     subtitle: '✓ New',          subColor: '#4ade80', bg: 'rgba(249,115,22,0.13)',
+    svg: `<svg width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="2" width="22" height="16" rx="2"/><path d="M1 5l11 8 11-8"/></svg>` },
+  { name: 'Discord',   subtitle: '✓ New',          subColor: '#4ade80', bg: 'rgba(88,101,242,0.18)',
+    svg: `<svg width="24" height="18" viewBox="0 0 24 18" fill="#5865F2"><path d="M20.317 1.492a19.84 19.84 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.74 19.74 0 0 0-4.885 1.515.07.07 0 0 0-.032.027C.533 6.168-.32 10.7.099 15.177c.002.132.02.202.03.222a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 12.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>` },
+  { name: 'Teams',     subtitle: 'Adaptive Cards', subColor: '#9ca3af', bg: 'rgba(70,78,184,0.18)',
+    svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#464EB8"><path d="M20.625 7.688h-5.25V5.812a1.312 1.312 0 0 0-1.313-1.312H9.938a1.312 1.312 0 0 0-1.313 1.312v1.876H3.375A1.313 1.313 0 0 0 2.063 9v7.5a1.312 1.312 0 0 0 1.312 1.313h5.25v1.875a1.313 1.313 0 0 0 1.313 1.312h4.124a1.313 1.313 0 0 0 1.313-1.312v-1.875h5.25A1.313 1.313 0 0 0 21.937 16.5V9a1.312 1.312 0 0 0-1.312-1.312zM12 13.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>` },
+  { name: 'PagerDuty', subtitle: 'Incidents API',  subColor: '#9ca3af', bg: 'rgba(6,172,56,0.13)',
+    svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="#06AC38"><path d="M16.008 0H7.993C5.19 0 2.993 2.197 2.993 5v14c0 2.803 2.197 5 5 5h8.015c2.803 0 5-2.197 5-5V5c0-2.803-2.197-5-5-5zM9.5 17.5h-2v-8h2v8zm5.5 0H13V10h2v7.5zm0-9.5H13V6.5h2V8zm-5.5 0h-2V6h2v2z"/></svg>` },
+  { name: 'Webhook',   subtitle: 'Any HTTP',       subColor: '#9ca3af', bg: 'rgba(249,115,22,0.08)',
+    svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>` },
 ];
 
 const STEPS = [
-  {
-    n: '1',
-    title: 'Connect your AWS account',
-    desc: 'Add a read-only IAM role via a 1-click CloudFormation template. No CLI, no YAML, no agents to install.',
-  },
-  {
-    n: '2',
-    title: 'Choose your alert channels',
-    desc: 'Pick from Telegram, Slack, Email, Discord, Teams, PagerDuty, or a custom webhook. Configure multiple channels per account.',
-  },
-  {
-    n: '3',
-    title: 'Get alerted instantly',
-    desc: 'Receive spike alerts with per-service context within minutes. Daily cost digests land every morning.',
-  },
+  { n: '1', title: 'Install via CDK or Terraform',    desc: 'Add the StackAlert construct to your IaC stack. Configure your notification channels and thresholds.' },
+  { n: '2', title: 'Choose your alert channels',      desc: 'Pick from Telegram, Slack, Email, Discord, Teams, PagerDuty, or a webhook. Mix and match per account.' },
+  { n: '3', title: 'Get alerted the moment costs spike', desc: 'Instant notifications with service name, cost, baseline, and projected daily total. Within minutes.' },
+];
+
+const DASHBOARD_FEATURES = [
+  '90-day anomaly history per service',
+  'Manage all notification channels from UI',
+  'Multi-account overview in one place',
+  'Team access with role-based permissions',
 ];
 
 const PRICING = [
   {
-    name: 'Solo',    price: '€4',   period: '/month', desc: 'For solo developers',  featured: false, badge: null,
-    features: ['1 AWS account', 'Telegram + Email alerts', 'Daily cost digest', 'Per-service breakdown', '5-min alert latency', '14-day free trial'],
-    cta: 'Join waitlist', ctaHref: '#waitlist',
+    name: 'Solo',   price: '€4',  oldPrice: '€9',  desc: '1 AWS account, 1 user',        note: 'Less than 1 coffee/month', featured: false,
+    features: ['1 AWS account', 'Telegram + Email alerts', 'Per-service spike alerts', 'Daily cost digest', '6-hour check interval', '14-day free trial'],
   },
   {
-    name: 'Team',   price: '€14',  period: '/month', desc: 'For small teams',       featured: true,  badge: 'Most popular',
-    features: ['Up to 5 AWS accounts', 'All 7 alert channels', 'Spike alerts + daily digest', 'Per-service breakdown', '5-min alert latency', 'Dashboard access', '14-day free trial'],
-    cta: 'Join waitlist', ctaHref: '#waitlist',
+    name: 'Team',   price: '€14', oldPrice: '€29', desc: '5 AWS accounts, unlimited users', note: 'Cheaper than 30 min of debugging', featured: true, badge: 'Most popular',
+    features: ['5 AWS accounts', 'All 7 alert channels', 'Per-service spike alerts', 'Daily cost digest', 'Dashboard access', '1-hour check interval', '14-day free trial'],
   },
   {
-    name: 'Studio', price: '€39',  period: '/month', desc: 'For agencies & large teams', featured: false, badge: null,
-    features: ['Unlimited AWS accounts', 'All 7 alert channels', 'Spike alerts + daily digest', 'Per-service breakdown', '1-min alert latency', 'Full dashboard access', 'Slack support', '14-day free trial'],
-    cta: 'Join waitlist', ctaHref: '#waitlist',
+    name: 'Studio', price: '€39', oldPrice: '€79', desc: 'Unlimited accounts',               note: 'For agencies & on-call teams', featured: false,
+    features: ['Unlimited AWS accounts', 'All 7 alert channels', 'Custom thresholds', 'Full dashboard access', '15-min check interval', 'Monthly report PDF', 'Priority support (DE/EN)', '14-day free trial'],
   },
 ];
 
 const FAQS = [
   {
     q: 'Which notification channels are supported?',
-    a: 'Telegram, Slack, Email, Discord, Microsoft Teams, PagerDuty, and custom webhooks — 7 channels total. You can configure multiple channels per AWS account and alerts fan out to all of them simultaneously.',
+    a: 'Telegram, Slack, Email, Discord, Microsoft Teams, PagerDuty, and custom webhooks — 7 total. Configure multiple channels per AWS account and alerts fan out to all of them simultaneously.',
   },
   {
-    q: 'How is this different from AWS Budgets?',
-    a: 'AWS Budgets sends an email once a day when a threshold is crossed. StackAlert delivers per-service breakdowns to your team\'s preferred chat within minutes, showing exactly <em>which</em> service caused the spike — not just that a budget was exceeded.',
+    q: 'How is this different from AWS Cost Anomaly Detection?',
+    a: "AWS Cost Anomaly Detection requires 10+ days warmup, alerts only via email/SNS, and can miss obvious spikes. StackAlert uses a simple 7-day rolling average — no warmup, no black box, instant alerts from day one.",
   },
   {
-    q: 'What does the Dashboard do?',
-    a: 'The dashboard gives you a visual overview of your cost history, trends over time, per-service breakdown, and multi-account comparison. It\'s a complement to alerts — use it when you want to dig deeper than a single notification.',
+    q: 'What does the dashboard do?',
+    a: 'The dashboard at <a href="https://app.stackalert.app" style="color:#f97316;">app.stackalert.app</a> gives a visual overview of your cost history, trends, per-service breakdown, and multi-account comparison. Use it when you want to dig deeper than a single alert.',
   },
   {
-    q: 'Do I need to install anything?',
-    a: 'No agents, no CLI tools, no YAML. You add a read-only IAM role via a 1-click CloudFormation template. StackAlert polls the AWS Cost Explorer API on your behalf. That\'s it.',
+    q: 'Does my AWS cost data go to your servers?',
+    a: "StackAlert runs as a Lambda inside your own AWS account. It reads Cost Explorer data, computes the baseline, sends the alert — all without data leaving your account. GDPR compliant by architecture.",
   },
   {
-    q: 'Is it GDPR compliant?',
-    a: 'Yes. All processing happens in Frankfurt (eu-central-1). Your cost data never leaves the EU. We process it, send the alert, and discard it — nothing is stored long-term.',
+    q: 'How much does the open-source version cost to run?',
+    a: "Effectively €0/month. The ARM64 Lambda runs 4× per day — well within free tier. Cost Explorer API calls cost less than $0.04/month total.",
   },
   {
-    q: 'Can I monitor multiple AWS accounts?',
-    a: 'Yes. The Team plan supports up to 5 accounts; the Studio plan is unlimited. Each account has its own independent channel configuration.',
+    q: 'Will the open-source version stay free?',
+    a: "Yes, always. The open-source Lambda is Apache-2.0 licensed and will remain free forever. The paid product is the hosted dashboard — multi-account overview, anomaly history, notification management UI.",
   },
 ];
 
+
 // ─── RENDER ────────────────────────────────────────────────────────────────
 
-function renderHeroPills() {
-  const el = document.getElementById('hero-pills');
+function renderTrustChips() {
+  const el = document.getElementById('trust-chips');
   if (!el) return;
-  el.innerHTML += CHANNELS.map(ch => `
-    <span style="display:inline-flex;align-items:center;gap:5px;background:#111;border:1px solid #2e2e2e;border-radius:20px;padding:4px 10px;font-size:12px;color:#a3a3a3;">
-      <span style="width:7px;height:7px;border-radius:50%;background:${ch.color};flex-shrink:0;display:inline-block;"></span>
-      ${ch.name}
+  el.innerHTML = TRUST_CHIPS.map(c => `
+    <span class="inline-flex items-center gap-1.5 text-xs border px-3 py-1.5 rounded-full" style="color:#9ca3af;background:#111827;border-color:#1f2937;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      ${c.text}
     </span>
   `).join('');
 }
 
-function renderMetrics() {
-  const el = document.getElementById('metrics-strip');
+function renderProblemCards() {
+  const el = document.getElementById('problem-cards');
   if (!el) return;
-  el.innerHTML = METRICS.map(m => `
-    <div class="metric-cell">
-      <div style="font-size:1.75rem;font-weight:700;letter-spacing:-.04em;">${m.value}</div>
-      <div style="font-size:13px;color:#555;margin-top:2px;">${m.label}</div>
+  el.innerHTML = PROBLEM_CARDS.map(c => `
+    <div class="border rounded-2xl p-6 text-left" style="background:rgba(17,24,39,0.6);border-color:#1f2937;">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 text-xl" style="background:rgba(239,68,68,0.08);">${c.emoji}</div>
+      <h3 class="font-heading font-semibold mb-2">${c.title}</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">${c.body}</p>
     </div>
   `).join('');
 }
@@ -599,42 +682,41 @@ function renderMetrics() {
 function renderChannels() {
   const el = document.getElementById('channels-grid');
   if (!el) return;
-  el.innerHTML = CHANNELS.map(ch => {
-    const badgeHtml = ch.badge ? (() => {
-      const styles = {
-        'Default': 'background:rgba(249,115,22,.1);color:#f97316;border:1px solid rgba(249,115,22,.2);',
-        'New':     'background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.2);',
-        'Custom':  'background:rgba(163,163,163,.1);color:#737373;border:1px solid rgba(163,163,163,.2);',
-      };
-      return `<span style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:5px;${styles[ch.badge] || ''}">${ch.badge}</span>`;
-    })() : '';
-
-    return `
-      <div class="channel-card">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:${ch.color}1a;border:1px solid ${ch.color}33;display:flex;align-items:center;justify-content:center;color:${ch.color};">
-            <i data-feather="${ch.icon}" style="width:17px;height:17px;"></i>
-          </div>
-          ${badgeHtml}
-        </div>
-        <div style="font-weight:600;font-size:14px;margin-bottom:4px;">${ch.name}</div>
-        <div style="font-size:13px;color:#737373;line-height:1.55;">${ch.desc}</div>
+  el.innerHTML = CHANNELS.map(c => `
+    <div class="border rounded-2xl p-5 text-center card-hover flex flex-col items-center gap-3" style="background:#111827;border-color:#1f2937;">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:${c.bg};">
+        ${c.svg}
       </div>
-    `;
-  }).join('');
+      <div>
+        <div class="text-sm font-semibold text-white">${c.name}</div>
+        <div class="text-xs mt-0.5" style="color:${c.subColor};">${c.subtitle}</div>
+      </div>
+    </div>
+  `).join('');
 }
 
 function renderSteps() {
-  const el = document.getElementById('steps-list');
+  const el = document.getElementById('steps-grid');
   if (!el) return;
-  el.innerHTML = STEPS.map(s => `
-    <div style="display:flex;align-items:flex-start;gap:16px;background:#111;border:1px solid #2e2e2e;border-radius:14px;padding:20px 24px;">
-      <div class="step-num">${s.n}</div>
-      <div>
-        <div style="font-weight:600;font-size:16px;margin-bottom:4px;">${s.title}</div>
-        <div style="font-size:14px;color:#a3a3a3;line-height:1.65;">${s.desc}</div>
-      </div>
+  el.innerHTML = STEPS.map((s, i) => `
+    <div class="text-center" data-aos="fade-up" data-aos-delay="${i * 100}">
+      <div class="step-number w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-heading font-extrabold mx-auto mb-6" style="color:#f97316;">${s.n}</div>
+      <h3 class="font-heading font-bold text-lg mb-3">${s.title}</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">${s.desc}</p>
     </div>
+  `).join('');
+}
+
+function renderDashboardFeatures() {
+  const el = document.getElementById('dashboard-features');
+  if (!el) return;
+  el.innerHTML = DASHBOARD_FEATURES.map(f => `
+    <li class="flex items-center gap-3">
+      <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(249,115,22,0.15);">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <span class="text-gray-300 text-sm">${f}</span>
+    </li>
   `).join('');
 }
 
@@ -642,23 +724,26 @@ function renderPricing() {
   const el = document.getElementById('pricing-grid');
   if (!el) return;
   el.innerHTML = PRICING.map(plan => `
-    <div class="pricing-card${plan.featured ? ' featured' : ''}">
-      ${plan.badge ? `<div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#f97316;margin-bottom:12px;">${plan.badge}</div>` : ''}
-      <div style="font-size:13px;color:#737373;margin-bottom:4px;">${plan.name}</div>
-      <div style="display:flex;align-items:baseline;gap:2px;margin-bottom:2px;">
-        <span style="font-size:2.2rem;font-weight:700;letter-spacing:-.045em;">${plan.price}</span>
-        <span style="font-size:14px;color:#555;">${plan.period}</span>
+    <div class="border rounded-2xl p-8 relative transition-all hover:-translate-y-1" style="background:${plan.featured ? 'linear-gradient(160deg,#111827,rgba(249,115,22,0.06))' : '#111827'};border-color:${plan.featured ? '#f97316' : '#1f2937'};">
+      ${plan.badge ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-4 py-1 rounded-full" style="background:#f97316;color:#030712;">${plan.badge}</div>` : ''}
+      <div class="font-heading font-semibold text-lg mb-1 text-white">${plan.name}</div>
+      <div class="text-gray-500 text-sm mb-1">${plan.desc}</div>
+      <div class="text-xs text-gray-600 mb-5">${plan.note}</div>
+      <div class="flex items-baseline gap-1.5 mb-1">
+        <span class="font-mono text-gray-600 line-through">${plan.oldPrice}</span>
+        <span class="font-bold font-mono text-4xl" style="${plan.featured ? 'color:#f97316;' : 'color:#f9fafb;'}">${plan.price}</span>
+        <span class="text-gray-500 text-sm">/month</span>
       </div>
-      <div style="font-size:13px;color:#737373;margin-bottom:20px;">${plan.desc}</div>
-      <a href="${plan.ctaHref}" class="${plan.featured ? 'btn-primary' : 'btn-secondary'}" style="display:block;text-align:center;margin-bottom:20px;padding:10px 16px;font-size:14px;">${plan.cta}</a>
-      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;flex:1;">
+      <div class="text-xs mb-6" style="color:#f97316;">Early access price</div>
+      <ul class="space-y-3 mb-8 text-sm">
         ${plan.features.map(f => `
-          <li style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#a3a3a3;">
-            <span style="color:#f97316;font-size:14px;line-height:1.3;flex-shrink:0;">✓</span>
+          <li class="flex items-center gap-2 text-gray-400">
+            <svg class="w-4 h-4 flex-shrink-0" style="color:#f97316;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             ${f}
           </li>
         `).join('')}
       </ul>
+      <a href="#waitlist" class="${plan.featured ? 'btn-primary' : 'btn-secondary'} w-full" style="display:flex;justify-content:center;padding:10px 16px;font-size:14px;">Join waitlist</a>
     </div>
   `).join('');
 }
@@ -666,36 +751,28 @@ function renderPricing() {
 function renderFAQs() {
   const el = document.getElementById('faq-list');
   if (!el) return;
-  el.innerHTML = FAQS.map((item, i) => `
-    <details style="border-top:1px solid #1e1e1e;padding:20px 0;" ${i === 0 ? 'open' : ''}>
-      <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:600;font-size:15px;cursor:pointer;">
-        <span>${item.q}</span>
-        <span class="faq-chevron" style="flex-shrink:0;color:#f97316;font-size:22px;line-height:1;font-weight:300;">+</span>
+  el.innerHTML = FAQS.map(f => `
+    <details class="group border rounded-2xl overflow-hidden" style="background:#111827;border-color:#1f2937;">
+      <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold transition-colors hover:text-orange-400" style="color:#f9fafb;">
+        ${f.q}
+        <svg width="20" height="20" class="flex-shrink-0 transition-transform group-open:rotate-180 ml-4" style="color:#6b7280;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </summary>
-      <div style="margin-top:12px;font-size:14px;color:#a3a3a3;line-height:1.75;padding-right:24px;">${item.a}</div>
+      <div class="px-6 pb-6 text-gray-400 leading-relaxed text-sm">${f.a}</div>
     </details>
-  `).join('') + '<div style="border-top:1px solid #1e1e1e;"></div>';
+  `).join('');
 }
 
 // ─── INIT ──────────────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderHeroPills();
-  renderMetrics();
-  renderChannels();
-  renderSteps();
-  renderPricing();
-  renderFAQs();
+renderTrustChips();
+renderProblemCards();
+renderChannels();
+renderSteps();
+renderDashboardFeatures();
+renderPricing();
+renderFAQs();
 
-  // Replace all feather icons (static + dynamic) in one pass
-  feather.replace();
-
-  // Mobile menu toggle
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  menuToggle?.addEventListener('click', () => mobileMenu?.classList.toggle('open'));
-  mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
-});
+AOS.init({ once: true, duration: 650, easing: 'ease-out-cubic', offset: 60 });
 </script>
 
 </body>
