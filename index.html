@@ -394,11 +394,7 @@
       <h2 id="pricing-heading" class="text-3xl sm:text-4xl mb-4">One caught incident pays for years.</h2>
       <p class="text-gray-400 text-lg max-w-xl mx-auto">StackAlert isn't a cost. It's the thing that prevents costs. Choose the plan that matches your exposure.</p>
     </div>
-    <div class="flex justify-center gap-2 mb-10" data-aos="fade-up">
-      <button id="toggle-monthly" onclick="toggleBilling('monthly')" class="px-4 py-2 rounded-lg text-sm font-semibold" style="font-family:'Montserrat',sans-serif;background:#111827;color:#38bdf8;border:1px solid rgba(56,189,248,.3);cursor:pointer;">Monthly</button>
-      <button id="toggle-annual"  onclick="toggleBilling('annual')"  class="px-4 py-2 rounded-lg text-sm font-semibold" style="font-family:'Montserrat',sans-serif;background:transparent;color:#6b7280;border:1px solid #1f2937;cursor:pointer;">Annual <span class="text-green-400">–20%</span></button>
-    </div>
-    <div id="pricing-cards" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"></div>
+    <div id="pricing-cards" class="grid sm:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto"></div>
     <div class="text-center">
       <p class="text-sm text-gray-500 mb-2">Beta access is free · Pricing applies at launch · No credit card required</p>
       <p class="text-xs text-gray-600">Alle Preise inkl. MwSt. · All prices include VAT</p>
@@ -620,39 +616,54 @@ const CHANNELS = [
   { name:'Webhook', bg:'rgba(56,189,248,.08)', svg:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>` },
 ];
 
-let billing = 'monthly';
 const PRICING = [
   {
     name:'Free', price:0, priceLabel:'forever',
-    persona:'Solo builder who wants basic protection',
+    persona:'Solo builder or personal project',
     highlight:false, badge:null,
     cta:'Deploy yourself →', ctaHref:'https://github.com/stackalertapp/stackalert-lambda', ctaExternal:true,
-    trigger:'Upgrade when you want incident response suggestions',
-    features:['1 AWS account','Email, Slack & Webhook alerts','Hourly anomaly detection','CDK · Terraform · Pulumi wrappers','Self-hosted Lambda','Community support']
+    trigger:'Upgrade when you need anomaly history or multi-account',
+    features:[
+      '1 AWS account',
+      'Email, Slack & Webhook alerts',
+      'Hourly anomaly detection',
+      'CDK · Terraform · Pulumi wrappers',
+      'Self-hosted Lambda',
+      'Community support',
+    ]
   },
   {
-    name:'Pro', price:19, priceLabel:'/month',
-    persona:'Indie hacker or solo developer',
-    highlight:false, badge:null,
-    cta:'Join the beta →', ctaHref:'#beta', ctaExternal:false,
-    trigger:'Upgrade when you need multi-account or team channels',
-    features:['1 AWS account','Email, Slack & Webhook alerts','Cost Incident Response suggestions','90-day anomaly history','Hosted dashboard (60-sec setup)','Email support']
-  },
-  {
-    name:'Growth', price:39, priceLabel:'/month',
-    persona:'Small team shipping fast with AI tools',
+    name:'Pro', price:29, priceLabel:'/month',
+    persona:'Indie hacker or small team',
     highlight:true, badge:'Most popular',
     cta:'Join the beta →', ctaHref:'#beta', ctaExternal:false,
-    trigger:'Upgrade when you need SSO or org-level budget controls',
-    features:['Up to 5 AWS accounts','Email, Slack & Webhook alerts','Cost Incident Response suggestions','90-day anomaly history','Multi-account dashboard','Team notification routing','Priority support']
+    trigger:'Upgrade when you need unlimited accounts or SSO',
+    features:[
+      'Up to 3 AWS accounts',
+      'Email, Slack & Webhook alerts',
+      'Cost Incident Response suggestions',
+      '90-day anomaly history',
+      'Hosted dashboard (60-sec setup)',
+      'Priority support',
+    ]
   },
   {
-    name:'Guardrail', price:79, priceLabel:'/month',
-    persona:'Platform team with real financial exposure',
-    highlight:false, badge:'Safety & control',
-    cta:'Join the beta →', ctaHref:'#beta', ctaExternal:false,
-    trigger:'Built for teams that cannot afford surprises',
-    features:['Unlimited AWS accounts','Email, Slack & Webhook alerts','Cost Incident Response suggestions','90-day anomaly history','Multi-account dashboard','Team notification routing','SSO (Auth0 / OIDC)','Budget enforcement alerts','Priority support + SLA']
+    name:'Enterprise', price:null, priceLabel:'',
+    persona:'Platform teams managing org-level AWS spend',
+    highlight:false, badge:'Custom pricing',
+    cta:'Contact us →', ctaHref:'mailto:hi@stackalert.app', ctaExternal:true,
+    trigger:'Tailored to your team — get a quote',
+    features:[
+      'Unlimited AWS accounts',
+      'Email, Slack & Webhook alerts',
+      'Cost Incident Response suggestions',
+      '90-day anomaly history',
+      'Multi-account dashboard',
+      'Team notification routing',
+      'SSO (Auth0 / OIDC)',
+      'Budget enforcement alerts',
+      'Priority support + SLA',
+    ]
   }
 ];
 
@@ -782,40 +793,30 @@ function renderChannels() {
   `).join('');
 }
 
-function toggleBilling(mode) {
-  billing = mode;
-  const active   = 'background:#111827;color:#38bdf8;border:1px solid rgba(56,189,248,.3);font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;padding:8px 16px;border-radius:8px;cursor:pointer;';
-  const inactive = 'background:transparent;color:#6b7280;border:1px solid #1f2937;font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;padding:8px 16px;border-radius:8px;cursor:pointer;';
-  document.getElementById('toggle-monthly').style.cssText = mode==='monthly' ? active : inactive;
-  document.getElementById('toggle-annual').style.cssText  = mode==='annual'  ? active : inactive;
-  renderPricing();
-}
-
 function renderPricing() {
   const el = document.getElementById('pricing-cards');
   if (!el) return;
   el.innerHTML = PRICING.map((p,i) => {
-    const price = p.price===0 ? 0 : (billing==='annual' ? Math.round(p.price*.8) : p.price);
+    const priceBlock = p.price === null
+      ? `<span class="text-3xl font-extrabold text-white" style="font-family:'Montserrat',sans-serif;">Custom</span>`
+      : p.price === 0
+        ? `<span class="text-3xl font-extrabold text-white" style="font-family:'Montserrat',sans-serif;">Free</span><span class="text-gray-500 text-sm ml-1">${p.priceLabel}</span>`
+        : `<span class="text-3xl font-extrabold text-white" style="font-family:'Montserrat',sans-serif;">€${p.price}</span><span class="text-gray-500 text-sm">${p.priceLabel}</span>`;
     return `
-    <div class="border rounded-2xl p-6 flex flex-col card-hover"
+    <div class="border rounded-2xl p-7 flex flex-col card-hover"
       style="background:${p.highlight?'linear-gradient(160deg,#0c1a2e,#0a1525)':'#0a0f1a'};border-color:${p.highlight?'rgba(56,189,248,.4)':'#1f2937'};"
-      data-aos="fade-up" data-aos-delay="${i*55}">
+      data-aos="fade-up" data-aos-delay="${i*60}">
       ${p.badge
         ? `<div class="badge ${p.highlight?'badge-sky':'badge-amber'} mb-3 self-start" style="font-size:10px;padding:2px 10px;">${p.badge}</div>`
         : `<div class="mb-3" style="height:22px;"></div>`}
-      <div class="text-lg font-bold text-white mb-1" style="font-family:'Montserrat',sans-serif;">${p.name}</div>
-      <div class="text-sm text-gray-500 mb-5 leading-snug" style="min-height:40px;">${p.persona}</div>
-      <div class="flex items-baseline gap-1 mb-6">
-        ${p.price===0
-          ? `<span class="text-3xl font-extrabold text-white" style="font-family:'Montserrat',sans-serif;">Free</span><span class="text-gray-500 text-sm ml-1">${p.priceLabel}</span>`
-          : `<span class="text-3xl font-extrabold text-white" style="font-family:'Montserrat',sans-serif;">€${price}</span><span class="text-gray-500 text-sm">${p.priceLabel}</span>`
-        }
-      </div>
+      <div class="text-xl font-bold text-white mb-1" style="font-family:'Montserrat',sans-serif;">${p.name}</div>
+      <div class="text-sm text-gray-500 mb-6 leading-snug" style="min-height:36px;">${p.persona}</div>
+      <div class="flex items-baseline gap-1 mb-6">${priceBlock}</div>
       <a href="${p.ctaHref}" ${p.ctaExternal?'target="_blank"':''}
-        class="${p.highlight?'btn-primary':'btn-ghost'} px-4 py-3 rounded-lg text-sm text-center mb-6">
+        class="${p.highlight?'btn-primary':'btn-ghost'} px-4 py-3 rounded-lg text-sm text-center mb-7">
         ${p.cta}
       </a>
-      <ul class="space-y-2.5 flex-1">
+      <ul class="space-y-3 flex-1">
         ${p.features.map(f=>`
           <li class="flex items-start gap-2 text-sm">
             <i data-feather="check" style="width:14px;height:14px;color:#4ade80;margin-top:3px;flex-shrink:0;"></i>
@@ -823,7 +824,7 @@ function renderPricing() {
           </li>
         `).join('')}
       </ul>
-      <div class="mt-5 pt-4 border-t text-xs text-gray-600 leading-snug" style="border-color:#1f2937;">${p.trigger}</div>
+      <div class="mt-6 pt-4 border-t text-xs text-gray-600 leading-snug" style="border-color:#1f2937;">${p.trigger}</div>
     </div>`;
   }).join('');
   feather.replace();
